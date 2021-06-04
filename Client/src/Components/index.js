@@ -1,1 +1,1 @@
-var test = 'test';
+let test = 'test';
