@@ -15,4 +15,10 @@ app.listen(port, () => {
 function sum(a, b) {
   return a + b;
 }
+<<<<<<< HEAD
 module.exports = sum;
+=======
+module.exports = sum;
+
+console.log("hello world");
+>>>>>>> Added changes to make eslint compatable for Jest
