@@ -9,4 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/../Client/Dist')); */
 
-console.log("hello world")
+function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon Server/index.js",
     "dev:react": "webpack --config ./webpack.config.js --mode development -w",
-    "db:setup": "node database-mongodb/seed.js"
+    "db:setup": "node database-mongodb/seed.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -45,5 +46,16 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
-  "keywords": []
+  "keywords": [],
+  "jest": {
+    "modulePaths": ["/shared/vendor/modules"],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules", "bower_components", "shared", "Server"],
+
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+
+    }
+  }
 }
