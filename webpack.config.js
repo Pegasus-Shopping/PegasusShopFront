@@ -1,12 +1,14 @@
-var path = require('path');
-var SRC_DIR = path.join(__dirname, '/Client/src');
-var DIST_DIR = path.join(__dirname, '/Client/dist');
+const path = require("path");
+
+const SRC_DIR = path.join(__dirname, "/Client/src");
+
+const DIST_DIR = path.join(__dirname, "/Client/dist");
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    filename: 'bundle.js',
-    path: DIST_DIR
+    filename: "bundle.js",
+    path: DIST_DIR,
   },
   mode: "development",
   module: {
@@ -19,18 +21,18 @@ module.exports = {
           options: {
             presets: [
               "@babel/preset-env",
-              "@babel/preset-react"
+              "@babel/preset-react",
             ],
             plugins: [
               ["@babel/plugin-transform-runtime",
                 {
-                  "regenerator": true
-                }
-              ]
-            ]
-          }
-        }
-      }
-    ]
-  }
+                  regenerator: true,
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  },
 };
