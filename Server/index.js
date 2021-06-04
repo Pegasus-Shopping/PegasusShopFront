@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 
@@ -11,3 +12,11 @@ app.use(express.static('./../Client/dist'));
 app.listen(port, () => {
   console.log('Connected to server at port', 3000);
 });
+
+
+function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+
+
