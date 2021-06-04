@@ -1,0 +1,41 @@
+{
+  "name": "pegasusshopfront",
+  "version": "1.0.0",
+  "description": "npm for FEC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexTing1/PegasusShopFront.git"
+  },
+  "author": "Alex, Alex, and Elizabeth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexTing1/PegasusShopFront/issues"
+  },
+  "homepage": "https://github.com/AlexTing1/PegasusShopFront#readme",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "axios": "^0.21.1",
+    "babel-jest": "^27.0.2",
+    "express": "^4.17.1",
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.38.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "keywords": []
+}
