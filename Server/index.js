@@ -1,16 +1,18 @@
-/* const express = require('express');
-const bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
-
+const port = 3000;
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-app.use(express.static(__dirname + '/../Client/Dist')); */
+app.use(express.static('./../Client/dist'));
+
+app.listen(port, () => {
+  console.log('Connected to server at port', 3000);
+});
 
 function sum(a, b) {
   return a + b;
 }
 module.exports = sum;
-
