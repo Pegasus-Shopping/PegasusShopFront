@@ -1,2 +1,3 @@
-var test = 'Hello World!';
-var test2 = "Heyo world~~~";
+/* const test = 'Hello World!';
+const test2 = "Heyo world~~~";
+ */
