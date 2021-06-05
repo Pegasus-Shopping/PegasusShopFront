@@ -7,7 +7,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.static('./../Client/dist'));
-
 app.listen(port, () => {
   console.log('Connected to server at port', 3000);
 });
@@ -15,10 +14,3 @@ app.listen(port, () => {
 function sum(a, b) {
   return a + b;
 }
-<<<<<<< HEAD
-module.exports = sum;
-=======
-module.exports = sum;
-
-console.log("hello world");
->>>>>>> Added changes to make eslint compatable for Jest
