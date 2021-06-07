@@ -1,0 +1,10 @@
+
+.panel {
+  font-family: "adobe-clean", sans-serif;
+  font-size: 3em;
+}
+.red {
+  font-size: 25px;
+  background-color: red;
+  color: white;
+}
