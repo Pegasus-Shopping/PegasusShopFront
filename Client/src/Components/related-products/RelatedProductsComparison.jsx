@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import React from "react";
 import css from "./styles.css";
-import CardCarousol from "./CardCarousel";
+import CardCarousel from "./CardCarousel";
 
 const sampleProductDetails = {
   id: 11,
@@ -34,11 +34,11 @@ const productStyles = {
       photos: [
         {
           thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg"
+          url: "urlplaceholder/style_1_photo_number.jpg",
         },
         {
           thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg"
+          url: "urlplaceholder/style_1_photo_number.jpg",
         },
       ],
       skus: {
@@ -59,11 +59,23 @@ const productStyles = {
 
   ],
 };
+const salePrice = productStyles.results[0].sale_price;
+const originalPrice = productStyles.results[0].original_price;
+const defaultPrice = sampleProductDetails.default_price;
+
+let displayPrice = "if you see this, the price was not calculated correctly";
+if (salePrice) {
+  displayPrice = salePrice;
+} else if (originalPrice) {
+  displayPrice = originalPrice;
+} else {
+  displayPrice = defaultPrice;
+}
 const formattedProduct = {
   id: sampleProductDetails.id,
   name: sampleProductDetails.name,
   category: sampleProductDetails.category,
-  price: productStyles.results[0].original_price,
+  price: displayPrice,
   imgUrl: productStyles.results[0].photos[0].thumbnail_url,
   rating: 3.5,
 };
@@ -77,8 +89,8 @@ const clickedFunc = () => console.log("You clicked an image, this should update 
 function RelatedProductsComparison() {
   return (
     <div className={css.panel}>
-      <CardCarousol productInfo={relatedProductsArray} title="Related Products" buttonOnClickEvent={printX} onClickEvent={clickedFunc} />
-      <CardCarousol productInfo={outfitProductsArray} title="Your Outfit" buttonOnClickEvent={printX} onClickEvent={clickedFunc} />
+      <CardCarousel productInfo={relatedProductsArray} title="Related Products" buttonOnClickEvent={printX} onClickEvent={clickedFunc} buttonCharacter="star" />
+      <CardCarousel productInfo={outfitProductsArray} title="Your Outfit" buttonOnClickEvent={printX} onClickEvent={clickedFunc} buttonCharacter="circledX" />
     </div>
   );
 }

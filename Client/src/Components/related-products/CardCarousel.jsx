@@ -4,21 +4,18 @@ import React from "react";
 import css from "./styles.css";
 import ProductCard from "./ProductCard.jsx";
 
-function CardCarousol({
-  productInfo, title, buttonOnClickEvent, onClickEvent,
+function CardCarousel({
+  productInfo, title, buttonOnClickEvent, onClickEvent, buttonCharacter = "star",
 }) {
-  let count = 0;
-  const cardArray = productInfo.map((product) => {
-    count += 1;
-    return (
-      <ProductCard
-        product={product}
-        key={title + count}
-        buttonOnClickEvent={buttonOnClickEvent}
-        onClickEvent={onClickEvent}
-      />
-    );
-  });
+  const cardArray = productInfo.map((product, index) => (
+    <ProductCard
+      product={product}
+      key={title + index.toString()}
+      buttonOnClickEvent={buttonOnClickEvent}
+      onClickEvent={onClickEvent}
+      buttonCharacter={buttonCharacter}
+    />
+  ));
   return (
     <div className={css.carousel}>
       <h3 className={css.thinHeading3}>
@@ -38,10 +35,21 @@ function CardCarousol({
   );
 }
 
-CardCarousol.propTypes = {
-  productInfo: PropTypes.arrayOf(PropTypes.objects).isRequired,
+CardCarousel.propTypes = {
+  productInfo: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    category: PropTypes.string,
+    price: PropTypes.string,
+    imgUrl: PropTypes.string,
+    rating: PropTypes.number,
+  }).isRequired).isRequired,
   title: PropTypes.string.isRequired,
   buttonOnClickEvent: PropTypes.func.isRequired,
-  onClickEvent: PropTypes.func.isRequired,
+  onClickEvent: PropTypes.func,
+  buttonCharacter: PropTypes.string.isRequired,
 };
-export default CardCarousol;
+CardCarousel.defaultProps = {
+  onClickEvent: null,
+};
+export default CardCarousel;

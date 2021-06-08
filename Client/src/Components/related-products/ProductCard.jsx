@@ -32,7 +32,7 @@ ProductCards.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     category: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     imgUrl: PropTypes.string,
     rating: PropTypes.number,
   }).isRequired,
