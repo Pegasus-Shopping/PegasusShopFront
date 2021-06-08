@@ -1,10 +1,98 @@
 
+
+
+/* styles for Related Products and Comparsion  */
 .panel {
-  font-family: "adobe-clean", sans-serif;
-  font-size: 3em;
+  position: relative;
+  align-self: center;
+  font-family: Arial, sans-serif;
+  margin-left: 13em;
+  margin-right: 13em;
+  /* font-size: 3em; */
 }
-.red {
-  font-size: 25px;
+.card {
+
+  border-width: .8px;
+  border-color: rgb(102, 102, 102);
+  border-style: solid;
+  display: inline-block;
+  width: 14em;
+  height: 20em;
+  /* padding: .5em; */
+  margin: .6em;
+}
+.cardDetails {
+   padding: .5em;
+}
+.imgBox {
+  background-color: rgb(216, 216, 216);
+  height: 66%;
+}
+.carousel {
+  overflow: hidden;
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+  white-space: nowrap;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 10% 90%;
+}
+.cardContainer {
+
+ grid-column-start: 1;
+ grid-column-end: 4;
+ grid-row-start: 2;
+ grid-row-end: 3;
+}
+.chevron {
+  /* position: absolute;
+  top: 25%;
+  right: 5%;
+  height: 2em; */
+  border-style: none;
+  font-size: 1em;
   background-color: red;
-  color: white;
+}
+.chevronRight {
+  border-style: none;
+  font-size: 1em;
+  z-index: 500;
+  /* background-color: red; */
+  /* background-color: rgba(226, 209, 209, 0); */
+  background: linear-gradient(to left, #ffffff, #9198e500);
+  text-align: end;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.chevronLeft {
+  text-align: start;
+  z-index: 500;
+  border-style: none;
+  font-size: 1em;
+  /* background-color: red; */
+  /* background-color: rgba(226, 209, 209, 0); */
+  background: linear-gradient(to right, #ffffff, #9198e500);
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.thinHeading1 {
+  padding: 0;
+  margin: .2em;
+  font-size: .8em;
+  font-weight: lighter;
+}
+.thinHeading2 {
+  padding: .2em;
+  margin: 0;
+}
+.thinHeading3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  font-weight: lighter;
 }
