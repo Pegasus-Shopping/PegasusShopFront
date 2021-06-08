@@ -36,9 +36,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               importLoaders: 1,
               modules: true,
@@ -48,7 +48,7 @@ module.exports = {
       },
     ],
   },
-  // resolve: {
-  //   extensions: [".js", ".jsx"],
-  // },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
 };
