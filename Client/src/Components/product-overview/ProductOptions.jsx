@@ -1,4 +1,5 @@
 import React from "react";
+import StyleSelector from "./StyleSelector";
 
 function ProductOptions(props) {
   return (
@@ -6,7 +7,10 @@ function ProductOptions(props) {
       <div>STAR RATING PLACEHOLDER</div>
       <span className="productCategory">{props.category}</span>
       <h1>{props.name}</h1>
-      <span>PRICE PLACEHOLDER</span>
+      <StyleSelector
+        defaultPrice={props.defaultPrice}
+        id={props.id}
+      />
     </div>
   );
 }

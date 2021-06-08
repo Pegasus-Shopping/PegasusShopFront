@@ -105,3 +105,6 @@ dist
 
 # api keys
 config.js
+
+# webpack bundle
+Client/dist/bundle.js

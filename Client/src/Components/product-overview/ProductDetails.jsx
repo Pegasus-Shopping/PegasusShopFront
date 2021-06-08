@@ -6,7 +6,7 @@ function ProductDetails(props) {
       <p>{props.description}</p>
       <div className="productFeature">
         {props.features.map((feature) => (
-          <span className="feature">{feature.feature}: {feature.value}</span>
+          <span className="feature">{feature.feature}: {feature.value} <br /></span>
         ))}
       </div>
     </div>

@@ -2,9 +2,8 @@ import React from "react";
 import ImageViewer from "./ImageViewer";
 import ProductDetails from "./ProductDetails";
 import ProductOptions from "./ProductOptions";
-import StyleSelector from "./StyleSelector";
 
-const product = {
+const props = {
   id: 11,
   name: "Air Minis 250",
   slogan: "Full court support",
@@ -23,22 +22,19 @@ const product = {
   ],
 };
 
-// const product = axios.patch("https://localhost:3000/patch:");
-
 function ProductOverview() {
   return (
     <div>
       <ImageViewer />
       <ProductOptions
-        category={product.category}
-        name={product.name}
-        id={product.id}
-        defaultPrice={product.default_price}
+        category={props.category}
+        name={props.name}
+        id={props.id}
+        defaultPrice={props.default_price}
       />
-      <StyleSelector />
       <ProductDetails
-        description={product.description}
-        features={product.features}
+        description={props.description}
+        features={props.features}
       />
     </div>
   );
