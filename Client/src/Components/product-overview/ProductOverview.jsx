@@ -125,6 +125,6 @@ function ProductOverview() {
 //   name: PropTypes.string.isRequired,
 //   id: PropTypes.number.isRequired,
 //   description: PropTypes.number.isRequired,
-//   features: PropTypes.arrayOf(PropTypes.objects).isRequired,
+//   features: PropTypes.arrayOf(PropTypes.object).isRequired,
 // };
 export default ProductOverview;
