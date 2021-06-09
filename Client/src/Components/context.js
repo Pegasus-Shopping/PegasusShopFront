@@ -1,12 +1,7 @@
-/* eslint-disable import/extensions */
 import React from "react";
-import ProductOverview from "./product-overview/ProductOverview.jsx";
-import RelatedProductsComparison from "./related-products/RelatedProductsComparison.jsx";
-import QuestionsAnswers from "./questions-answers/QuestionsAnswers.jsx";
-import ProductReviews from "./product-reviews/ProductReviews.jsx";
-import DataContext from "./context";
 
-const data = {
+const DataContext = React.createContext(
+  {
   product: {
     id: 11,
     name: "Air Minis 250",
@@ -86,19 +81,7 @@ const data = {
     },
   ],
   styleIndex: 0,
-};
+  },
+);
 
-function App() {
-  return (
-    <div>
-      <DataContext.Provider value={data}>
-        <ProductOverview />
-        <RelatedProductsComparison />
-        <QuestionsAnswers />
-        <ProductReviews />
-      </DataContext.Provider>
-    </div>
-  );
-}
-
-export default App;
+export default DataContext;
