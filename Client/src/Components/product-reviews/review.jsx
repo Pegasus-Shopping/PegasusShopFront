@@ -22,7 +22,7 @@ function Review({ review }) {
   const realDate = new Date(date).toDateString().split(" ").slice(1)
     .join(" ");
   return (
-    <div>
+    <div id="review">
       <div id="rating">
         <StarRating rating={rating} />
       </div>
@@ -41,7 +41,7 @@ function Review({ review }) {
       <br />
       <Response response={response} />
       <br />
-      <RecommendProduct recommend={recommend} />
+      <RecommendProduct isRecommend={recommend} />
       <br />
       <Helpful helpfulCounter={helpfulCounter} incrementCounter={incrementCounter} />
     </div>

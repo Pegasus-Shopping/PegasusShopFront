@@ -12,43 +12,41 @@ function ReviewList({ list }) {
   const helpfulList = [...listNewDateFormat].sort((a, b) => b.helpfulness - a.helpfulness);
   const latestList = [...listNewDateFormat].sort((a, b) => b.date - a.date);
 
-  function onChange() {
-    const e = document.getElementById("test");
-    const selectedText = e.options[e.options.selectedIndex].text;
-    setList(selectedText);
+  function onChange(event) {
+    setList(event.target.value);
   }
 
   return (
     <div>
       <select id="test" onChange={onChange}>
-        <option value="latest">Latest</option>
-        <option value="most-helpful">Most Helpful</option>
+        <option value="Latest">Latest</option>
+        <option value="Most Helpful">Most Helpful</option>
         <option value="recommended">recommended</option>
       </select>
-      <div>
+      <>
         {listCounter === "Latest" && (latestList.map((review) => (
-          <div>
+          <>
             <Review review={review} />
             <hr />
-          </div>
+          </>
         )))}
-      </div>
-      <div>
+      </>
+      <>
         {listCounter === "recommended" && (listNewDateFormat.map((review) => (
-          <div>
+          <>
             <Review review={review} />
             <hr />
-          </div>
+          </>
         )))}
-      </div>
-      <div>
+      </>
+      <>
         {listCounter === "Most Helpful" && (helpfulList.map((review) => (
-          <div>
+          <>
             <Review review={review} />
             <hr />
-          </div>
+          </>
         )))}
-      </div>
+      </>
     </div>
   );
 }

@@ -5,10 +5,10 @@ import css from "./styles.css";
 // RecommendProduct takes in reccommend which is a boolean true/false.
 // If true, it will display a message saying the reviewer recommends the product.
 // If false, it will return false.
-function RecommendProduct({ recommend }) {
+function RecommendProduct({ isRecommend }) {
   return (
     <div>
-      {recommend && (
+      {isRecommend && (
         <div>
           <span className={css.checkmark}>
             <div className={css.checkmark_stem} />
@@ -22,7 +22,7 @@ function RecommendProduct({ recommend }) {
 }
 
 RecommendProduct.propTypes = {
-  recommend: PropTypes.bool.isRequired,
+  isRecommend: PropTypes.bool.isRequired,
 };
 
 export default RecommendProduct;
