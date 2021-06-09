@@ -21,7 +21,6 @@ function Review({ review }) {
   }
   const realDate = new Date(date).toDateString().split(" ").slice(1)
     .join(" ");
-
   return (
     <div>
       <div id="rating">

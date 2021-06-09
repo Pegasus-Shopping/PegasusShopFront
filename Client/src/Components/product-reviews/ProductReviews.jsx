@@ -14,7 +14,7 @@ function ProductReviews() {
       body: "They are very dark. But that's good because I'm in very sunny spots",
       date: "2019-06-23T00:00:00.000Z",
       reviewer_name: "bigbrotherbenjamin",
-      helpfulness: 29,
+      helpfulness: 15,
       photos: [],
     },
     {
@@ -63,7 +63,7 @@ function ProductReviews() {
       body: "I so stylish and just my aesthetic.",
       date: "2019-03-12T00:00:00.000Z",
       reviewer_name: "fashionperson",
-      helpfulness: 5,
+      helpfulness: 30,
       photos: [],
     },
     {

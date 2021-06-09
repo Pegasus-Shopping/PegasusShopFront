@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import css from "./styles.css";
 
 // Creates body portion of a Review. Displays body text and photos if there are any.
-function Body(props) {
-  const { text, photos } = props;
+function Body({ text, photos }) {
   return (
     <div>
       <p align="center">
@@ -12,7 +11,7 @@ function Body(props) {
       </p>
       <div align="center">
         {photos.map((photo) => (
-          <img className={css.image} src={photo.url} alt="" width="250" heigh="300" />
+          <img className={css.image} src={photo.url} alt="" width="250" height="300" />
         ))}
       </div>
     </div>

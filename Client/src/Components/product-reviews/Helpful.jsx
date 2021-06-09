@@ -4,10 +4,8 @@ import PropTypes from "prop-types";
 // Passes in helpfulCOunter and incrementCounter. Allows user the option to click yes if the
 // review was helpful, and if it was it would incrememnt the helpfulCounter and remove the ability
 // to click yes again.
-function Helpful(props) {
+function Helpful({ helpfulCounter, incrementCounter }) {
   const [isYes, setYes] = useState(false);
-  const { helpfulCounter } = props;
-  const { incrementCounter } = props;
 
   function onClick() {
     incrementCounter();
@@ -18,24 +16,14 @@ function Helpful(props) {
     onClick();
   }
 
-  if (!isYes) {
-    return (
-      <div>
-        <span>Helpful? </span>
-        <u onClick={onClick} onKeyDown={onHandleKeyDown} role="link" tabIndex={0}>
-          Yes
-        </u>
-        <span>
-          (
-          {helpfulCounter}
-          )
-        </span>
-      </div>
-    );
-  }
   return (
     <div>
       <span>Helpful? </span>
+      {!isYes && (
+        <u onClick={onClick} onKeyDown={onHandleKeyDown} role="link" tabIndex={0}>
+          Yes
+        </u>
+      )}
       <span>
         (
         {helpfulCounter}
