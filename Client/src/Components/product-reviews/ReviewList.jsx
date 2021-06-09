@@ -13,7 +13,7 @@ function ReviewList({ list }) {
   const latestList = [...listNewDateFormat].sort((a, b) => b.date - a.date);
 
   // Assigns variable relevantValue to each object in review list and then returns a list
-  // sorted by relevantValue. relevantValue = 2 * helpfullCount - (current date - review date).
+  // sorted by relevantValue. relevantValue = 2 * helpfulCount - (current date - review date).
   // current date - review date is measured in days
   function createRelevant() {
     const tempList = [...listNewDateFormat];
