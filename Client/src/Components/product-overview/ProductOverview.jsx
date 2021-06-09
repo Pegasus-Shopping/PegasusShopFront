@@ -1,43 +1,130 @@
 import React from "react";
+// import PropTypes from "prop-types";
 import ImageViewer from "./ImageViewer";
 import ProductDetails from "./ProductDetails";
 import ProductOptions from "./ProductOptions";
 
-const props = {
-  id: 11,
-  name: "Air Minis 250",
-  slogan: "Full court support",
-  description: "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
-  category: "Basketball Shoes",
-  default_price: "0",
-  features: [
+const context = {
+  product: {
+    id: 11,
+    name: "Air Minis 250",
+    slogan: "Full court support",
+    description: "This optimized air cushion...",
+    category: "Basketball Shoes",
+    default_price: "0",
+    features: [
+      {
+        feature: "Sole",
+        value: "Rubber",
+      },
+      {
+        feature: "Material",
+        value: "FullControlSkin",
+      },
+    ],
+  },
+  styles: [
     {
-      feature: "Sole",
-      value: "Rubber",
+      style_id: 1,
+      name: "Forest Green & Black",
+      original_price: "140",
+      sale_price: "0",
+      "default?": true,
+      photos: [
+        {
+          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
+          url: "urlplaceholder/style_1_photo_number.jpg",
+        },
+        {
+          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
+          url: "urlplaceholder/style_1_photo_number.jpg",
+        },
+      ],
+      skus: {
+        37: {
+          quantity: 8,
+          size: "XS",
+        },
+        38: {
+          quantity: 16,
+          size: "S",
+        },
+        39: {
+          quantity: 17,
+          size: "M",
+        },
+      },
     },
     {
-      feature: "Material",
-      value: "FullControlSkin",
+      style_id: 2,
+      name: "Desert Brown & Tan",
+      original_price: "140",
+      sale_price: "0",
+      "default?": false,
+      photos: [
+        {
+          thumbnail_url: "urlplaceholder/style_2_photo_number_thumbnail.jpg",
+          url: "urlplaceholder/style_2_photo_number.jpg",
+        },
+      ],
+      skus: {
+        37: {
+          quantity: 8,
+          size: "XS",
+        },
+        38: {
+          quantity: 16,
+          size: "S",
+        },
+        39: {
+          quantity: 17,
+          size: "M",
+        },
+      },
     },
   ],
+  styleIndex: 0,
 };
-
+const price = () => {
+  if (context.styles[context.styleIndex].sale_price !== "0") {
+    return (
+      <span className="price">
+        <b>{context.styles[context.styleIndex].sale_price}</b>
+        {" "}
+        <s>{context.styles[context.styleIndex].original_price}</s>
+      </span>
+    );
+  } if (context.styles[context.styleIndex].original_price !== "0") {
+    return (<span className="price">{context.styles[context.styleIndex].original_price}</span>);
+  }
+  return (<span className="price">{context.product.default_price}</span>);
+};
 function ProductOverview() {
   return (
     <div>
-      <ImageViewer />
+      <ImageViewer
+        photos={context.styles[context.styleIndex].photos}
+        name={context.product.name}
+      />
       <ProductOptions
-        category={props.category}
-        name={props.name}
-        id={props.id}
-        defaultPrice={props.default_price}
+        category={context.product.category}
+        name={context.product.name}
+        id={context.product.id}
+        price={price}
+        styleIndex={context.styleIndex}
       />
       <ProductDetails
-        description={props.description}
-        features={props.features}
+        description={context.product.description}
+        features={context.product.features}
       />
     </div>
   );
 }
-
+// ProductOverview.propTypes = {
+//   category: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   id: PropTypes.number.isRequired,
+//   description: PropTypes.number.isRequired,
+//   features: PropTypes.arrayOf(PropTypes.objects).isRequired,
+// };
 export default ProductOverview;

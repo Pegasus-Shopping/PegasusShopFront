@@ -1,16 +1,31 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function ProductDetails(props) {
+function ProductDetails({
+  description, features,
+}) {
   return (
     <div>
-      <p>{props.description}</p>
+      <p>{description}</p>
       <div className="productFeature">
-        {props.features.map((feature) => (
-          <span className="feature">{feature.feature}: {feature.value} <br /></span>
+        {features.map((feature) => (
+          <span className="feature">
+            {feature.feature}
+            :
+            {" "}
+            {feature.value}
+            {" "}
+            <br />
+          </span>
         ))}
       </div>
     </div>
   );
 }
+
+ProductDetails.propTypes = {
+  description: PropTypes.string.isRequired,
+  features: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductDetails;
