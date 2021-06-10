@@ -93,10 +93,10 @@ function App() {
     <div>
       <DataContext.Provider value={data}>
         <ProductOverview />
-        <RelatedProductsComparison />
-        <QuestionsAnswers />
-        <ProductReviews />
       </DataContext.Provider>
+      <RelatedProductsComparison />
+      <QuestionsAnswers />
+      <ProductReviews />
     </div>
   );
 }
