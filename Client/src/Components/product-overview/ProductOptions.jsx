@@ -10,20 +10,6 @@ function ProductOptions() {
   const { styles, styleIndex } = data;
   const originalPrice = styles[styleIndex].original_price;
   const salePrice = styles[styleIndex].sale_price;
-  const price = () => {
-    if (salePrice !== "0") {
-      return (
-        <span className="price">
-          <b>{salePrice}</b>
-          {" "}
-          <s>{originalPrice}</s>
-        </span>
-      );
-    } if (originalPrice !== "0") {
-      return (<span className="price">{originalPrice}</span>);
-    }
-    return (<span className="price">{defaultPrice}</span>);
-  };
   const { category, name } = data.product;
 
   return (
@@ -31,10 +17,19 @@ function ProductOptions() {
       <div>STAR RATING PLACEHOLDER</div>
       <span className="productCategory">{category}</span>
       <h1>{name}</h1>
-      {price()}
-      <StyleSelector
-        styleIndex={styleIndex}
-      />
+      {salePrice !== "0"
+        && (
+        <span className="price">
+          <b>{salePrice}</b>
+          {" "}
+          <s>{originalPrice}</s>
+        </span>
+        )}
+      {salePrice === "0" && originalPrice !== "0"
+      && <span className="price">{originalPrice}</span>}
+      {salePrice === "0" && originalPrice === "0"
+      && <span className="price">{defaultPrice}</span>}
+      <StyleSelector />
     </div>
   );
 }

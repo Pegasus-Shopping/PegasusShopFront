@@ -8,12 +8,18 @@ function ImageViewer() {
   const productName = data.product.name;
   const [thumb, setThumb] = useState(0);
   const left = () => {
+    // input: nothing
+    // output: next index number
+    // purpose: provide max index if index is 0
     if (thumb === 0) {
       return data.styles.length - 1;
     }
     return thumb - 1;
   };
   const right = () => {
+    // input: nothing
+    // output: next index number
+    // purpose: provide 0 index if index is max
     if (thumb === data.styles.length - 1) {
       return 0;
     }
