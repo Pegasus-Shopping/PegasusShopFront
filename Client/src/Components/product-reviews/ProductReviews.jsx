@@ -1,5 +1,5 @@
 import React from "react";
-import ReviewList from "./ReviewList";
+import ReviewList from "./review-list/ReviewList";
 
 // Passes in an example review list pulled from altiere API.
 // ProductReviews pass in the list to ReviewList.
