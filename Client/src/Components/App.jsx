@@ -93,10 +93,17 @@ function App() {
     <div>
       <DataContext.Provider value={data}>
         <ProductOverview />
+<<<<<<< HEAD
       </DataContext.Provider>
       <RelatedProductsComparison />
       <QuestionsAnswers />
       <ProductReviews />
+=======
+        <RelatedProductsComparison />
+        <QuestionsAnswers />
+        <ProductReviews />
+      </DataContext.Provider>
+>>>>>>> 9c1c4e9786722c3f8b1758972fd8700b6365e2c6
     </div>
   );
 }
