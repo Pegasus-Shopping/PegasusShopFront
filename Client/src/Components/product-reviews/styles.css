@@ -1,3 +1,9 @@
+.reviewListandStarBreakdown {
+  max-width: 200%;
+  display: flex;
+
+}
+
 .checkmark {
   display:inline-block;
   width: 22px;
@@ -25,6 +31,17 @@
   top:16px;
 }
 
+.reviewList {
+  width: 45%;
+  height: 35%;
+  margin: 0; /* Space from this element (entire page) and others*/
+  padding: 0; /*space from content and border*/
+  border: solid black;
+  border-width: thin;
+  overflow:hidden;
+  display:block;
+}
+
 .checked {
   color: black;
 }
@@ -39,4 +56,74 @@
   padding: 25px;
   margin: 20px;
   text-align: left;
+}
+
+.reviewsAndRating {
+  display: flex;
+}
+
+.starsOuter {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.starsOuter::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.starsInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+
+.starsInner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color:black;
+}
+
+.barContainer {
+  width:15%;
+  background-color: #f1f1f1;
+  color: white;
+  display: inline-block;
+}
+
+.bar5 {
+  width: 50%;
+  height: 20px;
+  background-color:orange;
+  display: inline-block;
+}
+
+.bar4 {
+  width: 50%;
+  height: 20px;
+  background-color:orange;
+  display: inline-block;
+}
+
+.bar3 {
+  width: 50%;
+  height: 20px;
+  background-color:orange;
+  display: inline-block;
+}
+
+.bar2 {
+  width: 50%;
+  height: 20px;
+  background-color:orange;
+  display: inline-block;
+}
+
+.bar1 {
+  width: 50%;
+  height: 20px;
+  background-color:orange;
+  display: inline-block;
 }

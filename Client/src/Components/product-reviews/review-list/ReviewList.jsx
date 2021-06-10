@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Review from "./review";
+import css from "../styles.css";
 
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
 function ReviewList({ list }) {
@@ -35,8 +36,8 @@ function ReviewList({ list }) {
   const relevantList = createRelevant();
 
   return (
-    <div>
-      <select id="test" onChange={onChange}>
+    <div className={css.reviewList}>
+      <select id="select sort order" onChange={onChange}>
         <option value="Latest">Latest</option>
         <option value="Most Helpful">Most Helpful</option>
         <option value="Relevant">Relevant</option>
