@@ -6,11 +6,8 @@ const { useContext } = React;
 
 function ProductOptions() {
   const data = useContext(DataContext);
-  // const defaultPrice = useContext(DataContext.product.default_price);
   const defaultPrice = data.product.default_price;
-  // const styles = useContext(DataContext.styles);
   const { styles, styleIndex } = data;
-  // const styleIndex = useContext(DataContext.styleIndex);
   const originalPrice = styles[styleIndex].original_price;
   const salePrice = styles[styleIndex].sale_price;
   const price = () => {
@@ -27,9 +24,7 @@ function ProductOptions() {
     }
     return (<span className="price">{defaultPrice}</span>);
   };
-  // const category = useContext(DataContext.product.category);
   const { category, name } = data.product;
-  // const name = useContext(DataContext.product.name);
 
   return (
     <div>

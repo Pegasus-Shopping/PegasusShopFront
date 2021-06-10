@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import ImageViewer from "./ImageViewer";
 import ProductDetails from "./ProductDetails";
 import ProductOptions from "./ProductOptions";
@@ -94,11 +93,4 @@ function ProductOverview() {
     </div>
   );
 }
-// ProductOverview.propTypes = {
-//   category: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   id: PropTypes.number.isRequired,
-//   description: PropTypes.number.isRequired,
-//   features: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
 export default ProductOverview;
