@@ -16,12 +16,12 @@ function StyleSelector() {
     return quantitiesSelect;
   };
   const getSizes = () => {
-    for (const key in styles[styleIndex].skus) {
+    Object.keys(styles[styleIndex].skus).forEach((key) => {
       sizes.push({
         size: styles[styleIndex].skus[key].size,
         quantity: quantitySelector(styles[styleIndex].skus[key].quantity),
       });
-    }
+    });
   };
   getSizes();
   const [currentSelect, setCurrentSelect] = useState(0);
