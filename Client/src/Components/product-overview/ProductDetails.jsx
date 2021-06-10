@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import DataContext from "../context";
 
-function ProductDetails({
-  description, features,
-}) {
+function ProductDetails() {
+  const data = useContext(DataContext);
+  const { description, features } = data.product;
   return (
     <div>
       <p>{description}</p>
@@ -22,10 +22,5 @@ function ProductDetails({
     </div>
   );
 }
-
-ProductDetails.propTypes = {
-  description: PropTypes.string.isRequired,
-  features: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default ProductDetails;
