@@ -1,0 +1,64 @@
+/* styles for Product Overview */
+.viewer {
+  display: grid;
+  grid-template-columns: 15% 5% 75% 5%;
+  grid-template-rows: 5% 40% 10% 45%;
+}
+
+.mainImage {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  z-index: 1;
+}
+
+.expander {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background: linear-gradient(to right, #ffffff, #9198e500);
+  border-style: none;
+  font-size: 1em;
+  z-index: 2;
+}
+
+.thumbnailPanel {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  z-index: 2;
+}
+
+.thumb {
+  border-style: none;
+  font-size: 1em;
+  z-index: 3;
+  background: linear-gradient(to right, #ffffff, #9198e500);
+}
+
+.chevronLeft {
+    text-align: start;
+    z-index: 3;
+    border-style: none;
+    font-size: 1em;
+    background: linear-gradient(to right, #ffffff, #9198e500);
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
+  }
+
+  .chevronRight {
+    text-align: start;
+    z-index: 3;
+    border-style: none;
+    font-size: 1em;
+    background: linear-gradient(to right, #ffffff, #9198e500);
+    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 3;
+  }
