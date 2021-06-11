@@ -103,7 +103,8 @@ typings/
 # TernJS port file
 .tern-port
 
-#specific files to ignore
-bundle.js
+# api keys
 config.js
-main.js
+
+# webpack bundle
+Client/dist/bundle.js
