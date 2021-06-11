@@ -24,7 +24,7 @@ app.get("/products", (req, res) => {
 
 // Headers required: Authorization token
 // Patch request. Get specfic product using product id.
-app.patch("/products/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}`, {
     headers: {
@@ -36,7 +36,7 @@ app.patch("/products/:id", (req, res) => {
 
 // Headers required: Authorization token
 // Patch Request. Get all styles of a product using product id.
-app.patch("/products/:id/styles", (req, res) => {
+app.get("/products/:id/styles", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/styles`, {
     headers: {
@@ -48,7 +48,7 @@ app.patch("/products/:id/styles", (req, res) => {
 
 // Headers required: Authorization token
 // Patch Request. Get related items of a product using product id.
-app.patch("/products/:id/related", (req, res) => {
+app.get("/products/:id/related", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/related`, {
     headers: {
