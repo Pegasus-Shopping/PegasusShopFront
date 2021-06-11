@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import css from "./styles.css";
+import css from "../styles.css";
 
 // Reponse takes in props.response which is a string that is the message of the sellers response
 // to the reviewer. If props.response is not null or an empty string, the Response function
