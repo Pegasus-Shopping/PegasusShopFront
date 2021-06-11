@@ -1,4 +1,37 @@
 /* styles for Product Overview */
+
+.productoverview {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 90% 10%;
+  height: 50em;
+  width: 40em;
+}
+
+.imageviewer {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.productoptions {
+  background-color: aqua;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.productdetails {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+/* styles for Image Viewer */
+
 .viewer {
   display: grid;
   grid-template-columns: 15% 5% 75% 5%;
@@ -62,3 +95,186 @@
     grid-row-start: 3;
     grid-row-end: 3;
   }
+
+/* styles for Product Options */
+
+.options {
+  background-color: crimson;
+  display: grid;
+  grid-template-rows: 7.5% 7.5% 15% 7.5% 62.5%;
+  grid-template-columns: 100%;
+  height: 100%;
+}
+
+.starrating {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  align-self: end;
+}
+
+.categoryheader {
+  font-style: italic;
+  font-weight: 100;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: end;
+}
+
+.nameheader {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.price {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  align-self: end;
+}
+
+.styleselector {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+/* styles for Style Selector */
+
+.styleselectorgrid {
+  background-color: aquamarine;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 15% 60% 25%;
+  height: 100%;
+}
+
+.selectedstylename {
+  padding: 0;
+  margin: 0;
+  font-weight: 100;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.stylethumbs {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.stylethumbsgrid {
+  background-color:darkkhaki;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail {
+  background-color: darkgoldenrod;
+  padding: 0;
+  margin: 2px;
+  border-radius: 50%;
+  height: 50%;
+  width: 100%;
+}
+
+
+.form {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.formgrid {
+  background-color: blueviolet;
+  display: grid;
+  grid-template-columns: 70% 10% 20%;
+  grid-template-rows: 50% 50%;
+  height: 100%;
+  width: 100%
+}
+
+.sizeselector {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.quantityselector {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.cartbutton {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.outfitbutton {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+/* styles for Product Details */
+
+.productdetailsgrid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100%;
+  width: 100%;
+}
+
+.productdescription {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.productfeature {
+  padding: 0;
+  margin: 0;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
