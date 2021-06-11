@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import css from "../styles.css";
 
 // StarRating takes in rating from props.rating which is a number that is the number of stars
 // a revieer gives to a product. StarRating then returns colored in stars for number of
