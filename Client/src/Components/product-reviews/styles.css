@@ -1,7 +1,6 @@
 .reviewListandStarBreakdown {
-  max-width: 200%;
-  display: flex;
-
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .checkmark {
@@ -33,12 +32,11 @@
 
 .reviewList {
   width: 45%;
-  height: 35%;
+  height: 100%;
   margin: 0; /* Space from this element (entire page) and others*/
   padding: 0; /*space from content and border*/
   border: solid black;
   border-width: thin;
-  overflow:hidden;
   display:block;
 }
 
@@ -87,7 +85,7 @@
 }
 
 .barContainer {
-  width:15%;
+  width:50%;
   background-color: #f1f1f1;
   color: white;
   display: inline-block;
