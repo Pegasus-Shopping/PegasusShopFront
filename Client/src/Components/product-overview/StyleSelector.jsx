@@ -37,12 +37,14 @@ function StyleSelector({ setStyleIndex }) {
     e.preventDefault();
     setCurrentSelect(e.target.value);
   };
-  // const updateStyleIndex = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target);
-  //   console.log(e.target.value);
-  //   setStyleIndex(e.target.value);
-  // };
+  const updateStyle = (index) => {
+    // input: button click event
+    // output: new state (style selected)
+    // purpose: track which style is selected
+    // side effects: updates styleIndex, sizes array
+    setStyleIndex(index);
+    getSizes();
+  };
 
   return (
     <div className={css.styleselectorgrid}>
@@ -61,7 +63,7 @@ function StyleSelector({ setStyleIndex }) {
                 <i className="far fa-check-circle" />
               </div>
               )}
-                <button type="button" onClick={() => (setStyleIndex(index))}>
+                <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))}>
                   {" "}
                   <img
                     className={css.stylethumb}
@@ -86,7 +88,7 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton}>Add To Bag</button>
-          <button type="button" className={css.outfitbutton}>*</button>
+          <button type="button" className={css.outfitbutton}><i className="fa-regular fa-star" /></button>
         </div>
       </form>
     </div>

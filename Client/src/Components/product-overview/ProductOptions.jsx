@@ -23,7 +23,7 @@ function ProductOptions({ setStyleIndex }) {
       </div>
       <span className={css.categoryheader}>{category}</span>
       <h1 className={css.nameheader}>{name}</h1>
-      {(salePrice !== "0" || null)
+      {(salePrice !== null || "0")
         && (
         <span className={css.price}>
           <b>{`$${salePrice}`}</b>
