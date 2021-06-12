@@ -246,7 +246,6 @@
 }
 
 .stylethumbsgrid {
-  background-color:darkkhaki;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 50% 50%;
@@ -255,13 +254,14 @@
 }
 
 .thumbnail {
-  background-color: darkgoldenrod;
   padding: 0;
   margin: 2px;
   border-radius: 50%;
   height: 50%;
   width: 100%;
   align-self: center;
+  object-fit: cover;
+  float: inline-start;
 }
 
 .stylethumb {
@@ -271,8 +271,16 @@
   object-fit: cover;
 }
 
+.stylebutton {
+  background-color: transparent;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+}
+
 .check {
-  z-index: 400;
+  z-index: 5;
+  float: inline-start;
 }
 
 .form {
