@@ -46,8 +46,13 @@ function StyleSelector() {
       <div className={css.stylethumbs}>
         <div className={css.stylethumbsgrid}>
         {styles.map(
-          (style) => (
+          (style, index) => (
             <div className={css.thumbnail}>
+              {index === styleIndex &&
+              <div className={css.check}>
+              <i className="far fa-check-circle"></i>
+              </div>
+              }
               <img src={style.photos[0].thumbnail_url} alt={style.name} />
             </div>
           )

@@ -16,7 +16,9 @@ function ProductOptions() {
 
   return (
     <div className={css.options}>
-      <StarRating rating={4} className={css.starrating} />
+      <div className={css.starrating}>
+        <StarRating rating={4} />
+      </div>
       <span className={css.categoryheader}>{category}</span>
       <h1 className={css.nameheader}>{name}</h1>
       {salePrice !== "0"

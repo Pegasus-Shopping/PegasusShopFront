@@ -28,16 +28,18 @@ function ImageViewer() {
   return (
     <div className={css.viewer}>
       <img className={css.mainImage} src={photos[thumb].url} alt={productName} />
-      <button type="button" className={css.expander}>#</button>
+      <button type="button" className={css.expander} ><i className="fas fa-expand"></i></button>
       <div className={css.thumbnailPanel}>
-        {photos.map((photo, index) => (
-          <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
-            <img src={photo.thumbnail_url} alt={name} />
-          </button>
-        ))}
+        <div className={css.thumbnailPanelGrid}>
+          {photos.map((photo, index) => (
+            <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
+              <img src={photo.thumbnail_url} alt={name} />
+            </button>
+          ))}
+        </div>
       </div>
-      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}>{"<"}</button>
-      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}>{">"}</button>
+      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}><i className="fas fa-chevron-left"></i></button>
+      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}><i className="fas fa-chevron-right"></i></button>
     </div>
   );
 }
