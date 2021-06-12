@@ -1,75 +1,14 @@
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import css from "./styles.css";
 import CardCarousel from "./CardCarousel";
 import ComparisonModal from "./ComparisonModal";
 import helper from "./helper-functions";
+import DataContext from "../context";
 
 const { formatProduct } = helper;
 
-// mock data
-const sampleProductDetails = {
-  id: 20100,
-  name: "Air Minis 250",
-  slogan: "Full court support",
-  description: "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
-  category: "Basketball Shoes",
-  default_price: "0",
-  features: [
-    {
-      feature: "Sole",
-      value: "Rubber",
-    },
-    {
-      feature: "Material",
-      value: "FullControlSkin",
-    },
-    {
-      feature: "Way Overpriced",
-      value: true,
-    },
-  // ...
-  ],
-};
-const productStyles = {
-  product_id: "1",
-  results: [
-    {
-      style_id: 1,
-      name: "Forest Green & Black",
-      original_price: "140",
-      sale_price: "0",
-      "default?": true,
-      photos: [
-        {
-          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg",
-        },
-        {
-          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg",
-        },
-      ],
-      skus: {
-        37: {
-          quantity: 8,
-          size: "XS",
-        },
-        38: {
-          quantity: 16,
-          size: "S",
-        },
-        39: {
-          quantity: 17,
-          size: "M",
-        },
-      },
-    },
-
-  ],
-};
-const formattedProduct = formatProduct(sampleProductDetails, productStyles.results);
 const mockLocalStorage = { outfitIds: [20101, 20106] };
 // placeholder functions, should be axios requests or interations with local storage
 const addToOutfits = (product) => console.log("Should add product with id", product.id, "to the local storage");
@@ -84,11 +23,11 @@ const updateDisplayedProduct = () => console.log("You clicked an image, this sho
 function RelatedProductsComparison() {
   const [isShowingModal, setIsShowingModal] = useState(false);
   const [relatedProductIds, setrelatedProductIds] = useState([]);
-  const [compareFeatures, setCompareFeatures] = useState(formattedProduct.features);
-
+  const [compareFeatures, setCompareFeatures] = useState();
+  const { product } = useContext(DataContext);
   useEffect(() => {
     // get related product ids
-    axios.get(`/products/${formattedProduct.id}/related/`)
+    axios.get(`/products/${product.id}/related/`)
       .then((res) => {
         setrelatedProductIds(res.data);
       });
@@ -97,8 +36,8 @@ function RelatedProductsComparison() {
   // input: object representation of product
   // output: none
   // side effects: upstates compareFeatures, toggles comparison modal on
-  const comparisonClick = (product) => {
-    setCompareFeatures(product);
+  const comparisonClick = (productCompare) => {
+    setCompareFeatures(productCompare);
     setIsShowingModal(true);
   };
   // input: none
@@ -112,7 +51,7 @@ function RelatedProductsComparison() {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
       {isShowingModal && (
       <ComparisonModal
-        currentProduct={formattedProduct}
+        currentProduct={product}
         compareProduct={compareFeatures}
       />
       )}
