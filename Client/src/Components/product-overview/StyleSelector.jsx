@@ -45,18 +45,19 @@ function StyleSelector() {
       </span>
       <div className={css.stylethumbs}>
         <div className={css.stylethumbsgrid}>
-        {styles.map(
-          (style, index) => (
-            <div className={css.thumbnail}>
-              {index === styleIndex &&
+          {styles.map(
+            (style, index) => (
+              <div className={css.thumbnail}>
+                {index === styleIndex
+              && (
               <div className={css.check}>
-              <i className="far fa-check-circle"></i>
+                <i className="far fa-check-circle" />
               </div>
-              }
-              <img src={style.photos[0].thumbnail_url} alt={style.name} />
-            </div>
-          )
-        )}
+              )}
+                <img src={style.photos[0].thumbnail_url} alt={style.name} />
+              </div>
+            ),
+          )}
         </div>
       </div>
       <form className={css.form}>
@@ -65,9 +66,11 @@ function StyleSelector() {
             {sizes.map((size, index) => <option value={index} key={size.size}>{size.size}</option>)}
           </select>
           <select className={css.quantitySelector}>
-            {sizes[currentSelect].quantity.map((qty) => <option value={qty} key={qty}>{qty}</option>)}
+            {sizes[currentSelect].quantity.map(
+              (qty) => <option value={qty} key={qty}>{qty}</option>,
+            )}
           </select>
-          <button type="button" className={css.cartbutton} >Add To Bag</button>
+          <button type="button" className={css.cartbutton}>Add To Bag</button>
           <button type="button" className={css.outfitbutton}>*</button>
         </div>
       </form>

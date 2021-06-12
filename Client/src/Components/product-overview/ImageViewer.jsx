@@ -28,7 +28,7 @@ function ImageViewer() {
   return (
     <div className={css.viewer}>
       <img className={css.mainImage} src={photos[thumb].url} alt={productName} />
-      <button type="button" className={css.expander} ><i className="fas fa-expand"></i></button>
+      <button type="button" className={css.expander}><i aria-label="expand image" className="fas fa-expand" /></button>
       <div className={css.thumbnailPanel}>
         <div className={css.thumbnailPanelGrid}>
           {photos.map((photo, index) => (
@@ -38,8 +38,8 @@ function ImageViewer() {
           ))}
         </div>
       </div>
-      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}><i className="fas fa-chevron-left"></i></button>
-      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}><i className="fas fa-chevron-right"></i></button>
+      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
+      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import css from "./styles.css";
+import css from "../styles.css";
 
 // RecommendProduct takes in reccommend which is a boolean true/false.
 // If true, it will display a message saying the reviewer recommends the product.

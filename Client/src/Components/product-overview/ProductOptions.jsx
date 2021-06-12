@@ -24,17 +24,17 @@ function ProductOptions() {
       {salePrice !== "0"
         && (
         <span className={css.price}>
-          <b>{"$" + salePrice}</b>
+          <b>{`$${salePrice}`}</b>
           {" "}
-          <s>{"$" + originalPrice}</s>
+          <s>{`$${originalPrice}`}</s>
         </span>
         )}
       {salePrice === "0" && originalPrice !== "0"
-      && <span className={css.price}>{"$" + originalPrice}</span>}
+      && <span className={css.price}>{`$${originalPrice}`}</span>}
       {salePrice === "0" && originalPrice === "0"
-      && <span className={css.price}>{"$" + defaultPrice}</span>}
+      && <span className={css.price}>{`$${defaultPrice}`}</span>}
       <div className={css.styleselector}>
-        <StyleSelector  />
+        <StyleSelector />
       </div>
     </div>
   );
