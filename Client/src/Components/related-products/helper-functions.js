@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+=======
+// input: type: object, array, content: product details format of api respective api data,
+// styles array (style.results)
+// output: a string of the display price of a product
+// side effects: none
+const getTruePrice = (details, styles) => {
+  const salePrice = styles[0].sale_price;
+  const originalPrice = styles[0].original_price;
+  const defaultPrice = details.default_price;
+  let displayPrice = null;
+  if (salePrice) {
+    displayPrice = salePrice;
+  } else if (originalPrice) {
+    displayPrice = originalPrice;
+  } else {
+    displayPrice = defaultPrice;
+  }
+  return displayPrice;
+};
+>>>>>>> aca226d8dbd3b326f914bdd655df4ed4b3cc9b8e
 export default {
   // input: type: objects, content: representations of a product that have a features property
   // output: type: array of objects,
@@ -45,6 +66,7 @@ export default {
     });
     return result;
   },
+<<<<<<< HEAD
   // input: type: objects, content: product details and styles in format of api respective api data
   // output: type: object, content: an object representing a product
   // side effects: none
@@ -90,4 +112,19 @@ export default {
     return displayPrice;
   },
 
+=======
+  // input: type: objects, content: product details and an array of styles
+  // output: type: object, content: an object representing a product
+  // side effects: none
+  formatProduct: (details, styles) => ({
+    id: details.id,
+    name: details.name,
+    category: details.category,
+    price: getTruePrice(details, styles),
+    imgUrl: styles[0].photos[0].thumbnail_url,
+    rating: 3.5,
+    features: details.features,
+  }),
+  getTruePrice,
+>>>>>>> aca226d8dbd3b326f914bdd655df4ed4b3cc9b8e
 };

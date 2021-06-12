@@ -1,6 +1,8 @@
 import React from "react";
+// import StarRating from "../product-reviews/StarRating";
 import StyleSelector from "./StyleSelector";
 import DataContext from "../context";
+import css from "./styles.css";
 
 const { useContext } = React;
 
@@ -13,23 +15,28 @@ function ProductOptions() {
   const { category, name } = data.product;
 
   return (
-    <div>
-      <div>STAR RATING PLACEHOLDER</div>
-      <span className="productCategory">{category}</span>
-      <h1>{name}</h1>
-      {salePrice !== "0"
+    <div className={css.options}>
+      <div className={css.starrating}>
+        {/* <StarRating rating={4} /> */}
+        <span>STAR RATING PLACEHOLDER</span>
+      </div>
+      <span className={css.categoryheader}>{category}</span>
+      <h1 className={css.nameheader}>{name}</h1>
+      {(salePrice !== "0" || null)
         && (
-        <span className="price">
-          <b>{salePrice}</b>
+        <span className={css.price}>
+          <b>{`$${salePrice}`}</b>
           {" "}
-          <s>{originalPrice}</s>
+          <s>{`$${originalPrice}`}</s>
         </span>
         )}
       {salePrice === "0" && originalPrice !== "0"
-      && <span className="price">{originalPrice}</span>}
+      && <span className={css.price}>{`$${originalPrice}`}</span>}
       {salePrice === "0" && originalPrice === "0"
-      && <span className="price">{defaultPrice}</span>}
-      <StyleSelector />
+      && <span className={css.price}>{`$${defaultPrice}`}</span>}
+      <div className={css.styleselector}>
+        <StyleSelector />
+      </div>
     </div>
   );
 }

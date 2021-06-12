@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import DataContext from "../context";
+import css from "./styles.css";
 
 function StyleSelector() {
   const data = useContext(DataContext);
@@ -37,22 +38,45 @@ function StyleSelector() {
   };
 
   return (
-    <div>
-      <span className="selectedstyle">{styles[styleIndex].name}</span>
-      <div className="stylethumbs">
-        {styles.map(
-          (style) => <img src={style.photos[0].thumbnail_url} alt={style.name} />,
-        )}
+    <div className={css.styleselectorgrid}>
+      <span className={css.selectedstylename}>
+        <b>{"STYLE > "}</b>
+        {styles[styleIndex].name}
+      </span>
+      <div className={css.stylethumbs}>
+        <div className={css.stylethumbsgrid}>
+          {styles.map(
+            (style, index) => (
+              <div className={css.thumbnail}>
+                {index === styleIndex
+              && (
+              <div className={css.check}>
+                <i className="far fa-check-circle" />
+              </div>
+              )}
+                <img
+                  className={css.stylethumb}
+                  src={style.photos[0].thumbnail_url}
+                  alt={style.name}
+                />
+              </div>
+            ),
+          )}
+        </div>
       </div>
-      <form>
-        <select className="size" onChange={updateSelect}>
-          {sizes.map((size, index) => <option value={index} key={size.size}>{size.size}</option>)}
-        </select>
-        <select className="quantity">
-          {sizes[currentSelect].quantity.map((qty) => <option value={qty} key={qty}>{qty}</option>)}
-        </select>
-        <button type="button" className="cart">Add To Bag</button>
-        <button type="button" className="outfit">*</button>
+      <form className={css.form}>
+        <div className={css.formgrid}>
+          <select className={css.sizeselector} onChange={updateSelect}>
+            {sizes.map((size, index) => <option value={index} key={size.size}>{size.size}</option>)}
+          </select>
+          <select className={css.quantitySelector}>
+            {sizes[currentSelect].quantity.map(
+              (qty) => <option value={qty} key={qty}>{qty}</option>,
+            )}
+          </select>
+          <button type="button" className={css.cartbutton}>Add To Bag</button>
+          <button type="button" className={css.outfitbutton}>*</button>
+        </div>
       </form>
     </div>
   );

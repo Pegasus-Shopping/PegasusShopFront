@@ -2,7 +2,6 @@ import React from "react";
 
 const DataContext = React.createContext(
   {
-
     product: {
       id: 11,
       name: "Air Minis 250",

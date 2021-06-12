@@ -28,16 +28,18 @@ function ImageViewer() {
   return (
     <div className={css.viewer}>
       <img className={css.mainImage} src={photos[thumb].url} alt={productName} />
-      <button type="button" className={css.expander}>#</button>
+      <button type="button" className={css.expander}><i aria-label="expand image" className="fas fa-expand" /></button>
       <div className={css.thumbnailPanel}>
-        {photos.map((photo, index) => (
-          <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
-            <img src={photo.thumbnail_url} alt={name} />
-          </button>
-        ))}
+        <div className={css.thumbnailPanelGrid}>
+          {photos.map((photo, index) => (
+            <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
+              <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
+            </button>
+          ))}
+        </div>
       </div>
-      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}>{"<"}</button>
-      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}>{">"}</button>
+      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
+      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
     </div>
   );
 }

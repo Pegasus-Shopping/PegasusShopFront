@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import css from "./styles.css";
+import css from "../styles.css";
 
 // Creates body portion of a Review. Displays body text and photos if there are any.
 function Body({ text, photos }) {
