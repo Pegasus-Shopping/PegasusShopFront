@@ -13,25 +13,25 @@ function ComparisonModal({ currentProduct, compareProduct }) {
       const { feature } = featureObj;
       const Checked = <i className="fa fa-check" aria-hidden="true" />;
       return (
-        <div key={feature + index.toString()} className={`${css.featureFlexbox} + ${css.thinHeading1}`}>
-          <span>{featureObj.current === true ? Checked : featureObj.current}</span>
-          <span>
+        <div key={feature + index.toString()} className={css.featureGrid}>
+          <h3 className={`${css.thinHeading1} ${css.modalLeft}`}>{featureObj.current === true ? Checked : featureObj.current}</h3>
+          <h3 className={`${css.thinHeading1} ${css.modalCenter}`}>
             {feature}
             {" "}
-          </span>
-          <span>{featureObj.compare === true ? Checked : featureObj.compare}</span>
+          </h3>
+          <h3 className={`${css.thinHeading1} ${css.modalRight}`}>{featureObj.compare === true ? Checked : featureObj.compare}</h3>
         </div>
       );
     },
   );
   return (
     <div className={css.modal}>
-      <h3 className={css.thinHeading3}>Comparing</h3>
-      <div className={css.featureFlexbox}>
-        <h3 className={css.thinHeading2}>{currentProduct.name}</h3>
-        <h3 className={css.thinHeading2}>{compareProduct.name}</h3>
+      <div className={css.featureGrid}>
+        <h3 className={`${css.thinHeading3} ${css.modalLeft}`}>COMPARING</h3>
+        <h3 className={`${css.thinHeading2} ${css.modalLeft}`}>{currentProduct.name}</h3>
+        <h3 className={`${css.thinHeading2} ${css.modalRight}`}>{compareProduct.name}</h3>
       </div>
-      <div className={css.featureGrid} />
+      <br />
       {Comparisons}
     </div>
   );

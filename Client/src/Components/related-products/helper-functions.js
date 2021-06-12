@@ -63,7 +63,7 @@ export default {
     });
     return result;
   },
-  // input: type: objects, content: product details and styles in format of api respective api data
+  // input: type: objects, content: product details and an array of styles
   // output: type: object, content: an object representing a product
   // side effects: none
   formatProduct: (details, styles) => ({

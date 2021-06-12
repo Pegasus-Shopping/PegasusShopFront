@@ -116,8 +116,8 @@ function RelatedProductsComparison() {
         compareProduct={compareFeatures}
       />
       )}
-      <CardCarousel ids={relatedProductIds} title="Related Products" buttonOnClickEvent={comparisonClick} onClickEvent={updateDisplayedProduct} buttonCharacter="star" />
-      <CardCarousel ids={mockLocalStorage.outfitIds} title="Your Outfit" buttonOnClickEvent={addToOutfits} onClickEvent={() => {}} buttonCharacter="circledX" />
+      <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={updateDisplayedProduct} buttonCharacter="star" />
+      <CardCarousel ids={mockLocalStorage.outfitIds} title="YOUR OUTFIT" buttonOnClickEvent={addToOutfits} onClickEvent={() => {}} buttonCharacter="circledX" />
     </div>
   );
 }
