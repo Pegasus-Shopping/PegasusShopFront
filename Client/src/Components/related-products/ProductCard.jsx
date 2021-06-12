@@ -72,7 +72,7 @@ function ProductCards({
           />
         </div>
         <div className={css.cardDetails}>
-          <h3 className={css.thinHeading1}>{details.category}</h3>
+          <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
           <h3 className={css.thinHeading2}>{details.name}</h3>
           <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
           <h3 className={css.thinHeading1}>{rating["3"]}</h3>
