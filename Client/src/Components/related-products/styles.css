@@ -1,4 +1,5 @@
 
+
 /* styles for Related Products and Comparsion  */
 .panel {
   position: relative;
@@ -6,6 +7,7 @@
   font-family: Arial, sans-serif;
   margin-left: 12em;
   margin-right: 12em;
+  /* background-color: teal; */
   /* font-size: 3em; */
 }
 /* ProductCard */
@@ -14,24 +16,25 @@
   border-width: .8px;
   border-color: rgb(102, 102, 102);
   border-style: solid;
+
   display: inline-block;
-  width: 14em;
-  height: 20em;
-  /* padding: .5em; */
-  margin: .6em;
+  width: 14.5em;
+  height: 22em;
+  margin: 1em .65em 2em .65em;
 
 }
 .cardContents {
   display: grid;
   height: 100%;
   grid-template-columns: 100%;
-  grid-template-rows: 66% 33%;
+  grid-template-rows: 66.66% 33.33%;
 
 }
 .cardDetails {
-   padding: .5em;
+   padding: .0em .3em .0em .3em;
    grid-row-start: 2;
    grid-column-start: 1;
+   background-color: white;
 }
 .imgBox {
   background-color: rgb(216, 216, 216);
@@ -43,21 +46,23 @@
   justify-self: start;
 }
 .cardImage {
-
-  width: 75%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .iconContainer {
   grid-row-start: 1;
   grid-row-end: 2;
   grid-column-start: 1;
   z-index: 100;
-  /* padding: .7em; */
+  margin: 1em;
   font-size: 1.1em;
   justify-self: end;
   height: 1.5em;
   width: 1.5em;
   border-style: none;
   background-color: rgba(255, 255, 255, 0);
+
 }
 
 /* CardCarousel */
@@ -65,7 +70,7 @@
   overflow: hidden;
   margin-top: 2em;
   margin-bottom: 2em;
-
+  /* background-color: turquoise; */
   white-space: nowrap;
   display: grid;
   grid-template-columns: 15% 70% 15%;
@@ -112,25 +117,23 @@
 
 /* Typopgraphy */
 .thinHeading1 {
-  padding: 0;
+  padding: .6em 0em .6em 0em;
   margin: .2em;
-  font-size: 1em;
+  font-size: .7em;
   font-weight: lighter;
 }
 .thinHeading2 {
-  padding: .2em;
+  padding: .1em 0em .1em 0em;
+  margin: .2em 0em .5em 0em;
   font-size: 1em;
-  margin: 0;
 }
 .thinHeading3 {
   margin: 0;
+  margin-left: .65em;
   padding: 0;
-  font-size: 1.5em;
+  font-size: .9em;
   font-weight: lighter;
-
-}
-.red {
-  background-color: red;
+  align-self: end;
 }
 
 /* comparisonModal */
@@ -138,17 +141,33 @@
   z-index: 300;
   top: 17em;
   right: 20em;
-  height: 22em;
-  width: 30em;
+  height: 21.5em;
+  width: 27em;
   position: fixed;
   background-color: white;
   border-width: .8px;
   border-color: rgb(102, 102, 102);
   border-style: solid;
-
+  padding: 1em;
 }
-.featureFlexbox {
-  display: flex;
-  justify-content: space-between;
-  padding: .5em;
+.featureGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+.modalLeft {
+  margin: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  justify-self: start;
+}
+.modalCenter {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+}
+.modalRight {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: end;
 }
