@@ -54,7 +54,7 @@ function ProductCards({
       .then(() => {
         setBusy(false);
       });
-  }, []);
+  }, [id]);
   return (
 
     <div className={css.card}>

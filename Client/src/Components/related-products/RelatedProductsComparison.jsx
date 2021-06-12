@@ -12,7 +12,6 @@ const { formatProduct } = helper;
 const mockLocalStorage = { outfitIds: [20101, 20106] };
 // placeholder functions, should be axios requests or interations with local storage
 const addToOutfits = (product) => console.log("Should add product with id", product.id, "to the local storage");
-const updateDisplayedProduct = () => console.log("You clicked an image, this should update the current product");
 
 // imputs: none, uses React context to get ratings and information of current product
 // output: creates a card carousel for related products and a card carousel for products
@@ -20,19 +19,26 @@ const updateDisplayedProduct = () => console.log("You clicked an image, this sho
 // details module and features of a related product
 // side effects: makes api requests
 
-function RelatedProductsComparison() {
+function RelatedProductsComparison({ setId }) {
   const [isShowingModal, setIsShowingModal] = useState(false);
   const [relatedProductIds, setrelatedProductIds] = useState([]);
   const [compareFeatures, setCompareFeatures] = useState();
   const { product } = useContext(DataContext);
+
   useEffect(() => {
     // get related product ids
     axios.get(`/products/${product.id}/related/`)
       .then((res) => {
         setrelatedProductIds(res.data);
       });
-  }, []);
+  }, [product]);
 
+  // input: type: number, content: id of product in card
+  // output: none
+  // side effects: updates currently displayed product
+  const updateDisplayedProduct = (id) => {
+    setId(id);
+  };
   // input: object representation of product
   // output: none
   // side effects: upstates compareFeatures, toggles comparison modal on

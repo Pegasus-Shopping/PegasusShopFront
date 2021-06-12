@@ -11,9 +11,8 @@ function App() {
   const [styles, setStyles] = useState(null);
   const [rating, setRating] = useState(0);
   const [product, setProduct] = useState({ id: 20100 });
-
+  const [id, setId] = useState(20100);
   useEffect(() => {
-    const { id } = product;
     // get styles
     axios.get(`/products/${id}/styles`)
       .then((res) => {
@@ -28,7 +27,7 @@ function App() {
         () => ( // get details
           axios.get(`/products/${id}`)
             .then((res) => {
-              console.log(res);
+              // console.log(res);
               setProduct(res.data);
             })
         ),
@@ -36,7 +35,7 @@ function App() {
       .then(() => {
         setBusy(false);
       });
-  }, []);
+  }, [id]);
   return (
     <div>
       <h1>Shopping</h1>
@@ -49,7 +48,7 @@ function App() {
           }}
           >
             <ProductOverview />
-            <RelatedProductsComparison />
+            <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
             <ProductReviews />
           </DataContext.Provider>
