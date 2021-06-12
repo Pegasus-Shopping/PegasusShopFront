@@ -80,24 +80,29 @@
   grid-row-start: 2;
   grid-row-end: 5;
   z-index: 2;
-  background-color: lightslategray;
   margin: .75em;
 }
 
 .thumbnailPanelGrid {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 20% 20% 20% 20% 20%;
   height: 100%;
   width: 100%;
 }
 
 .thumb {
-  border-style: none;
-  font-size: 1em;
   z-index: 3;
-  background: linear-gradient(to right, #ffffff, #9198e500);
-  margin: .25em;
+  height: 100%;
+  width: 100%;
+  align-self: auto;
+  border: none;
+}
+
+.thumbimage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .chevronLeft {
@@ -257,6 +262,13 @@
   height: 50%;
   width: 100%;
   align-self: center;
+}
+
+.stylethumb {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .check {

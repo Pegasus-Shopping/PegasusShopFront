@@ -33,7 +33,7 @@ function ImageViewer() {
         <div className={css.thumbnailPanelGrid}>
           {photos.map((photo, index) => (
             <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
-              <img src={photo.thumbnail_url} alt={name} />
+              <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
             </button>
           ))}
         </div>

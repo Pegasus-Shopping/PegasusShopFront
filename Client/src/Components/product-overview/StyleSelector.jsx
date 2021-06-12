@@ -54,7 +54,11 @@ function StyleSelector() {
                 <i className="far fa-check-circle" />
               </div>
               )}
-                <img src={style.photos[0].thumbnail_url} alt={style.name} />
+                <img
+                  className={css.stylethumb}
+                  src={style.photos[0].thumbnail_url}
+                  alt={style.name}
+                />
               </div>
             ),
           )}

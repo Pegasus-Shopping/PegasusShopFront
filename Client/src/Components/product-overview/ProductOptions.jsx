@@ -1,5 +1,5 @@
 import React from "react";
-import StarRating from "../product-reviews/StarRating";
+// import StarRating from "../product-reviews/StarRating";
 import StyleSelector from "./StyleSelector";
 import DataContext from "../context";
 import css from "./styles.css";
@@ -17,11 +17,12 @@ function ProductOptions() {
   return (
     <div className={css.options}>
       <div className={css.starrating}>
-        <StarRating rating={4} />
+        {/* <StarRating rating={4} /> */}
+        <span>STAR RATING PLACEHOLDER</span>
       </div>
       <span className={css.categoryheader}>{category}</span>
       <h1 className={css.nameheader}>{name}</h1>
-      {salePrice !== "0"
+      {(salePrice !== "0" || null)
         && (
         <span className={css.price}>
           <b>{`$${salePrice}`}</b>
