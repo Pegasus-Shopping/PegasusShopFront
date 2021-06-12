@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 // import StarRating from "../product-reviews/StarRating";
 import StyleSelector from "./StyleSelector";
 import DataContext from "../context";
@@ -6,7 +7,7 @@ import css from "./styles.css";
 
 const { useContext } = React;
 
-function ProductOptions() {
+function ProductOptions({ setStyleIndex }) {
   const data = useContext(DataContext);
   const defaultPrice = data.product.default_price;
   const { styles, styleIndex } = data;
@@ -35,10 +36,12 @@ function ProductOptions() {
       {salePrice === "0" && originalPrice === "0"
       && <span className={css.price}>{`$${defaultPrice}`}</span>}
       <div className={css.styleselector}>
-        <StyleSelector />
+        <StyleSelector setStyleIndex={setStyleIndex} />
       </div>
     </div>
   );
 }
-
+ProductOptions.propTypes = {
+  setStyleIndex: PropTypes.func.isRequired,
+};
 export default ProductOptions;

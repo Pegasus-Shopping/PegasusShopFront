@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
 import DataContext from "../context";
 import css from "./styles.css";
 
-function StyleSelector() {
+function StyleSelector({ setStyleIndex }) {
   const data = useContext(DataContext);
   const { styleIndex, styles } = data;
   const [currentSelect, setCurrentSelect] = useState(0);
@@ -36,6 +37,12 @@ function StyleSelector() {
     e.preventDefault();
     setCurrentSelect(e.target.value);
   };
+  // const updateStyleIndex = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target);
+  //   console.log(e.target.value);
+  //   setStyleIndex(e.target.value);
+  // };
 
   return (
     <div className={css.styleselectorgrid}>
@@ -54,11 +61,15 @@ function StyleSelector() {
                 <i className="far fa-check-circle" />
               </div>
               )}
-                <img
-                  className={css.stylethumb}
-                  src={style.photos[0].thumbnail_url}
-                  alt={style.name}
-                />
+                <button type="button" onClick={() => (setStyleIndex(index))}>
+                  {" "}
+                  <img
+                    className={css.stylethumb}
+                    src={style.photos[0].thumbnail_url}
+                    alt={style.name}
+                    value={index}
+                  />
+                </button>
               </div>
             ),
           )}
@@ -81,4 +92,7 @@ function StyleSelector() {
     </div>
   );
 }
+StyleSelector.propTypes = {
+  setStyleIndex: PropTypes.func.isRequired,
+};
 export default StyleSelector;
