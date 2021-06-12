@@ -1,3 +1,21 @@
+// input: type: object, array, content: product details format of api respective api data,
+// styles array (style.results)
+// output: a string of the display price of a product
+// side effects: none
+const getTruePrice = (details, styles) => {
+  const salePrice = styles[0].sale_price;
+  const originalPrice = styles[0].original_price;
+  const defaultPrice = details.default_price;
+  let displayPrice = null;
+  if (salePrice) {
+    displayPrice = salePrice;
+  } else if (originalPrice) {
+    displayPrice = originalPrice;
+  } else {
+    displayPrice = defaultPrice;
+  }
+  return displayPrice;
+};
 export default {
   // input: type: objects, content: representations of a product that have a features property
   // output: type: array of objects,
@@ -48,46 +66,14 @@ export default {
   // input: type: objects, content: product details and styles in format of api respective api data
   // output: type: object, content: an object representing a product
   // side effects: none
-  formatProduct: (details, styles) => {
-    const salePrice = styles.results[0].sale_price;
-    const originalPrice = styles.results[0].original_price;
-    const defaultPrice = details.default_price;
-
-    let displayPrice = "if you see this, the price was not calculated correctly";
-    if (salePrice) {
-      displayPrice = salePrice;
-    } else if (originalPrice) {
-      displayPrice = originalPrice;
-    } else {
-      displayPrice = defaultPrice;
-    }
-    return {
-      id: details.id,
-      name: details.name,
-      category: details.category,
-      price: displayPrice,
-      imgUrl: styles.results[0].photos[0].thumbnail_url,
-      rating: 3.5,
-      features: details.features,
-    };
-  },
-  // input: type: object, array, content: product details format of api respective api data,
-  // styles array (style.results)
-  // output: a string of the display price of a product
-  // side effects: none
-  getTruePrice: (details, styles) => {
-    const salePrice = styles[0].sale_price;
-    const originalPrice = styles[0].original_price;
-    const defaultPrice = details.default_price;
-    let displayPrice = null;
-    if (salePrice) {
-      displayPrice = salePrice;
-    } else if (originalPrice) {
-      displayPrice = originalPrice;
-    } else {
-      displayPrice = defaultPrice;
-    }
-    return displayPrice;
-  },
-
+  formatProduct: (details, styles) => ({
+    id: details.id,
+    name: details.name,
+    category: details.category,
+    price: getTruePrice(details, styles),
+    imgUrl: styles[0].photos[0].thumbnail_url,
+    rating: 3.5,
+    features: details.features,
+  }),
+  getTruePrice,
 };

@@ -69,7 +69,7 @@ const productStyles = {
 
   ],
 };
-const formattedProduct = formatProduct(sampleProductDetails, productStyles);
+const formattedProduct = formatProduct(sampleProductDetails, productStyles.results);
 const mockLocalStorage = { outfitIds: [20101, 20106] };
 // placeholder functions, should be axios requests or interations with local storage
 const addToOutfits = (product) => console.log("Should add product with id", product.id, "to the local storage");
