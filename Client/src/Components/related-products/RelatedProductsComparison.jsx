@@ -1,58 +1,48 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import css from "./styles.css";
 import CardCarousel from "./CardCarousel";
 import ComparisonModal from "./ComparisonModal";
 import AddOutfitCard from "./AddOutfitCard";
 import DataContext from "../context";
-// import LocalStorageContext from "./LocalStorageContext";
 import helpers from "./helper-functions";
 
 const { getOutfit, removeFromOutfit } = helpers;
 
-// imputs: none, uses React context to get ratings and information of current product
+// imputs: type: function content: setter for App's id hook
 // output: creates a card carousel for related products and a card carousel for products
 // in the user's outfit, renders a modal comparing the features of the product displayed in the
 // details module and features of a related product
 // side effects: makes api requests
-
 function RelatedProductsComparison({ setId }) {
   const [isShowingModal, setIsShowingModal] = useState(false);
-  const [relatedProductIds, setrelatedProductIds] = useState([]);
+  const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [compareFeatures, setCompareFeatures] = useState();
-  // const [outfitCount, setOutfitCount] = useState(0);
   const { product, updateCount } = useContext(DataContext);
   useEffect(() => {
     // get related product ids
     axios.get(`/products/${product.id}/related/`)
       .then((res) => {
-        setrelatedProductIds(res.data);
+        setRelatedProductIds(res.data);
       });
   }, [product]);
-
-  // input: type: number, content: id of product in card
-  // output: none
-  // side effects: updates currently displayed product
-  const updateDisplayedProduct = (id) => {
-    setId(id);
-  };
   // input: object representation of product
   // output: none
-  // side effects: upstates compareFeatures, toggles comparison modal on
+  // side effects: updates compareFeatures, toggles comparison modal on
   const comparisonClick = (productCompare) => {
     setCompareFeatures(productCompare);
     setIsShowingModal(true);
   };
   // input: none
   // output: none
-  // side effects: upstates compareFeatures, toggles comparison modal off
+  // side effects: toggles comparison modal off
   const pageOnClickEvent = () => {
     setIsShowingModal(false);
   };
-  // window.localStorage.clear();
-  const removeFromOutfitUpdateCount = (id) => {
-    removeFromOutfit(id);
-    // setOutfitCount(outfitCount - 1);
+  // inout: type: object with id property, content: object representation of product
+  const removeFromOutfitUpdateCount = (cardProduct) => {
+    removeFromOutfit(cardProduct);
     updateCount();
   };
   return (
@@ -64,12 +54,12 @@ function RelatedProductsComparison({ setId }) {
         compareProduct={compareFeatures}
       />
       )}
-      {/* <LocalStorageContext.Provider value={{ outfitCount, setOutfitCount }}> */}
-      <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={updateDisplayedProduct} buttonCharacter="star" />
-      <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard />} />
-      {/* </LocalStorageContext.Provider> */}
+      <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
+      <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
     </div>
   );
 }
-
+RelatedProductsComparison.propTypes = {
+  setId: PropTypes.func.isRequired,
+};
 export default RelatedProductsComparison;

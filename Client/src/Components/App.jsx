@@ -51,10 +51,10 @@ function App() {
             product, styles, styleIndex: 0, rating, updateCount,
           }}
           >
-            {/* <ProductOverview /> */}
+            <ProductOverview />
             <RelatedProductsComparison setId={setId} />
-            {/* <QuestionsAnswers />
-            <ProductReviews /> */}
+            <QuestionsAnswers />
+            <ProductReviews />
           </DataContext.Provider>
         </>
         )

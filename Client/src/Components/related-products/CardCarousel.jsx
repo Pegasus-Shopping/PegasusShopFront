@@ -11,6 +11,8 @@ import ProductCard from "./ProductCard";
 // should correspond to icon used in card
 // ids: type: array of numbers, content: ids of products appearing in carousel
 // output: carousel containing product cards
+// dafaultCard: type: React element, content: child element that will
+// appear as first item in carousel
 // side effects: none
 function CardCarousel({
   title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids, defaultCard,
@@ -68,9 +70,10 @@ CardCarousel.propTypes = {
   buttonOnClickEvent: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func,
   buttonCharacter: PropTypes.string.isRequired,
-  defaultCard: PropTypes.node.isRequired,
+  defaultCard: PropTypes.node,
 };
 CardCarousel.defaultProps = {
-  onClickEvent: null,
+  onClickEvent: () => {},
+  defaultCard: null,
 };
 export default CardCarousel;

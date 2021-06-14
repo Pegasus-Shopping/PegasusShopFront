@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import css from "./styles.css";
 import helper from "./helper-functions";
+import StarList from "../product-reviews/star-rating/StarList";
 
 const { getTruePrice } = helper;
 
 // input:
+// id: type: number, content: product id
 // buttonOnClickEvent: type: function, content: callback behavior for clicking on a card's icon
-// onClickEvent: type: function, content: callback behavior for clicking on a card's image
 // buttonCharacter: type: string, content: either "star" or "circledX",
 // should correspond to icon used in card
-// id: type: number, content: product id
-// output: product car
+// onClickEvent: type: function, content: callback behavior for clicking on a card's image
+// output: product card
 // side effects: makes api requests
 function ProductCard({
   id, buttonOnClickEvent, buttonCharacter, onClickEvent,
@@ -75,6 +76,7 @@ function ProductCard({
           <h3 className={css.thinHeading2}>{details.name}</h3>
           <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
           <h3 className={css.thinHeading1}>{rating["3"]}</h3>
+          {/* <StarList list={rating} /> */}
         </div>
       </div>
       )}
@@ -84,7 +86,10 @@ function ProductCard({
 ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   buttonOnClickEvent: PropTypes.func.isRequired,
-  onClickEvent: PropTypes.func.isRequired,
+  onClickEvent: PropTypes.func,
   buttonCharacter: PropTypes.string.isRequired,
+};
+ProductCard.defaultProps = {
+  onClickEvent: () => {},
 };
 export default ProductCard;

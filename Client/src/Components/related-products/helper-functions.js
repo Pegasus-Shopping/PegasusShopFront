@@ -1,4 +1,3 @@
-// const { outfitCount, setOutfitCount } = useContext(LocalStorageContext);
 // input: type: object, array, content: product details format of api respective api data,
 // styles array (style.results)
 // output: a string of the display price of a product
@@ -64,29 +63,22 @@ export default {
     });
     return result;
   },
-  // input: type: objects, content: product details and an array of styles
-  // output: type: object, content: an object representing a product
-  // side effects: none
-  formatProduct: (details, styles) => ({
-    id: details.id,
-    name: details.name,
-    category: details.category,
-    price: getTruePrice(details, styles),
-    imgUrl: styles[0].photos[0].thumbnail_url,
-    rating: 3.5,
-    features: details.features,
-  }),
   getTruePrice,
   removeFromOutfit: (product) => {
     window.localStorage.removeItem(product.id.toString());
   },
+  // input: type: number, contentL id of product to be added to local storage
+  // output: none
+  // side effects: adds id to local storage
   addToOutfit: (id) => {
     window.localStorage.setItem(id, id);
   },
+  // input: none
+  // output: type: array of numbers, content: each number is an id for a product in the outfit list
+  // side effects: none
   getOutfit: () => {
     const outfitArray = [];
     for (let i = 0; i < localStorage.length; i += 1) {
-      // console.log(i, localStorage.key(i), localStorage.getItem(localStorage.key(i)));
       outfitArray.push(Number(localStorage.getItem(localStorage.key(i))));
     }
     return outfitArray;
