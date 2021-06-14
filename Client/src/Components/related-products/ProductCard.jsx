@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -15,7 +14,7 @@ const { getTruePrice } = helper;
 // id: type: number, content: product id
 // output: product car
 // side effects: makes api requests
-function ProductCards({
+function ProductCard({
   id, buttonOnClickEvent, buttonCharacter, onClickEvent,
 }) {
   let buttonClass = "fa fa-star-o";
@@ -82,10 +81,10 @@ function ProductCards({
     </div>
   );
 }
-ProductCards.propTypes = {
+ProductCard.propTypes = {
   id: PropTypes.number.isRequired,
   buttonOnClickEvent: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func.isRequired,
   buttonCharacter: PropTypes.string.isRequired,
 };
-export default ProductCards;
+export default ProductCard;

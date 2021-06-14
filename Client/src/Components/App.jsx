@@ -12,6 +12,7 @@ function App() {
   const [rating, setRating] = useState(0);
   const [product, setProduct] = useState({ id: 20100 });
   const [id, setId] = useState(20100);
+  const [outfitCount, setOutfitCount] = useState(0);
   useEffect(() => {
     // get styles
     axios.get(`/products/${id}/styles`)
@@ -36,6 +37,9 @@ function App() {
         setBusy(false);
       });
   }, [id]);
+  const updateCount = () => {
+    setOutfitCount(outfitCount + 1);
+  };
   return (
     <div>
       <h1>Shopping</h1>
@@ -44,13 +48,13 @@ function App() {
         && (
         <>
           <DataContext.Provider value={{
-            product, styles, styleIndex: 0, rating,
+            product, styles, styleIndex: 0, rating, updateCount,
           }}
           >
-            <ProductOverview />
+            {/* <ProductOverview /> */}
             <RelatedProductsComparison setId={setId} />
-            <QuestionsAnswers />
-            <ProductReviews />
+            {/* <QuestionsAnswers />
+            <ProductReviews /> */}
           </DataContext.Provider>
         </>
         )

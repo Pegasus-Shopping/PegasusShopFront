@@ -13,9 +13,9 @@ import ProductCard from "./ProductCard";
 // output: carousel containing product cards
 // side effects: none
 function CardCarousel({
-  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids,
+  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids, defaultCard,
 }) {
-  const cardArray = ids.map((id, index) => (
+  let cardArray = ids.map((id, index) => (
     <ProductCard
       key={title + index.toString()}
       id={id}
@@ -24,6 +24,7 @@ function CardCarousel({
       onClickEvent={onClickEvent}
     />
   ));
+  cardArray = [defaultCard].concat(cardArray);
   const [currentIndex, setCurrentIndex] = useState(0);
   // increments index
   const incrementIndex = () => {
@@ -67,6 +68,7 @@ CardCarousel.propTypes = {
   buttonOnClickEvent: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func,
   buttonCharacter: PropTypes.string.isRequired,
+  defaultCard: PropTypes.node.isRequired,
 };
 CardCarousel.defaultProps = {
   onClickEvent: null,
