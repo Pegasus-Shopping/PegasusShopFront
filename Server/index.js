@@ -91,6 +91,29 @@ app.get("/reviews/meta", (req, res) => {
     .then((resp) => res.send(resp.data));
 });
 
+app.post("/reviews", (req, res) => {
+  console.log(config.TOKEN);
+
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+    params: {
+      product_id: 20100,
+      rating: 4,
+      summary: "These glasses are amazing",
+      body: "I recommend anyone to get these glasses. These glasses are amazing",
+      recommend: true,
+      name: "bongobomba",
+      email: "blahblah@gmail.com",
+      photos: [],
+      characteristics: {},
+    },
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+    .then((resp) => console.log(resp))
+    .catch((err) => console.log(err));
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log("Connected to server at port", 3000);

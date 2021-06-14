@@ -1,16 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function UploadPhotos() {
+function UploadPhotos({ setPhoto }) {
   // const [uploadPhoto, setPhoto] = useState("file");
   const photoCollection = [];
   function loadFile(event) {
     const image = document.getElementById(`output${photoCollection.length + 1}`);
     image.src = URL.createObjectURL(event.target.files[0]);
     photoCollection.push(image);
-  }
-
-  function onSubmit() {
-    console.log("this is photoCollection: ", photoCollection);
+    setPhoto(photoCollection);
   }
 
   return (
@@ -23,9 +21,12 @@ function UploadPhotos() {
         <img id="output4" width="200" alt="user upload 4" />
         <img id="output5" width="200" alt="user upload 5" />
       </form>
-      <input type="button" value="submit" onClick={onSubmit} />
     </div>
   );
 }
+
+UploadPhotos.propTypes = {
+  setPhoto: PropTypes.func.isRequired,
+};
 
 export default UploadPhotos;
