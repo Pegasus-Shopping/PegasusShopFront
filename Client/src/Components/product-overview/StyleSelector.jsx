@@ -8,6 +8,7 @@ function StyleSelector({ setStyleIndex }) {
   const data = useContext(DataContext);
   const { styleIndex, styles } = data;
   const [currentSelect, setCurrentSelect] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState(0);
   const sizes = [];
   const quantitySelector = (max) => {
     // input: number (quantity from sku)
@@ -39,6 +40,13 @@ function StyleSelector({ setStyleIndex }) {
     e.preventDefault();
     setCurrentSelect(e.target.value);
   };
+  const updateQuantity = (e) => {
+    // input: new quantity selected
+    // output: new state
+    // purpose: update state on change
+    e.preventDefault();
+    setCurrentQuantity(e.target.value);
+  };
   const updateStyle = (index) => {
     // input: button click event
     // output: new state (style selected)
@@ -55,7 +63,7 @@ function StyleSelector({ setStyleIndex }) {
     axios.post("http://localhost:3000/cart", {
       query: {
         sku: sizes[currentSelect].id,
-        count: sizes[currentSelect].quantity,
+        count: currentQuantity,
       },
     })
       .then((resp) => console.log(resp))
@@ -97,9 +105,16 @@ function StyleSelector({ setStyleIndex }) {
           <select className={css.sizeselector} onChange={updateSelect}>
             {sizes.map((size, index) => <option value={index} key={size.size}>{size.size}</option>)}
           </select>
-          <select className={css.quantitySelector}>
+          <select className={css.quantitySelector} onChange={updateQuantity}>
             {sizes[currentSelect].quantity.map(
-              (qty) => <option value={qty} key={qty}>{qty}</option>,
+              (qty) => (
+                <option
+                  value={qty}
+                  key={qty}
+                >
+                  {qty}
+                </option>
+              ),
             )}
           </select>
           <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
