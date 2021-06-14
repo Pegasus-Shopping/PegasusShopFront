@@ -88,7 +88,7 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton}>Add To Bag</button>
-          <button type="button" className={css.outfitbutton}><i className="fa-regular fa-star" /></button>
+          <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="fa-regular fa-star" /></button>
         </div>
       </form>
     </div>
