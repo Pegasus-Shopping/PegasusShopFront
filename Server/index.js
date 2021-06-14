@@ -91,6 +91,36 @@ app.get("/reviews/meta", (req, res) => {
     .then((resp) => res.send(resp.data));
 });
 
+// Header required: Authorization token
+// Param required:
+// Get Request. All skus in cart
+app.get("/cart", (req, res) => {
+  axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart", {
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+    .then((resp) => res.send(resp.data));
+});
+
+// Header required: Authorization token
+// Param required: sku_id, (count)
+// Post Request. Add sku to cart
+app.post("/cart", (req, res) => {
+  const { sku, count } = req.query;
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart", {
+    params: {
+      sku_id: Number(sku),
+      count: Number(count),
+    },
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+    .then((resp) => res.send(resp.data))
+    .catch((resp) => res.send(resp.error));
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log("Connected to server at port", 3000);

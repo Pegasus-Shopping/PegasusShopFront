@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import DataContext from "../context";
 import css from "./styles.css";
@@ -24,6 +25,7 @@ function StyleSelector({ setStyleIndex }) {
     // purpose: provide sizes for selector
     Object.keys(styles[styleIndex].skus).forEach((key) => {
       sizes.push({
+        id: key,
         size: styles[styleIndex].skus[key].size,
         quantity: quantitySelector(styles[styleIndex].skus[key].quantity),
       });
@@ -45,7 +47,20 @@ function StyleSelector({ setStyleIndex }) {
     setStyleIndex(index);
     getSizes();
   };
-
+  const addToCart = (e) => {
+    // input: add to cart button click, event
+    // output: API post request
+    // purpose: allow user to add current selected product to cart
+    e.preventDefault();
+    axios.post("http://localhost:3000/cart", {
+      query: {
+        sku: sizes[currentSelect].id,
+        count: sizes[currentSelect].quantity,
+      },
+    })
+      .then((resp) => console.log(resp))
+      .catch((error) => console.log(error));
+  };
   return (
     <div className={css.styleselectorgrid}>
       <span className={css.selectedstylename}>
@@ -87,7 +102,7 @@ function StyleSelector({ setStyleIndex }) {
               (qty) => <option value={qty} key={qty}>{qty}</option>,
             )}
           </select>
-          <button type="button" className={css.cartbutton}>Add To Bag</button>
+          <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
           <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="fa-regular fa-star" /></button>
         </div>
       </form>
