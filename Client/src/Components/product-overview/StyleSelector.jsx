@@ -35,14 +35,14 @@ function StyleSelector({ setStyleIndex }) {
   getSizes();
   const updateSelect = (e) => {
     // input: selector change event
-    // output: new state
+    // output:
     // purpose: track which size is selected
     e.preventDefault();
     setCurrentSelect(e.target.value);
   };
   const updateQuantity = (e) => {
     // input: new quantity selected
-    // output: new state
+    // output:
     // purpose: update state on change
     e.preventDefault();
     setCurrentQuantity(e.target.value);
@@ -82,9 +82,7 @@ function StyleSelector({ setStyleIndex }) {
               <div className={css.thumbnail}>
                 {index === styleIndex
               && (
-              <div className={css.check}>
                 <i className="far fa-check-circle" />
-              </div>
               )}
                 <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))}>
                   {" "}
@@ -118,7 +116,7 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
-          <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="fa-regular fa-star" /></button>
+          <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="far fa-heart" /></button>
         </div>
       </form>
     </div>
