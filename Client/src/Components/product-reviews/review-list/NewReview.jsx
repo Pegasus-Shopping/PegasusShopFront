@@ -1,53 +1,33 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import UploadPhotos from "./UploadPhotos";
 import SelectStarRating from "./SelectStarRating";
 
-function NewReview() {
+function NewReview({ setNewReview }) {
   const [reviewTracker, setReviewTracker] = useState(0);
   const [summaryText, setSummaryText] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [nicknameText, setNicknameText] = useState("");
   const [emailText, setEmailText] = useState("");
   const [photoArray, setPhotoArray] = useState([]);
-  const [newReview, setNewReview] = useState(
-    {
-      review_id: 0,
-      rating: 0,
-      summary: "",
-      recommend: false,
-      response: null,
-      body: "",
-      date: "",
-      reviewer_name: "",
-      helpfulness: 0,
-      photos: [],
-    },
-  );
-
-  const newReviewTemplate = {
-    review_id: 0,
-    rating: 0,
-    summary: "",
-    recommend: false,
-    response: null,
-    body: "",
-    date: "",
-    reviewer_name: "",
-    helpfulness: 0,
-    photos: [],
-  };
+  const [reviewRating, setReviewRating] = useState(0);
+  const [reviewRecommend, setReviewRecommend] = useState(null);
 
   function onClickNewReview() {
     if (reviewTracker === 0) {
       setReviewTracker(1);
     } else {
-      const review = document.getElementById("newReviewBody");
-      console.log(review);
-      console.log("this is summaryText: ", summaryText);
-      console.log("this is reviewText: ", reviewText);
-      console.log("this is nicknameText: ", nicknameText);
-      console.log("this is emailText: ", emailText);
-      console.log("this is photoArray: ", photoArray);
+      setNewReview({
+        rating_id: 0,
+        rating: reviewRating,
+        summary: summaryText,
+        recommend: reviewRecommend,
+        body: reviewText,
+        date: new Date(),
+        reviewer_name: nicknameText,
+        helpfulness: 0,
+        photos: photoArray,
+      });
       setReviewTracker(0);
     }
   }
@@ -68,18 +48,12 @@ function NewReview() {
     setEmailText(event.target.value);
   }
 
-  function setNewReviewTemplate(reviewId, rating, summary, recommend,
-    response, body, date, reviewerName, helpfulness, photos) {
-    newReview.review_id = reviewId;
-    newReview.rating = rating;
-    newReview.summary = summary;
-    newReview.recommend = recommend;
-    newReview.response = response;
-    newReview.body = body;
-    newReview.date = date;
-    newReview.reviewer_name = reviewerName;
-    newReview.helpfulness = helpfulness;
-    newReview.photos = photos;
+  function onRecommendClick(event) {
+    if (event.target.value) {
+      setReviewRecommend(true);
+    } else {
+      setReviewRecommend(false);
+    }
   }
 
   return (
@@ -88,19 +62,19 @@ function NewReview() {
       {reviewTracker === 1 && (
       <div id="newReviewBody">
         <div id="select star rating">
-          <SelectStarRating />
+          <SelectStarRating setReviewRating={setReviewRating} />
         </div>
-        <div id="do you recommend">
+        <form id="do you recommend">
           Do you Recommend the product?
-          <label>
-            <input type="radio" id="recommend" />
+          <label htmlFor="recommend-radio-yes">
+            <input type="radio" name="recommend" value onClick={onRecommendClick} />
             Yes
           </label>
-          <label>
-            <input type="radio" />
+          <label htmlFor="recommend-radio-no">
+            <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
             No
           </label>
-        </div>
+        </form>
         <br />
         Summary:
         <br />
@@ -127,5 +101,9 @@ function NewReview() {
     </div>
   );
 }
+
+NewReview.propTypes = {
+  setNewReview: PropTypes.func.isRequired,
+};
 
 export default NewReview;

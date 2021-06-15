@@ -134,3 +134,7 @@
   overflow: hidden;
   width: 0%;
 }
+
+.formRadio {
+  display:none;
+}
