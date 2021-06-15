@@ -121,6 +121,28 @@ app.post("/cart", (req, res) => {
     .catch((resp) => res.send(resp.error));
 });
 
+// Header required: Authorization token
+// Param required: {
+// widget:...,
+// element:...,
+// date:...,//
+// }
+// Post Request: add interactions data to Atelier API database
+app.post("/clicks", (req, res) => {
+  // console.log(req.body);
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions", req.body,
+    {
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log("Connected to server at port", 3000);

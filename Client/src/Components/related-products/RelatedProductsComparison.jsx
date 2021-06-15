@@ -7,6 +7,7 @@ import ComparisonModal from "./ComparisonModal";
 import AddOutfitCard from "./AddOutfitCard";
 import DataContext from "../context";
 import helpers from "./helper-functions";
+import RecordClicks from "../RecordClicks";
 
 const { getOutfit, removeFromOutfit } = helpers;
 
@@ -46,17 +47,19 @@ function RelatedProductsComparison({ setId }) {
     updateCount();
   };
   return (
-    <div role="button" className={css.panel} onClick={isShowingModal ? pageOnClickEvent : undefined} onKeyDown={isShowingModal ? pageOnClickEvent : undefined} tabIndex={0}>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      {isShowingModal && (
-      <ComparisonModal
-        currentProduct={product}
-        compareProduct={compareFeatures}
-      />
-      )}
-      <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
-      <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
-    </div>
+    <RecordClicks widget="related products comparison" element="carousel container">
+      <div role="button" className={css.panel} onClick={isShowingModal ? pageOnClickEvent : undefined} onKeyDown={isShowingModal ? pageOnClickEvent : undefined} tabIndex={0}>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        {isShowingModal && (
+        <ComparisonModal
+          currentProduct={product}
+          compareProduct={compareFeatures}
+        />
+        )}
+        <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
+        <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
+      </div>
+    </RecordClicks>
   );
 }
 RelatedProductsComparison.propTypes = {
