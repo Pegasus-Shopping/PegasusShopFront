@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import UploadPhotos from "./UploadPhotos";
 import SelectStarRating from "./SelectStarRating";
 
+// input: takes in setNewReview function that passes new review information to ReviewList
+// Creates New Review data object to be passed on to server.
 function NewReview({ setNewReview }) {
   const [reviewTracker, setReviewTracker] = useState(0);
   const [summaryText, setSummaryText] = useState("");
@@ -13,6 +15,8 @@ function NewReview({ setNewReview }) {
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewRecommend, setReviewRecommend] = useState(null);
 
+  // Brings up new review input selection when New Review button is selected.
+  // Closes new review input selection and passes date with setNewReview when submit is clicked
   function onClickNewReview() {
     if (reviewTracker === 0) {
       setReviewTracker(1);

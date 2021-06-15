@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+// setPhoto is a setter function that passes the information to the NewReview.jsx file.
+// UploadPhotos allows user to upload photos to their review and passes the data to a parent
+// function using the setPhoto function.
 function UploadPhotos({ setPhoto }) {
   // const [uploadPhoto, setPhoto] = useState("file");
   const photoCollection = [];

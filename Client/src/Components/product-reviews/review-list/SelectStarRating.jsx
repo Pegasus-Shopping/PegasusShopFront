@@ -3,6 +3,9 @@ import { FaStar } from "react-icons/fa";
 import PropTypes from "prop-types";
 import css from "../styles.css";
 
+// input setReviewRating passes the rating data to New Review.
+// SelectStarRating allows the user to rate the product on a star rating scale.
+// The user selects which star on the star rating scale to indicate their rating for the product.
 function SelectStarRating({ setReviewRating }) {
   const starMapper = [...new Array(5)];
   const [rating, setRating] = useState(null);
