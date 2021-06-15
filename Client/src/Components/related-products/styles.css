@@ -85,10 +85,7 @@
  grid-row-end: 3;
 }
 .chevron {
-  /* position: absolute;
-  top: 25%;
-  right: 5%;
-  height: 2em; */
+
   border-style: none;
   font-size: 1em;
   background-color: red;
