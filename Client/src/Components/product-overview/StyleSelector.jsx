@@ -2,14 +2,18 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import DataContext from "../context";
+import helpers from "../related-products/helper-functions";
 import css from "./styles.css";
 
 function StyleSelector({ setStyleIndex }) {
   const data = useContext(DataContext);
   const { styleIndex, styles } = data;
+  const { id } = data.product;
+  const { removeFromOutfit, addToOutfit, getOutfit } = helpers;
   const [currentSelect, setCurrentSelect] = useState(0);
-  const [currentQuantity, setCurrentQuantity] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState(1);
   const sizes = [];
+  const outfits = getOutfit();
   const quantitySelector = (max) => {
     // input: number (quantity from sku)
     // output: array of numbers 1-max or 15
@@ -61,13 +65,21 @@ function StyleSelector({ setStyleIndex }) {
     // purpose: allow user to add current selected product to cart
     e.preventDefault();
     axios.post("http://localhost:3000/cart", {
-      query: {
+      params: {
         sku: sizes[currentSelect].id,
         count: currentQuantity,
       },
     })
       .then((resp) => console.log(resp))
       .catch((error) => console.log(error));
+  };
+  const addOutfit = (e) => {
+    e.preventDefault();
+    addToOutfit(id);
+  };
+  const removeOutfit = (e) => {
+    e.preventDefault();
+    removeFromOutfit(id);
   };
   return (
     <div className={css.styleselectorgrid}>
@@ -116,7 +128,10 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
-          <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="far fa-heart" /></button>
+          {outfits.includes(id)
+            && <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>}
+          {!outfits.includes(id)
+            && <button type="button" className={css.outfitbutton} onClick={removeOutfit}><i aria-label="Unsave outfit" className="fas fa-heart" /></button>}
         </div>
       </form>
     </div>
