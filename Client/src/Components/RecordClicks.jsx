@@ -16,6 +16,9 @@ function RecordClicks({ widget, element, children }) {
     })
       .then((res) => {
         console.log("Record from server:", res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   return (
