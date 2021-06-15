@@ -8,6 +8,16 @@
   width: 50em;
 }
 
+.imageexpander {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  z-index: 6;
+  height: 100%;
+  width: 100%;
+}
+
 .imageviewer {
   grid-column-start: 1;
   grid-column-end: 2;
@@ -27,6 +37,78 @@
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+/* styles for Image Expander */
+.expandedGrid {
+  display: grid;
+  grid-template-columns: 7.5% 85% 7.5%;
+  grid-template-rows: 7.5% 37.5% 10% 45%;
+  height: 100%;
+  width: 100%;
+}
+
+.expandedImage {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  transition: transform 0.25s ease;
+  cursor: zoom-in;
+}
+
+.zoomIn {
+  display: none;
+  z-index: 0;
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 5;
+}
+
+.zoomIn:checked ~ label > img {
+  transform: scale(2.5);
+  cursor: zoom-out;
+}
+
+.exitExpander {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  z-index: 4;
+  background: linear-gradient(to left bottom, #ffffff, #9198e500);
+  border-style: none;
+  font-size: 1em;
+  border-radius: 10%;
+}
+
+.chevronLeftExpander {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  z-index: 4;
+  border-style: none;
+  font-size: 1em;
+  background: linear-gradient(to right, #ffffff, #9198e500);
+  border-radius: 10%;
+}
+
+.chevronRightExpander {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  z-index: 4;
+  border-style: none;
+  font-size: 1em;
+  background: linear-gradient(to right, #ffffff, #9198e500);
+  border-radius: 10%;
 }
 
 /* styles for Image Viewer */
@@ -111,11 +193,11 @@
     border-style: none;
     font-size: 1em;
     background: linear-gradient(to right, #ffffff, #9198e500);
+    border-radius: 10%;
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 3;
-    border-radius: 10%;
   }
 
   .chevronLeft:hover {
@@ -246,7 +328,6 @@
 }
 
 .stylethumbsgrid {
-  background-color:darkkhaki;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 50% 50%;
@@ -255,13 +336,14 @@
 }
 
 .thumbnail {
-  background-color: darkgoldenrod;
   padding: 0;
   margin: 2px;
   border-radius: 50%;
   height: 50%;
   width: 100%;
   align-self: center;
+  object-fit: cover;
+  float: inline-start;
 }
 
 .stylethumb {
@@ -271,8 +353,16 @@
   object-fit: cover;
 }
 
+.stylebutton {
+  background-color: transparent;
+  border-radius: 50%;
+  border-color: transparent;
+  object-fit: cover;
+}
+
 .check {
-  z-index: 400;
+  z-index: 5;
+  float: inline-start;
 }
 
 .form {

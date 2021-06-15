@@ -1,34 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import DataContext from "../context";
 import css from "./styles.css";
+import { left, right } from "./helper-functions";
 
-function ImageViewer() {
+function ImageViewer(props) {
+  const { thumb, setThumb, toggleExpanded } = props;
   const data = useContext(DataContext);
   const { photos, name } = data.styles[data.styleIndex];
   const productName = data.product.name;
-  const [thumb, setThumb] = useState(0);
-  const left = () => {
-    // input: nothing
-    // output: next index number
-    // purpose: provide max index if index is 0
-    if (thumb === 0) {
-      return data.styles.length - 1;
-    }
-    return thumb - 1;
-  };
-  const right = () => {
-    // input: nothing
-    // output: next index number
-    // purpose: provide 0 index if index is max
-    if (thumb === data.styles.length - 1) {
-      return 0;
-    }
-    return thumb + 1;
-  };
   return (
     <div className={css.viewer}>
       <img className={css.mainImage} src={photos[thumb].url} alt={productName} />
-      <button type="button" className={css.expander}><i aria-label="expand image" className="fas fa-expand" /></button>
+      <button type="button" className={css.expander} onClick={() => toggleExpanded(1)}><i aria-label="expand image" className="fas fa-expand" /></button>
       <div className={css.thumbnailPanel}>
         <div className={css.thumbnailPanelGrid}>
           {photos.map((photo, index) => (
@@ -38,10 +22,14 @@ function ImageViewer() {
           ))}
         </div>
       </div>
-      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left)}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
-      <button type="button" className={css.chevronRight} onClick={() => setThumb(right)}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
+      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left(thumb, data.styles.length - 1))}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
+      <button type="button" className={css.chevronRight} onClick={() => setThumb(right(thumb, data.styles.length - 1))}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
     </div>
   );
 }
-
+ImageViewer.propTypes = {
+  thumb: PropTypes.number.isRequired,
+  setThumb: PropTypes.func.isRequired,
+  toggleExpanded: PropTypes.func.isRequired,
+};
 export default ImageViewer;

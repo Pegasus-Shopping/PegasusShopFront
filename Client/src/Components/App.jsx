@@ -13,6 +13,8 @@ function App() {
   const [product, setProduct] = useState({ id: 20100 });
   const [id, setId] = useState(20100);
   const [outfitCount, setOutfitCount] = useState(0);
+  const [styleIndex, setStyleIndex] = useState(0);
+
   useEffect(() => {
     // get styles
     axios.get(`/products/${id}/styles`)
@@ -47,11 +49,12 @@ function App() {
         !isBusy
         && (
         <>
-          <DataContext.Provider value={{
-            product, styles, styleIndex: 0, rating, updateCount,
-          }}
+          <DataContext.Provider
+            value={{
+              product, styles, styleIndex, rating,
+            }}
           >
-            <ProductOverview />
+            <ProductOverview setStyleIndex={setStyleIndex} />
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
             <ProductReviews />
