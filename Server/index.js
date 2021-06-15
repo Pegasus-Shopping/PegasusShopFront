@@ -23,8 +23,8 @@ app.get("/products", (req, res) => {
 });
 
 // Headers required: Authorization token
-// Patch request. Get specfic product using product id.
-app.patch("/products/:id", (req, res) => {
+// Get request. Get specfic product using product id.
+app.get("/products/:id", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}`, {
     headers: {
@@ -35,8 +35,8 @@ app.patch("/products/:id", (req, res) => {
 });
 
 // Headers required: Authorization token
-// Patch Request. Get all styles of a product using product id.
-app.patch("/products/:id/styles", (req, res) => {
+// Get Request. Get all styles of a product using product id.
+app.get("/products/:id/styles", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/styles`, {
     headers: {
@@ -47,8 +47,8 @@ app.patch("/products/:id/styles", (req, res) => {
 });
 
 // Headers required: Authorization token
-// Patch Request. Get related items of a product using product id.
-app.patch("/products/:id/related", (req, res) => {
+// Get Request. Get related items of a product using product id.
+app.get("/products/:id/related", (req, res) => {
   const { id } = req.params;
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/related`, {
     headers: {
@@ -91,27 +91,34 @@ app.get("/reviews/meta", (req, res) => {
     .then((resp) => res.send(resp.data));
 });
 
-app.post("/reviews", (req, res) => {
-  console.log(config.TOKEN);
+// Header required: Authorization token
+// Param required:
+// Get Request. All skus in cart
+app.get("/cart", (req, res) => {
+  axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart", {
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+    .then((resp) => res.send(resp.data));
+});
 
-  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+// Header required: Authorization token
+// Param required: sku_id, (count)
+// Post Request. Add sku to cart
+app.post("/cart", (req, res) => {
+  const { sku, count } = req.query;
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart", {
     params: {
-      product_id: 20100,
-      rating: 4,
-      summary: "These glasses are amazing",
-      body: "I recommend anyone to get these glasses. These glasses are amazing",
-      recommend: true,
-      name: "bongobomba",
-      email: "blahblah@gmail.com",
-      photos: [],
-      characteristics: {},
+      sku_id: Number(sku),
+      count: Number(count),
     },
     headers: {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => console.log(resp))
-    .catch((err) => console.log(err));
+    .then((resp) => res.send(resp.data))
+    .catch((resp) => res.send(resp.error));
 });
 
 app.listen(port, () => {

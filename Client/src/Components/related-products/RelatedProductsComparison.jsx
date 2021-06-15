@@ -1,98 +1,65 @@
-/* eslint-disable import/extensions */
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import css from "./styles.css";
 import CardCarousel from "./CardCarousel";
+import ComparisonModal from "./ComparisonModal";
+import AddOutfitCard from "./AddOutfitCard";
+import DataContext from "../context";
+import helpers from "./helper-functions";
 
-const sampleProductDetails = {
-  id: 11,
-  name: "Air Minis 250",
-  slogan: "Full court support",
-  description: "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
-  category: "Basketball Shoes",
-  default_price: "0",
-  features: [
-    {
-      feature: "Sole",
-      value: "Rubber",
-    },
-    {
-      feature: "Material",
-      value: "FullControlSkin",
-    },
-  // ...
-  ],
-};
-const productStyles = {
-  product_id: "1",
-  results: [
-    {
-      style_id: 1,
-      name: "Forest Green & Black",
-      original_price: "140",
-      sale_price: "0",
-      "default?": true,
-      photos: [
-        {
-          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg",
-        },
-        {
-          thumbnail_url: "urlplaceholder/style_1_photo_number_thumbnail.jpg",
-          url: "urlplaceholder/style_1_photo_number.jpg",
-        },
-      ],
-      skus: {
-        37: {
-          quantity: 8,
-          size: "XS",
-        },
-        38: {
-          quantity: 16,
-          size: "S",
-        },
-        39: {
-          quantity: 17,
-          size: "M",
-        },
-      },
-    },
+const { getOutfit, removeFromOutfit } = helpers;
 
-  ],
-};
-const salePrice = productStyles.results[0].sale_price;
-const originalPrice = productStyles.results[0].original_price;
-const defaultPrice = sampleProductDetails.default_price;
-
-let displayPrice = "if you see this, the price was not calculated correctly";
-if (salePrice) {
-  displayPrice = salePrice;
-} else if (originalPrice) {
-  displayPrice = originalPrice;
-} else {
-  displayPrice = defaultPrice;
-}
-const formattedProduct = {
-  id: sampleProductDetails.id,
-  name: sampleProductDetails.name,
-  category: sampleProductDetails.category,
-  price: displayPrice,
-  imgUrl: productStyles.results[0].photos[0].thumbnail_url,
-  rating: 3.5,
-};
-const relatedProductsArray = [formattedProduct, formattedProduct, formattedProduct,
-  formattedProduct, formattedProduct, formattedProduct];
-const outfitProductsArray = [formattedProduct, formattedProduct, formattedProduct,
-  formattedProduct, formattedProduct, formattedProduct];
-const printX = (x) => console.log("Do something with the id:", x);
-const clickedFunc = () => console.log("You clicked an image, this should update the current product");
-
-function RelatedProductsComparison() {
+// imputs: type: function content: setter for App's id hook
+// output: creates a card carousel for related products and a card carousel for products
+// in the user's outfit, renders a modal comparing the features of the product displayed in the
+// details module and features of a related product
+// side effects: makes api requests
+function RelatedProductsComparison({ setId }) {
+  const [isShowingModal, setIsShowingModal] = useState(false);
+  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const [compareFeatures, setCompareFeatures] = useState();
+  const { product, updateCount } = useContext(DataContext);
+  useEffect(() => {
+    // get related product ids
+    axios.get(`/products/${product.id}/related/`)
+      .then((res) => {
+        setRelatedProductIds(res.data);
+      });
+  }, [product]);
+  // input: object representation of product
+  // output: none
+  // side effects: updates compareFeatures, toggles comparison modal on
+  const comparisonClick = (productCompare) => {
+    setCompareFeatures(productCompare);
+    setIsShowingModal(true);
+  };
+  // input: none
+  // output: none
+  // side effects: toggles comparison modal off
+  const pageOnClickEvent = () => {
+    setIsShowingModal(false);
+  };
+  // inout: type: object with id property, content: object representation of product
+  const removeFromOutfitUpdateCount = (cardProduct) => {
+    removeFromOutfit(cardProduct);
+    updateCount();
+  };
   return (
-    <div className={css.panel}>
-      <CardCarousel productInfo={relatedProductsArray} title="Related Products" buttonOnClickEvent={printX} onClickEvent={clickedFunc} buttonCharacter="star" />
-      <CardCarousel productInfo={outfitProductsArray} title="Your Outfit" buttonOnClickEvent={printX} onClickEvent={clickedFunc} buttonCharacter="circledX" />
+    <div role="button" className={css.panel} onClick={isShowingModal ? pageOnClickEvent : undefined} onKeyDown={isShowingModal ? pageOnClickEvent : undefined} tabIndex={0}>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      {isShowingModal && (
+      <ComparisonModal
+        currentProduct={product}
+        compareProduct={compareFeatures}
+      />
+      )}
+      <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
+      <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
     </div>
   );
 }
-
+RelatedProductsComparison.propTypes = {
+  setId: PropTypes.func.isRequired,
+};
 export default RelatedProductsComparison;
