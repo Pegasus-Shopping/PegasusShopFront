@@ -7,7 +7,6 @@ import css from "../styles.css";
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
 function ReviewList({ list }) {
   const [listCounter, setList] = useState("Latest");
-  const [newReview, setNewReview] = useState({});
   const listNewDateFormat = [...list];
   list.forEach((review, index) => {
     listNewDateFormat[index].date = new Date(review.date);
@@ -71,7 +70,7 @@ function ReviewList({ list }) {
         </>
       </div>
       <div id="new review">
-        <NewReview setNewReview={setNewReview} />
+        <NewReview />
       </div>
     </div>
   );

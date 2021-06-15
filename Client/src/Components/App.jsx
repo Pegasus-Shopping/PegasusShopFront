@@ -57,7 +57,7 @@ function App() {
             <ProductOverview setStyleIndex={setStyleIndex} />
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
-            <ProductReviews />
+            <ProductReviews id={id} />
           </DataContext.Provider>
         </>
         )

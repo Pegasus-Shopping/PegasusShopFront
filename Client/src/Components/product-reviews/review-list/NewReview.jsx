@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import UploadPhotos from "./UploadPhotos";
 import SelectStarRating from "./SelectStarRating";
-
 // input: takes in setNewReview function that passes new review information to ReviewList
 // Creates New Review data object to be passed on to server.
-function NewReview({ setNewReview }) {
+function NewReview() {
   const [reviewTracker, setReviewTracker] = useState(0);
   const [summaryText, setSummaryText] = useState("");
   const [reviewText, setReviewText] = useState("");
@@ -14,7 +14,7 @@ function NewReview({ setNewReview }) {
   const [photoArray, setPhotoArray] = useState([]);
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewRecommend, setReviewRecommend] = useState(null);
-
+  const [newReview, setNewReview] = useState({});
   // Brings up new review input selection when New Review button is selected.
   // Closes new review input selection and passes date with setNewReview when submit is clicked
   function onClickNewReview() {
@@ -32,6 +32,8 @@ function NewReview({ setNewReview }) {
         helpfulness: 0,
         photos: photoArray,
       });
+      axios.post("/reviews", { params: newReview })
+        .then((resp) => {console.log(resp)});
       setReviewTracker(0);
     }
   }
@@ -105,9 +107,5 @@ function NewReview({ setNewReview }) {
     </div>
   );
 }
-
-NewReview.propTypes = {
-  setNewReview: PropTypes.func.isRequired,
-};
 
 export default NewReview;
