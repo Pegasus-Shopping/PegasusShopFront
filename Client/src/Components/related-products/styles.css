@@ -16,6 +16,7 @@
   border-width: .8px;
   border-color: rgb(102, 102, 102);
   border-style: solid;
+  background-color:  rgb(216, 216, 216);
 
   display: inline-block;
   width: 14.5em;
@@ -170,4 +171,19 @@
   grid-column-start: 3;
   grid-column-end: 4;
   justify-self: end;
+}
+
+/* outfit card */
+.outfitCard {
+  /* padding: 1em; */
+  background-color:  rgb(216, 216, 216);
+  justify-self: center;
+  align-self: center;
+  display: grid;
+}
+.addThisProduct {
+  position: relative;
+  top: 3em;
+  justify-self: center;
+  /* transform: rotate(45deg); */
 }

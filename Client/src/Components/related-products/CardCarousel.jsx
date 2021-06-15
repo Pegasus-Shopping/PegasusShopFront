@@ -11,11 +11,13 @@ import ProductCard from "./ProductCard";
 // should correspond to icon used in card
 // ids: type: array of numbers, content: ids of products appearing in carousel
 // output: carousel containing product cards
+// dafaultCard: type: React element, content: child element that will
+// appear as first item in carousel
 // side effects: none
 function CardCarousel({
-  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids,
+  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids, defaultCard,
 }) {
-  const cardArray = ids.map((id, index) => (
+  let cardArray = ids.map((id, index) => (
     <ProductCard
       key={title + index.toString()}
       id={id}
@@ -24,6 +26,7 @@ function CardCarousel({
       onClickEvent={onClickEvent}
     />
   ));
+  cardArray = [defaultCard].concat(cardArray);
   const [currentIndex, setCurrentIndex] = useState(0);
   // increments index
   const incrementIndex = () => {
@@ -67,8 +70,10 @@ CardCarousel.propTypes = {
   buttonOnClickEvent: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func,
   buttonCharacter: PropTypes.string.isRequired,
+  defaultCard: PropTypes.node,
 };
 CardCarousel.defaultProps = {
-  onClickEvent: null,
+  onClickEvent: () => {},
+  defaultCard: null,
 };
 export default CardCarousel;
