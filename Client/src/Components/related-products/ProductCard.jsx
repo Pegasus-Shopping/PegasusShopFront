@@ -4,6 +4,7 @@ import axios from "axios";
 import css from "./styles.css";
 import helper from "./helper-functions";
 import StarList from "../product-reviews/star-rating/StarList";
+import RecordClicks from "../RecordClicks";
 
 const { getTruePrice } = helper;
 
@@ -55,30 +56,35 @@ function ProductCard({
         setBusy(false);
       });
   }, [id]);
+  const widget = "related products comparison";
   return (
 
     <div className={css.card}>
       {!isBusy
       && (
-      <div className={css.cardContents}>
-        <button type="button" className={css.iconContainer} onClick={() => buttonOnClickEvent(details)}>
-          <i className={buttonClass} />
-        </button>
-        <div className={css.imgBox} onClick={() => onClickEvent(id)} onKeyUp={() => onClickEvent(id)} role="button" tabIndex="0">
-          <img
-            src={style[0].photos[0].thumbnail_url}
-            alt={details.name}
-            className={css.cardImage}
-          />
+        <div className={css.cardContents}>
+          <RecordClicks widget={widget} element="card button">
+            <button type="button" className={css.iconContainer} onClick={() => buttonOnClickEvent(details)}>
+              <i className={buttonClass} />
+            </button>
+          </RecordClicks>
+          <RecordClicks widget={widget} element="card body">
+            <div className={css.imgBox} onClick={() => onClickEvent(id)} onKeyUp={() => onClickEvent(id)} role="button" tabIndex="0">
+              <img
+                src={style[0].photos[0].thumbnail_url}
+                alt={details.name}
+                className={css.cardImage}
+              />
+            </div>
+          </RecordClicks>
+          <div className={css.cardDetails}>
+            <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
+            <h3 className={css.thinHeading2}>{details.name}</h3>
+            <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
+            <h3 className={css.thinHeading1}>{rating["3"]}</h3>
+            {/* <StarList list={rating} /> */}
+          </div>
         </div>
-        <div className={css.cardDetails}>
-          <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
-          <h3 className={css.thinHeading2}>{details.name}</h3>
-          <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
-          <h3 className={css.thinHeading1}>{rating["3"]}</h3>
-          {/* <StarList list={rating} /> */}
-        </div>
-      </div>
       )}
     </div>
   );
