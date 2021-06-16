@@ -51,10 +51,10 @@ function App() {
         <>
           <DataContext.Provider
             value={{
-              product, styles, styleIndex, rating,
+              product, styles, styleIndex, rating, updateCount,
             }}
           >
-            <ProductOverview setStyleIndex={setStyleIndex} />
+            {/* <ProductOverview setStyleIndex={setStyleIndex} /> */}
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
             <ProductReviews />

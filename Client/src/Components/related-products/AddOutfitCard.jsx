@@ -20,7 +20,7 @@ function AddOutfitCard() {
     <RecordClicks widget="related products comparison" element="add to outfit card">
       <div role="button" onClick={onClickEvent} onKeyDown={onClickEvent} tabIndex={0} className={css.card}>
         <div className={css.outfitCard}>
-          <h3 className={css.addThisProduct}>ADD THIS PRODUCT</h3>
+          <h3 className={css.addThisProduct}>+</h3>
         </div>
       </div>
     </RecordClicks>
