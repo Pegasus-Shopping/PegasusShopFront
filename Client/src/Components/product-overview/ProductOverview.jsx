@@ -8,7 +8,7 @@ import css from "./styles.css";
 
 function ProductOverview({ setStyleIndex }) {
   const [thumb, setThumb] = useState(0);
-  const [expanded, toggleExpanded] = useState(0);
+  const [expanded, toggleExpanded] = useState(false);
   return (
     <div className={css.productoverview}>
       {expanded
