@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
 import UploadPhotos from "./UploadPhotos";
 import SelectStarRating from "./SelectStarRating";
+import css from "../styles.css";
+
 // input: takes in setNewReview function that passes new review information to ReviewList
 // Creates New Review data object to be passed on to server.
 function NewReview() {
@@ -33,7 +34,7 @@ function NewReview() {
         photos: photoArray,
       });
       axios.post("/reviews", { params: newReview })
-        .then((resp) => {console.log(resp)});
+        .then((resp) => { console.log(resp); });
       setReviewTracker(0);
     }
   }

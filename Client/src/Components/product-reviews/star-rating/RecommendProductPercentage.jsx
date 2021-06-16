@@ -19,11 +19,11 @@ function RecommendProductPercentage({ list }) {
   const recommendPercentage = countPercentage();
 
   return (
-    <>
-      <span>
+    <div>
+      <div>
         {`${recommendPercentage}% of reviews recommend this product`}
-      </span>
-    </>
+      </div>
+    </div>
   );
 }
 
