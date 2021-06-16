@@ -54,7 +54,7 @@ function App() {
               product, styles, styleIndex, rating, updateCount,
             }}
           >
-            {/* <ProductOverview setStyleIndex={setStyleIndex} /> */}
+            <ProductOverview setStyleIndex={setStyleIndex} />
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
             <ProductReviews />
