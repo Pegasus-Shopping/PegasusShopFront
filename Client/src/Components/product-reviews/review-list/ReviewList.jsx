@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Review from "./review";
+import NewReview from "./NewReview";
 import css from "../styles.css";
 
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
@@ -36,36 +37,41 @@ function ReviewList({ list }) {
   const relevantList = createRelevant();
 
   return (
-    <div className={css.reviewList}>
-      <select id="select sort order" onChange={onChange}>
-        <option value="Latest">Latest</option>
-        <option value="Most Helpful">Most Helpful</option>
-        <option value="Relevant">Relevant</option>
-      </select>
-      <>
-        {listCounter === "Latest" && (latestList.map((review) => (
-          <>
-            <Review review={review} />
-            <hr />
-          </>
-        )))}
-      </>
-      <>
-        {listCounter === "Relevant" && (relevantList.map((review) => (
-          <>
-            <Review review={review} />
-            <hr />
-          </>
-        )))}
-      </>
-      <>
-        {listCounter === "Most Helpful" && (helpfulList.map((review) => (
-          <>
-            <Review review={review} />
-            <hr />
-          </>
-        )))}
-      </>
+    <div id="full review section">
+      <div className={css.reviewList}>
+        <select id="select sort order" onChange={onChange}>
+          <option value="Latest">Latest</option>
+          <option value="Most Helpful">Most Helpful</option>
+          <option value="Relevant">Relevant</option>
+        </select>
+        <>
+          {listCounter === "Latest" && (latestList.map((review) => (
+            <>
+              <Review review={review} />
+              <hr />
+            </>
+          )))}
+        </>
+        <>
+          {listCounter === "Relevant" && (relevantList.map((review) => (
+            <>
+              <Review review={review} />
+              <hr />
+            </>
+          )))}
+        </>
+        <>
+          {listCounter === "Most Helpful" && (helpfulList.map((review) => (
+            <>
+              <Review review={review} />
+              <hr />
+            </>
+          )))}
+        </>
+      </div>
+      <div id="new review">
+        <NewReview />
+      </div>
     </div>
   );
 }

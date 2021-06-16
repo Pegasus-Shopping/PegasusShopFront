@@ -129,6 +129,59 @@ app.post("/cart", (req, res) => {
   }
 });
 
+
+app.post("/reviews", (req, res) => {
+  const {
+    rating, summary,
+    recommend, body, date, helpfulness, photos,
+  } = req.query;
+  const { reviewerName } = req.query.reviewer_name;
+  const { ratingId } = req.query.rating_id;
+
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+    params: {
+      rating_id: ratingId,
+      rating,
+      summary,
+      recommend,
+      body,
+      date,
+      reviewer_name: reviewerName,
+      helpfulness,
+      photos,
+    },
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  })
+    .then((resp) => res.send(resp.data))
+    .catch((resp) => res.send(resp.error));
+});
+
+
+// Header required: Authorization token
+// Param required: {
+// widget:...,
+// element:...,
+// date:...,//
+// }
+// Post Request: add interactions data to Atelier API database
+app.post("/clicks", (req, res) => {
+  // console.log(req.body);
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions", req.body,
+    {
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log("Connected to server at port", 3000);

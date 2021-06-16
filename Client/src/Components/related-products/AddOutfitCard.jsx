@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import DataContext from "../context";
 import helpers from "./helper-functions";
 import css from "./styles.css";
-
+import RecordClicks from "../RecordClicks";
 // input: none
 // output: creates empty product card that adds the current product to the user's outfit
 // side effects: adds the current product to the user's outfit, modifies App's outfitCount state
@@ -17,11 +17,13 @@ function AddOutfitCard() {
     updateCount();
   };
   return (
-    <div role="button" onClick={onClickEvent} onKeyDown={onClickEvent} tabIndex={0} className={css.card}>
-      <div className={css.outfitCard}>
-        <h3 className={css.addThisProduct}>ADD THIS PRODUCT</h3>
+    <RecordClicks widget="related products comparison" element="add to outfit card">
+      <div role="button" onClick={onClickEvent} onKeyDown={onClickEvent} tabIndex={0} className={css.card}>
+        <div className={css.outfitCard}>
+          <h3 className={css.addThisProduct}>+</h3>
+        </div>
       </div>
-    </div>
+    </RecordClicks>
   );
 }
 
