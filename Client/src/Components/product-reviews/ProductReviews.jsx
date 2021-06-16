@@ -13,11 +13,11 @@ function ProductReviews({ id }) {
     axios.get("/reviews", { params: { product_id: id } })
       .then((resp) => setReviewList(resp.data.results))
       .catch((err) => console.log(err));
-  });
+  }, [id]);
 
   return (
     <div className={css.reviewListandStarBreakdown}>
-      <StarRatingBreakdown list={reviewList} />
+      <StarRatingBreakdown list={reviewList} id={id} />
       <ReviewList list={reviewList} />
     </div>
   );

@@ -8,7 +8,7 @@ import Breakdown from "./Breakdown";
 // given by all reviewers and recommendList, an boolean array whether or not reviewers recommend
 // the product. It then sends ratingList and recommendList as inputs to the proper functions to
 // render the Ratings section of Rating and Reviews.
-function StarRatingBreakdown({ list }) {
+function StarRatingBreakdown({ list, id }) {
   const ratingList = [];
   const recommendList = [];
 
@@ -21,7 +21,7 @@ function StarRatingBreakdown({ list }) {
     <>
       <StarList list={ratingList} showAverage />
       <RecommendProductPercentage list={recommendList} />
-      <Breakdown list={ratingList} />
+      <Breakdown list={ratingList} id={id} />
     </>
   );
 }
@@ -41,6 +41,7 @@ StarRatingBreakdown.propTypes = {
     })).isRequired,
     response: PropTypes.string,
   })).isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default StarRatingBreakdown;
