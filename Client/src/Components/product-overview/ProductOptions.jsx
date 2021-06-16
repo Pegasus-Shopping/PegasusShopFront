@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import StarRating from "../product-reviews/StarRating";
+import StarList from "../product-reviews/star-rating/StarList";
 import StyleSelector from "./StyleSelector";
 import DataContext from "../context";
 import css from "./styles.css";
@@ -10,16 +10,20 @@ const { useContext } = React;
 function ProductOptions({ setStyleIndex }) {
   const data = useContext(DataContext);
   const defaultPrice = data.product.default_price;
-  const { styles, styleIndex } = data;
+  const { styles, styleIndex, rating } = data;
   const originalPrice = styles[styleIndex].original_price;
   const salePrice = styles[styleIndex].sale_price;
   const { category, name } = data.product;
-
+  const ratings = [];
+  Object.keys(rating).forEach((key) => {
+    for (let i = 0; i < rating[key]; i += 1) {
+      ratings.push(Number(key));
+    }
+  });
   return (
     <div className={css.options}>
       <div className={css.starrating}>
-        {/* <StarRating rating={4} /> */}
-        <span>STAR RATING PLACEHOLDER</span>
+        <StarList showAverage={false} list={ratings} />
       </div>
       <span className={css.categoryheader}>{category}</span>
       <h1 className={css.nameheader}>{name}</h1>

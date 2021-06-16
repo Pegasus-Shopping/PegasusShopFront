@@ -19,7 +19,7 @@ function ImageExpander({ thumb, setThumb, toggleExpanded }) {
   };
   return (
     <div className={css.expandedGrid}>
-      <button type="button" className={css.exitExpander} onClick={() => toggleExpanded(0)}><i aria-label="Close expanded image" className="far fa-times-circle" /></button>
+      <button type="button" className={css.exitExpander} onClick={() => toggleExpanded(false)}><i aria-label="Close expanded image" className="far fa-times-circle" /></button>
       <button type="button" className={css.chevronLeftExpander} onClick={() => setThumb(left(thumb, styles.length - 1))}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
       <button type="button" className={css.chevronRightExpander} onClick={() => setThumb(right(thumb, styles.length - 1))}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
       <input type="checkbox" id="zoom" className={css.zoomIn} />

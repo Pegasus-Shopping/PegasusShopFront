@@ -83,7 +83,6 @@ function StyleSelector({ setStyleIndex }) {
     removeFromOutfit({ id });
     updateCount();
   };
-  console.log(outfits, id, outfits.includes(id));
   return (
     <div className={css.styleselectorgrid}>
       <span className={css.selectedstylename}>
