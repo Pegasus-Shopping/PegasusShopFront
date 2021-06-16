@@ -19,7 +19,10 @@ app.get("/products", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Headers required: Authorization token
@@ -31,7 +34,10 @@ app.get("/products/:id", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Headers required: Authorization token
@@ -43,7 +49,10 @@ app.get("/products/:id/styles", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Headers required: Authorization token
@@ -55,7 +64,10 @@ app.get("/products/:id/related", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Headers required: Authorization token
@@ -71,7 +83,10 @@ app.get("/reviews", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Headers required: Authorization token
@@ -88,7 +103,10 @@ app.get("/reviews/meta", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Header required: Authorization token
@@ -100,7 +118,10 @@ app.get("/cart", (req, res) => {
       Authorization: `${config.TOKEN}`,
     },
   })
-    .then((resp) => res.send(resp.data));
+    .then((resp) => res.send(resp.data))
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Header required: Authorization token
@@ -125,7 +146,9 @@ app.post("/cart", (req, res) => {
   for (let i = 0; i < count; i += 1) {
     axios(requestDetails)
       .then((response) => { res.send(response.data); })
-      .catch((error) => { res.send(error); });
+      .catch(() => {
+        res.sendStatus(500);
+      });
   }
 });
 
@@ -154,7 +177,9 @@ app.post("/reviews", (req, res) => {
     },
   })
     .then((resp) => res.send(resp.data))
-    .catch((resp) => res.send(resp.error));
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Header required: Authorization token
