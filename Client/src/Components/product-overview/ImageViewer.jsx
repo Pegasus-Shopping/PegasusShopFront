@@ -4,8 +4,7 @@ import DataContext from "../context";
 import css from "./styles.css";
 import { left, right } from "./helper-functions";
 
-function ImageViewer(props) {
-  const { thumb, setThumb, toggleExpanded } = props;
+function ImageViewer({ thumb, setThumb, toggleExpanded }) {
   const data = useContext(DataContext);
   const { photos, name } = data.styles[data.styleIndex];
   const productName = data.product.name;

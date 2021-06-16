@@ -23,7 +23,7 @@ function ProductOptions({ setStyleIndex }) {
       </div>
       <span className={css.categoryheader}>{category}</span>
       <h1 className={css.nameheader}>{name}</h1>
-      {(salePrice !== null || "0")
+      {(salePrice !== null && salePrice !== "0")
         && (
         <span className={css.price}>
           <b>{`$${salePrice}`}</b>
@@ -31,9 +31,9 @@ function ProductOptions({ setStyleIndex }) {
           <s>{`$${originalPrice}`}</s>
         </span>
         )}
-      {salePrice === "0" && originalPrice !== "0"
+      {(salePrice === "0" || salePrice === null) && originalPrice !== "0"
       && <span className={css.price}>{`$${originalPrice}`}</span>}
-      {salePrice === "0" && originalPrice === "0"
+      {(salePrice === "0" || salePrice === null) && originalPrice === "0"
       && <span className={css.price}>{`$${defaultPrice}`}</span>}
       <div className={css.styleselector}>
         <StyleSelector setStyleIndex={setStyleIndex} />

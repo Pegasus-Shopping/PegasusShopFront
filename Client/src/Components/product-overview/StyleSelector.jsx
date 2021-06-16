@@ -2,14 +2,18 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import DataContext from "../context";
+import helpers from "../related-products/helper-functions";
 import css from "./styles.css";
 
 function StyleSelector({ setStyleIndex }) {
   const data = useContext(DataContext);
-  const { styleIndex, styles } = data;
+  const { styleIndex, styles, updateCount } = data;
+  const { id } = data.product;
+  const { removeFromOutfit, addToOutfit, getOutfit } = helpers;
   const [currentSelect, setCurrentSelect] = useState(0);
-  const [currentQuantity, setCurrentQuantity] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState(1);
   const sizes = [];
+  const outfits = getOutfit();
   const quantitySelector = (max) => {
     // input: number (quantity from sku)
     // output: array of numbers 1-max or 15
@@ -35,14 +39,14 @@ function StyleSelector({ setStyleIndex }) {
   getSizes();
   const updateSelect = (e) => {
     // input: selector change event
-    // output: new state
+    // output:
     // purpose: track which size is selected
     e.preventDefault();
     setCurrentSelect(e.target.value);
   };
   const updateQuantity = (e) => {
     // input: new quantity selected
-    // output: new state
+    // output:
     // purpose: update state on change
     e.preventDefault();
     setCurrentQuantity(e.target.value);
@@ -61,7 +65,7 @@ function StyleSelector({ setStyleIndex }) {
     // purpose: allow user to add current selected product to cart
     e.preventDefault();
     axios.post("http://localhost:3000/cart", {
-      query: {
+      params: {
         sku: sizes[currentSelect].id,
         count: currentQuantity,
       },
@@ -69,6 +73,17 @@ function StyleSelector({ setStyleIndex }) {
       .then((resp) => console.log(resp))
       .catch((error) => console.log(error));
   };
+  const addOutfit = (e) => {
+    e.preventDefault();
+    addToOutfit(id);
+    updateCount();
+  };
+  const removeOutfit = (e) => {
+    e.preventDefault();
+    removeFromOutfit({ id });
+    updateCount();
+  };
+  console.log(outfits, id, outfits.includes(id));
   return (
     <div className={css.styleselectorgrid}>
       <span className={css.selectedstylename}>
@@ -82,9 +97,7 @@ function StyleSelector({ setStyleIndex }) {
               <div className={css.thumbnail}>
                 {index === styleIndex
               && (
-              <div className={css.check}>
                 <i className="far fa-check-circle" />
-              </div>
               )}
                 <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))}>
                   {" "}
@@ -118,7 +131,10 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
-          <button type="button" className={css.outfitbutton}><i aria-label="Save outfit" className="fa-regular fa-star" /></button>
+          {!outfits.includes(id)
+            && <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>}
+          {outfits.includes(id)
+            && <button type="button" className={css.outfitbutton} onClick={removeOutfit}><i aria-label="Unsave outfit" className="fas fa-heart" /></button>}
         </div>
       </form>
     </div>
