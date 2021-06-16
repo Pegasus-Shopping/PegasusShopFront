@@ -34,17 +34,17 @@ function ProductCard({
         setStyle(res.data.results);
       })
       .then( // get ratings
-        // () => axios.get("/reviews", { params: { product_id: id } })
-        //   .then((res) => {
-        //     const list = res.data.results;
-        //     const ratingList = [];
-        //     console.log("res.data.results", res.data.results);
-        //     list.forEach((review) => {
-        //       ratingList.push(review.rating);
-        //     });
-        //     console.log("list", ratingList);
-        //     setRating(ratingList);
-        //   }),
+        () => axios.get("/reviews", { params: { product_id: id } })
+          .then((res) => {
+            const list = res.data.results;
+            const ratingList = [];
+            console.log("res.data.results", res.data.results);
+            list.forEach((review) => {
+              ratingList.push(review.rating);
+            });
+            console.log("list", ratingList);
+            setRating(ratingList);
+          }),
       ).then(
         () => ( // get details
           axios.get(`/products/${id}`)
