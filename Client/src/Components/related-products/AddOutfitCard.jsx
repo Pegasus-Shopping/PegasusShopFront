@@ -20,11 +20,15 @@ function AddOutfitCard() {
     <RecordClicks widget="related products comparison" element="add to outfit card">
       <div role="button" onClick={onClickEvent} onKeyDown={onClickEvent} tabIndex={0} className={css.card}>
         <div className={css.outfitCard}>
+<<<<<<< HEAD
           <h3>
             {" "}
 
             <i className="fas fa-plus" />
           </h3>
+=======
+          <h3 className={css.addThisProduct}>+</h3>
+>>>>>>> 3280de17e6269c9a27832681de675d790296ad14
         </div>
       </div>
     </RecordClicks>

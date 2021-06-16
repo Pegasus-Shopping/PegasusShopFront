@@ -107,18 +107,26 @@ app.get("/cart", (req, res) => {
 // Param required: sku_id, (count)
 // Post Request. Add sku to cart
 app.post("/cart", (req, res) => {
-  const { sku, count } = req.query;
-  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart", {
-    params: {
-      sku_id: Number(sku),
-      count: Number(count),
-    },
+  const { sku, count } = req.body.params;
+  const data = JSON.stringify({
+    sku_id: sku,
+  });
+
+  const requestDetails = {
+    method: "post",
+    url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/cart",
     headers: {
       Authorization: `${config.TOKEN}`,
+      "Content-Type": "application/json",
     },
-  })
-    .then((resp) => res.send(resp.data))
-    .catch((resp) => res.send(resp.error));
+    data,
+  };
+
+  for (let i = 0; i < count; i += 1) {
+    axios(requestDetails)
+      .then((response) => { res.send(response.data); })
+      .catch((error) => { res.send(error); });
+  }
 });
 
 

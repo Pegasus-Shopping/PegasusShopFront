@@ -25,7 +25,33 @@ function RelatedProductsComparison({ setId }) {
     // get related product ids
     axios.get(`/products/${product.id}/related/`)
       .then((res) => {
+<<<<<<< HEAD
         setRelatedProductIds(res.data);
+=======
+        setStyle(res.data.results);
+      })
+      .then( // get ratings
+        () => axios.get("/reviews", { params: { product_id: id } })
+          .then((res) => {
+            setRating(res.data.ratings);
+          }),
+      ).then(
+        () => ( // get details
+          axios.get(`/products/${id}`)
+            .then((res) => {
+              setDetails({
+                name: res.data.name,
+                id,
+                category: res.data.category,
+                default_price: res.data.default_price,
+                features: res.data.features,
+              });
+            })
+        ),
+      )
+      .then(() => {
+        setBusy(false);
+>>>>>>> 3280de17e6269c9a27832681de675d790296ad14
       });
   }, [product]);
   // input: object representation of product
@@ -47,6 +73,7 @@ function RelatedProductsComparison({ setId }) {
     updateCount();
   };
   return (
+<<<<<<< HEAD
     <RecordClicks widget="related products comparison" element="carousel container">
       <div role="button" className={css.panel} onClick={isShowingModal ? pageOnClickEvent : undefined} onKeyDown={isShowingModal ? pageOnClickEvent : undefined} tabIndex={0}>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -60,6 +87,39 @@ function RelatedProductsComparison({ setId }) {
         <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
       </div>
     </RecordClicks>
+=======
+
+    <div className={css.card}>
+      {!isBusy
+      && (
+        <div className={css.cardContents}>
+          <RecordClicks widget={widget} element="card button">
+            <button type="button" className={css.iconContainer} onClick={() => buttonOnClickEvent(details)}>
+              <i className={buttonClass} />
+            </button>
+          </RecordClicks>
+          <RecordClicks widget={widget} element="card body">
+            <div className={css.imgBox} onClick={() => onClickEvent(id)} onKeyUp={() => onClickEvent(id)} role="button" tabIndex="0">
+              <img
+                src={style[0].photos[0].thumbnail_url}
+                alt={details.name}
+                className={css.cardImage}
+              />
+            </div>
+          </RecordClicks>
+          <div className={css.cardDetails}>
+            <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
+            <h3 className={css.thinHeading2}>{details.name}</h3>
+            <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
+            {/* <h3 className={css.thinHeading1}>{rating["3"]}</h3> */}
+            <>
+              {rating && <StarList list={rating} />}
+            </>
+          </div>
+        </div>
+      )}
+    </div>
+>>>>>>> 3280de17e6269c9a27832681de675d790296ad14
   );
 }
 RelatedProductsComparison.propTypes = {

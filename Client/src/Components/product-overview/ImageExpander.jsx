@@ -4,10 +4,8 @@ import DataContext from "../context";
 import css from "./styles.css";
 import { left, right } from "./helper-functions";
 
-function ImageExpander(props) {
-  const { thumb, setThumb, toggleExpanded } = props;
-  const data = useContext(DataContext);
-  const { styles, styleIndex } = data;
+function ImageExpander({ thumb, setThumb, toggleExpanded }) {
+  const { styles, styleIndex } = useContext(DataContext);
   const { url } = styles[styleIndex].photos[thumb];
   const moveZoom = (e) => {
     e.preventDefault();
@@ -21,12 +19,12 @@ function ImageExpander(props) {
   };
   return (
     <div className={css.expandedGrid}>
-      <button type="button" className={css.exitExpander} onClick={() => toggleExpanded(0)}><i aria-label="Close expanded image" className="far fa-window-close" /></button>
+      <button type="button" className={css.exitExpander} onClick={() => toggleExpanded(0)}><i aria-label="Close expanded image" className="far fa-times-circle" /></button>
       <button type="button" className={css.chevronLeftExpander} onClick={() => setThumb(left(thumb, styles.length - 1))}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
       <button type="button" className={css.chevronRightExpander} onClick={() => setThumb(right(thumb, styles.length - 1))}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
       <input type="checkbox" id="zoom" className={css.zoomIn} />
       <label htmlFor="zoom" className={css.expandedImage}>
-        <img onMouseOver={moveZoom} onMouseMove={moveZoom} onFocus={moveZoom} id="image" src={url} className={css.expandedImage} alt={styles[styleIndex].name} onMouse />
+        <img onMouseOver={moveZoom} onMouseMove={moveZoom} onFocus={moveZoom} id="image" src={url} className={css.expandedImage} alt={styles[styleIndex].name} />
       </label>
     </div>
   );
