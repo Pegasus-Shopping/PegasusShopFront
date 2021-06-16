@@ -13,7 +13,6 @@ function App() {
   const [product, setProduct] = useState({ id: 20100 });
   const [id, setId] = useState(20100);
   const [outfitCount, setOutfitCount] = useState(0);
-  const [styleIndex, setStyleIndex] = useState(0);
 
   useEffect(() => {
     // get styles
@@ -49,15 +48,14 @@ function App() {
         !isBusy
         && (
         <>
-          <DataContext.Provider
-            value={{
-              product, styles, styleIndex, rating,
-            }}
+          <DataContext.Provider value={{
+            product, styles, styleIndex: 0, rating, updateCount,
+          }}
           >
-            <ProductOverview setStyleIndex={setStyleIndex} />
+            {/* <ProductOverview />
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
-            <ProductReviews />
+            <ProductReviews /> */}
           </DataContext.Provider>
         </>
         )
