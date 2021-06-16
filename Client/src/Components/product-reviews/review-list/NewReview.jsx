@@ -36,6 +36,7 @@ function NewReview() {
       axios.post("/reviews", { params: newReview })
         .then((resp) => { console.log(resp); })
         .catch((err) => console.log(err));
+
       setReviewTracker(0);
     }
   }

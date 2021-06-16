@@ -11,7 +11,7 @@ function ImageViewer({ thumb, setThumb, toggleExpanded }) {
   return (
     <div className={css.viewer}>
       <img className={css.mainImage} src={photos[thumb].url} alt={productName} />
-      <button type="button" className={css.expander} onClick={() => toggleExpanded(1)}><i aria-label="expand image" className="fas fa-expand" /></button>
+      <button type="button" className={css.expander} onClick={() => toggleExpanded(true)}><i aria-label="expand image" className="fas fa-expand" /></button>
       <div className={css.thumbnailPanel}>
         <div className={css.thumbnailPanelGrid}>
           {photos.map((photo, index) => (
