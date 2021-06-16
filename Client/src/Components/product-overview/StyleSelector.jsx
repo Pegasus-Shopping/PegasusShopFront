@@ -7,7 +7,7 @@ import css from "./styles.css";
 
 function StyleSelector({ setStyleIndex }) {
   const data = useContext(DataContext);
-  const { styleIndex, styles } = data;
+  const { styleIndex, styles, updateCount } = data;
   const { id } = data.product;
   const { removeFromOutfit, addToOutfit, getOutfit } = helpers;
   const [currentSelect, setCurrentSelect] = useState(0);
@@ -76,11 +76,14 @@ function StyleSelector({ setStyleIndex }) {
   const addOutfit = (e) => {
     e.preventDefault();
     addToOutfit(id);
+    updateCount();
   };
   const removeOutfit = (e) => {
     e.preventDefault();
-    removeFromOutfit(id);
+    removeFromOutfit({ id });
+    updateCount();
   };
+  console.log(outfits, id, outfits.includes(id));
   return (
     <div className={css.styleselectorgrid}>
       <span className={css.selectedstylename}>
@@ -128,9 +131,9 @@ function StyleSelector({ setStyleIndex }) {
             )}
           </select>
           <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
-          {outfits.includes(id)
-            && <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>}
           {!outfits.includes(id)
+            && <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>}
+          {outfits.includes(id)
             && <button type="button" className={css.outfitbutton} onClick={removeOutfit}><i aria-label="Unsave outfit" className="fas fa-heart" /></button>}
         </div>
       </form>

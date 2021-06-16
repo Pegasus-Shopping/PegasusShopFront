@@ -129,7 +129,6 @@ app.post("/cart", (req, res) => {
   }
 });
 
-
 app.post("/reviews", (req, res) => {
   const {
     rating, summary,
@@ -157,7 +156,6 @@ app.post("/reviews", (req, res) => {
     .then((resp) => res.send(resp.data))
     .catch((resp) => res.send(resp.error));
 });
-
 
 // Header required: Authorization token
 // Param required: {
