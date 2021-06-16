@@ -95,7 +95,7 @@ function StyleSelector({ setStyleIndex }) {
           <RecordClicks widget="product overview" element="toggle style">
             {styles.map(
               (style, index) => (
-                <div className={css.thumbnail}>
+                <div className={css.thumbnail} key={JSON.stringify(style)}>
                   {index === styleIndex
                 && (
                   <i className="far fa-check-circle" />
