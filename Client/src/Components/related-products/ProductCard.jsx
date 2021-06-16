@@ -34,7 +34,7 @@ function ProductCard({
         setStyle(res.data.results);
       })
       .then( // get ratings
-        () => axios.get("/reviews/meta/", { params: { product_id: id } })
+        () => axios.get("/reviews", { params: { product_id: id } })
           .then((res) => {
             setRating(res.data.ratings);
           }),
@@ -81,8 +81,10 @@ function ProductCard({
             <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
             <h3 className={css.thinHeading2}>{details.name}</h3>
             <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
-            <h3 className={css.thinHeading1}>{rating["3"]}</h3>
-            {/* <StarList list={rating} /> */}
+            {/* <h3 className={css.thinHeading1}>{rating["3"]}</h3> */}
+            <>
+              {rating && <StarList list={rating} />}
+            </>
           </div>
         </div>
       )}
