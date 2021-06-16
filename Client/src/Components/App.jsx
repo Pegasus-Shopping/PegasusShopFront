@@ -48,16 +48,9 @@ function App() {
         !isBusy
         && (
         <>
-<<<<<<< HEAD
           <DataContext.Provider value={{
             product, styles, styleIndex: 0, rating, updateCount,
           }}
-=======
-          <DataContext.Provider
-            value={{
-              product, styles, styleIndex, rating, updateCount,
-            }}
->>>>>>> 3280de17e6269c9a27832681de675d790296ad14
           >
             <ProductOverview />
             <RelatedProductsComparison setId={setId} />
