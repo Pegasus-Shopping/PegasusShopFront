@@ -7,6 +7,7 @@ import css from "../styles.css";
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
 function ReviewList({ list }) {
   const [listCounter, setList] = useState("Latest");
+  const [counterShow, setCounterShow] = useState(2);
   const listNewDateFormat = [...list];
   list.forEach((review, index) => {
     listNewDateFormat[index].date = new Date(review.date);
@@ -30,7 +31,14 @@ function ReviewList({ list }) {
     return relevantList.sort((a, b) => b.relevantValue - a.relevantValue);
   }
 
+  function onMoreReview() {
+    if (counterShow < latestList.length) {
+      setCounterShow(counterShow + 2);
+    }
+  }
+
   function onChange(event) {
+    setCounterShow(2);
     setList(event.target.value);
   }
 
@@ -45,32 +53,53 @@ function ReviewList({ list }) {
           <option value="Relevant">Relevant</option>
         </select>
         <>
-          {listCounter === "Latest" && (latestList.map((review) => (
-            <>
-              <Review review={review} />
-              <hr />
-            </>
-          )))}
+          {listCounter === "Latest" && (latestList.map((review, index) => {
+            if (index < counterShow) {
+              return (
+                <>
+                  <Review review={review} />
+                  <hr />
+                </>
+              );
+            }
+            return null;
+          }))}
+
         </>
         <>
-          {listCounter === "Relevant" && (relevantList.map((review) => (
-            <>
-              <Review review={review} />
-              <hr />
-            </>
-          )))}
+          {listCounter === "Relevant" && (relevantList.map((review, index) => {
+            if (index < counterShow) {
+              return (
+                <>
+                  <Review review={review} />
+                  <hr />
+                </>
+              );
+            }
+            return null;
+          }))}
         </>
         <>
-          {listCounter === "Most Helpful" && (helpfulList.map((review) => (
-            <>
-              <Review review={review} />
-              <hr />
-            </>
-          )))}
+          {listCounter === "Most Helpful" && (helpfulList.map((review, index) => {
+            if (index < counterShow) {
+              return (
+                <>
+                  <Review review={review} />
+                  <hr />
+                </>
+              );
+            }
+            return null;
+          }))}
         </>
       </div>
+      {counterShow < latestList.length && (
+        <div id="see more reviews">
+          <input type="button" className={css.buttonAlign} value="More Review" onClick={onMoreReview} />
+        </div>
+      )}
       <div id="new review">
-        <NewReview />
+        <NewReview className={css.buttonAlign} />
       </div>
     </div>
   );

@@ -138,3 +138,8 @@
 .formRadio {
   display:none;
 }
+
+.buttonAlign {
+  display: inline-block;
+  margin-right: 20px;
+}
