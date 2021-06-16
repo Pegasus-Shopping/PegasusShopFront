@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Review from "./review";
 import NewReview from "./NewReview";
 import css from "../styles.css";
+import RecordClicks from "../../RecordClicks";
 
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
 function ReviewList({ list }) {
@@ -95,7 +96,9 @@ function ReviewList({ list }) {
       </div>
       {counterShow < latestList.length && (
         <div id="see more reviews">
-          <input type="button" className={css.buttonAlign} value="More Review" onClick={onMoreReview} />
+          <RecordClicks widget="product reviews" element="More Review Button">
+            <input type="button" className={css.buttonAlign} value="More Review" onClick={onMoreReview} />
+          </RecordClicks>
         </div>
       )}
       <div id="new review">
