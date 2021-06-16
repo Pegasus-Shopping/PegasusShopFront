@@ -17,7 +17,7 @@ function Helpful({ helpfulCounter, incrementCounter }) {
   }
 
   return (
-    <RecordClicks widget="helpful incrementor" element="helpful counter">
+    <RecordClicks widget="product reviews" element="helpful counter">
       <div>
         <span>Helpful? </span>
         {!isYes && (
