@@ -3,6 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import DataContext from "../context";
 import helpers from "../related-products/helper-functions";
+import RecordClicks from "../RecordClicks";
 import css from "./styles.css";
 
 function StyleSelector({ setStyleIndex }) {
@@ -91,49 +92,69 @@ function StyleSelector({ setStyleIndex }) {
       </span>
       <div className={css.stylethumbs}>
         <div className={css.stylethumbsgrid}>
-          {styles.map(
-            (style, index) => (
-              <div className={css.thumbnail}>
-                {index === styleIndex
-              && (
-                <i className="far fa-check-circle" />
-              )}
-                <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))}>
-                  {" "}
-                  <img
-                    className={css.stylethumb}
-                    src={style.photos[0].thumbnail_url}
-                    alt={style.name}
-                    value={index}
-                  />
-                </button>
-              </div>
-            ),
-          )}
+          <RecordClicks widget="product overview" element="toggle style">
+            {styles.map(
+              (style, index) => (
+                <div className={css.thumbnail}>
+                  {index === styleIndex
+                && (
+                  <i className="far fa-check-circle" />
+                )}
+                  <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))} key={style}>
+                    {" "}
+                    <img
+                      className={css.stylethumb}
+                      src={style.photos[0].thumbnail_url}
+                      alt={style.name}
+                      value={index}
+                    />
+                  </button>
+                </div>
+              ),
+            )}
+          </RecordClicks>
         </div>
       </div>
       <form className={css.form}>
         <div className={css.formgrid}>
-          <select className={css.sizeselector} onChange={updateSelect}>
-            {sizes.map((size, index) => <option value={index} key={size.size}>{size.size}</option>)}
-          </select>
-          <select className={css.quantitySelector} onChange={updateQuantity}>
-            {sizes[currentSelect].quantity.map(
-              (qty) => (
-                <option
-                  value={qty}
-                  key={qty}
-                >
-                  {qty}
+          <RecordClicks widget="product overview" element="size selector">
+            <select className={css.sizeselector} onChange={updateSelect}>
+              {sizes.map((size, index) => (
+                <option value={index} key={size.size}>
+                  {size.size}
                 </option>
-              ),
-            )}
-          </select>
-          <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
+              ))}
+            </select>
+          </RecordClicks>
+          <RecordClicks widget="product overview" element="quantity selector">
+            <select className={css.quantitySelector} onChange={updateQuantity}>
+              {sizes[currentSelect].quantity.map(
+                (qty) => (
+                  <option
+                    value={qty}
+                    key={qty}
+                  >
+                    {qty}
+                  </option>
+                ),
+              )}
+            </select>
+          </RecordClicks>
+          <RecordClicks widget="product overview" element="add to cart">
+            <button type="button" className={css.cartbutton} onClick={addToCart}>Add To Bag</button>
+          </RecordClicks>
           {!outfits.includes(id)
-            && <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>}
+            && (
+            <RecordClicks widget="product overview" element="add to outifts">
+              <button type="button" className={css.outfitbutton} onClick={addOutfit}><i aria-label="Save outfit" className="far fa-heart" /></button>
+            </RecordClicks>
+            )}
           {outfits.includes(id)
-            && <button type="button" className={css.outfitbutton} onClick={removeOutfit}><i aria-label="Unsave outfit" className="fas fa-heart" /></button>}
+            && (
+            <RecordClicks widget="product overview" element="add to outifts">
+              <button type="button" className={css.outfitbutton} onClick={removeOutfit}><i aria-label="Unsave outfit" className="fas fa-heart" /></button>
+            </RecordClicks>
+            )}
         </div>
       </form>
     </div>
