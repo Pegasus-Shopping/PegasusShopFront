@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import css from "../styles.css";
-
 // Takes in ratingList, a numbers array of ratings from all reviewers, and produces
 // a rating breakdown on how the reviewers rate the product. Produces a sideways bar chart
 // that graphs how the reviewers rated the product.
