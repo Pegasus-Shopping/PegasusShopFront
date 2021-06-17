@@ -17,9 +17,20 @@ function ImageViewer({ thumb, setThumb, toggleExpanded }) {
         <div className={css.thumbnailPanelGrid}>
           <RecordClicks widget="product overview" element="toggle thumb">
             {photos.map((photo, index) => (
-              <button className={css.thumb} type="button" onClick={() => setThumb(index)} key={JSON.stringify(photo)}>
-                <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
-              </button>
+              <div>
+                {index === thumb
+                  && (
+                  <button className={css.thumbselected} type="button" onClick={() => setThumb(index)} key={JSON.stringify(photo)}>
+                    <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
+                  </button>
+                  )}
+                {index !== thumb
+                 && (
+                 <button className={css.thumb} type="button" onClick={() => setThumb(index)} key={JSON.stringify(photo)}>
+                   <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
+                 </button>
+                 )}
+              </div>
             ))}
           </RecordClicks>
         </div>

@@ -204,6 +204,7 @@
   grid-row-end: 5;
   z-index: 2;
   margin: .75em;
+  background: transparent;
 }
 
 .thumbnailPanelGrid {
@@ -212,6 +213,16 @@
   grid-template-rows: 20% 20% 20% 20% 20%;
   height: 100%;
   width: 100%;
+  background: transparent;
+}
+
+.thumbselected {
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  align-self: auto;
+  border: none;
+  background: greenyellow;
 }
 
 .thumb {
@@ -220,6 +231,7 @@
   width: 100%;
   align-self: auto;
   border: none;
+  background: transparent;
 }
 
 .thumbimage {
