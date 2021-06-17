@@ -59,7 +59,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  {index + 1 < counterShow && index !== latestList.length - 1 && <hr /> }
                 </>
               );
             }
@@ -73,7 +73,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  {index + 1 < counterShow && index !== relevantList.length - 1 && <hr /> }
                 </>
               );
             }
@@ -86,7 +86,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  {index + 1 < counterShow && index !== helpfulList.length - 1 && <hr /> }
                 </>
               );
             }
@@ -97,7 +97,7 @@ function ReviewList({ list }) {
       {counterShow < latestList.length && (
         <div id="see more reviews">
           <RecordClicks widget="product reviews" element="More Review Button">
-            <input type="button" className={css.buttonAlign} value="More Review" onClick={onMoreReview} />
+            <input type="button" className={css.reviewButton} value="More Review" onClick={onMoreReview} />
           </RecordClicks>
         </div>
       )}

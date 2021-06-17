@@ -67,56 +67,58 @@ function NewReview() {
     <div>
       {reviewTracker === 0 && (
       <RecordClicks widget="product reviews" element="New Review button">
-        <input type="button" value="New Review" onClick={onClickNewReview} />
+        <input type="button" value="New Review" onClick={onClickNewReview} className={css.reviewButton} />
       </RecordClicks>
       )}
       {reviewTracker === 1 && (
-      <div id="newReviewBody">
-        <RecordClicks widget="product reviews" element="select star rating">
-          <div id="select star rating">
-            <SelectStarRating setReviewRating={setReviewRating} />
-          </div>
-        </RecordClicks>
+        <>
+          <div id="newReviewBody" className={css.newReview}>
+            <RecordClicks widget="product reviews" element="select star rating">
+              <div id="select star rating">
+                <SelectStarRating setReviewRating={setReviewRating} />
+              </div>
+            </RecordClicks>
 
-        <form id="do you recommend">
-          Do you Recommend the product?
-          <label htmlFor="recommend-radio-yes">
-            <RecordClicks widget="product reviews" element="yes recommend">
-              <input type="radio" name="recommend" value onClick={onRecommendClick} />
-            </RecordClicks>
-            Yes
-          </label>
-          <label htmlFor="recommend-radio-no">
-            <RecordClicks widget="product reviews" element="no recommend">
-              <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
-            </RecordClicks>
-            No
-          </label>
-        </form>
-        <br />
-        Summary:
-        <br />
-        <textarea rows="1" cols="100" onChange={onSummaryChange} />
-        <br />
-        <br />
-        Review:
-        <br />
-        <textarea rows="10" cols="100" onChange={onReviewChange} />
-        <br />
-        <UploadPhotos setPhoto={setPhotoArray} />
-        <br />
-        Nickname:
-        <br />
-        <input type="text" onChange={onNicknameChange} />
-        <br />
-        Email:
-        <br />
-        <input type="text" onChange={onEmailChange} />
-        <br />
-        <RecordClicks widget="product review" element="submit new review button">
-          <input type="button" value="Submit" onClick={onClickNewReview} />
-        </RecordClicks>
-      </div>
+            <form id="do you recommend">
+              Do you Recommend the product?
+              <label htmlFor="recommend-radio-yes">
+                <RecordClicks widget="product reviews" element="yes recommend">
+                  <input type="radio" name="recommend" value onClick={onRecommendClick} />
+                </RecordClicks>
+                Yes
+              </label>
+              <label htmlFor="recommend-radio-no">
+                <RecordClicks widget="product reviews" element="no recommend">
+                  <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
+                </RecordClicks>
+                No
+              </label>
+            </form>
+            <br />
+            Summary:
+            <br />
+            <textarea rows="1" cols="100" onChange={onSummaryChange} />
+            <br />
+            <br />
+            Review:
+            <br />
+            <textarea rows="10" cols="100" onChange={onReviewChange} />
+            <br />
+            <UploadPhotos setPhoto={setPhotoArray} />
+            <br />
+            Nickname:
+            <br />
+            <input type="text" onChange={onNicknameChange} />
+            <br />
+            Email:
+            <br />
+            <input type="text" onChange={onEmailChange} />
+            <br />
+          </div>
+          <RecordClicks widget="product review" element="submit new review button">
+            <input type="button" value="Submit" onClick={onClickNewReview} />
+          </RecordClicks>
+        </>
       )}
     </div>
   );

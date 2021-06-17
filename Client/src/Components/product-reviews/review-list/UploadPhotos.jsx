@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 // setPhoto is a setter function that passes the information to the NewReview.jsx file.
@@ -6,18 +6,18 @@ import PropTypes from "prop-types";
 // function using the setPhoto function.
 function UploadPhotos({ setPhoto }) {
   // const [uploadPhoto, setPhoto] = useState("file");
-  const photoCollection = [];
+  const [photoCollection, setPhotoCollection] = useState([]);
   function loadFile(event) {
     const image = document.getElementById(`output${photoCollection.length + 1}`);
     image.src = URL.createObjectURL(event.target.files[0]);
-    photoCollection.push(image);
+    setPhotoCollection([...photoCollection, image]);
     setPhoto(photoCollection);
   }
 
   return (
     <div>
       <form action="/action_page.php">
-        <input type="file" id="myFile" accept="image/*" name="image" onChange={loadFile} />
+        {photoCollection.length < 5 && <input type="file" id="myFile" accept="image/*" name="image" onChange={loadFile} /> }
         <img id="output1" width="200" alt="user upload 1" />
         <img id="output2" width="200" alt="user upload 2" />
         <img id="output3" width="200" alt="user upload 3" />
