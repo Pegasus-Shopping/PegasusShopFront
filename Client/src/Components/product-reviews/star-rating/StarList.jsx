@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import css from "../styles.css";
 
@@ -21,9 +21,6 @@ function StarList({ list, showAverage }) {
   const average = averageRating();
   const starCount = ((Math.round(average * 4) / 4) / 5) * 100;
 
-  useEffect(() => {
-    document.getElementById("inner").style.width = `${starCount}%`;
-  });
   return (
     <div>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -33,7 +30,7 @@ function StarList({ list, showAverage }) {
       </span>
       )}
       <div className={css.starsOuter}>
-        <div id="inner" className={css.starsInner} />
+        <div id="inner" className={css.starsInner} style={{ width: `${starCount}%` }} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@
   "description": "npm for FEC",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon Server/index.js",
+    "start": "node Server/index.js",
     "dev:react": "webpack --config ./webpack.config.js --mode development -w",
     "db:setup": "node database-mongodb/seed.js",
     "test": "jest",
@@ -26,20 +26,22 @@
     "cors": "^2.8.5",
     "css-loader": "^5.2.6",
     "express": "^4.17.1",
+    "msw": "^0.29.0",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
-    "style-loader": "^2.0.0"
+    "style-loader": "^2.0.0",
+    "@testing-library/react": "^11.2.7",
+    "ts-jest": "^27.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-react": "^7.13.13",
-    "@testing-library/react": "^11.2.7",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.2",
     "babel-preset-env": "^1.7.0",
@@ -63,6 +65,7 @@
     "modulePaths": [
       "/shared/vendor/modules"
     ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$",
     "moduleFileExtensions": [
       "js",
       "jsx"

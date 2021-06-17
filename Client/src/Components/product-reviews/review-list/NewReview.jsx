@@ -3,6 +3,7 @@ import axios from "axios";
 import UploadPhotos from "./UploadPhotos";
 import SelectStarRating from "./SelectStarRating";
 import css from "../styles.css";
+import RecordClicks from "../../RecordClicks";
 
 // input: takes in setNewReview function that passes new review information to ReviewList
 // Creates New Review data object to be passed on to server.
@@ -33,7 +34,10 @@ function NewReview() {
         helpfulness: 0,
         photos: photoArray,
       });
-      axios.post("/reviews", { params: newReview });
+      axios.post("/reviews", { params: newReview })
+        .then((resp) => { console.log(resp); })
+        .catch((err) => console.log(err));
+
       setReviewTracker(0);
     }
   }
@@ -64,20 +68,31 @@ function NewReview() {
 
   return (
     <div>
-      {reviewTracker === 0 && <input type="button" value="New Review" onClick={onClickNewReview} />}
+      {reviewTracker === 0 && (
+      <RecordClicks widget="product reviews" element="New Review button">
+        <input type="button" value="New Review" onClick={onClickNewReview} />
+      </RecordClicks>
+      )}
       {reviewTracker === 1 && (
       <div id="newReviewBody">
-        <div id="select star rating">
-          <SelectStarRating setReviewRating={setReviewRating} />
-        </div>
+        <RecordClicks widget="product reviews" element="select star rating">
+          <div id="select star rating">
+            <SelectStarRating setReviewRating={setReviewRating} />
+          </div>
+        </RecordClicks>
+
         <form id="do you recommend">
           Do you Recommend the product?
           <label htmlFor="recommend-radio-yes">
-            <input type="radio" name="recommend" value onClick={onRecommendClick} />
+            <RecordClicks widget="product reviews" element="yes recommend">
+              <input type="radio" name="recommend" value onClick={onRecommendClick} />
+            </RecordClicks>
             Yes
           </label>
           <label htmlFor="recommend-radio-no">
-            <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
+            <RecordClicks widget="product reviews" element="no recommend">
+              <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
+            </RecordClicks>
             No
           </label>
         </form>
@@ -101,7 +116,9 @@ function NewReview() {
         <br />
         <input type="text" onChange={onEmailChange} />
         <br />
-        <input type="button" value="Submit" onClick={onClickNewReview} />
+        <RecordClicks widget="product review" element="submit new review button">
+          <input type="button" value="Submit" onClick={onClickNewReview} />
+        </RecordClicks>
       </div>
       )}
     </div>
