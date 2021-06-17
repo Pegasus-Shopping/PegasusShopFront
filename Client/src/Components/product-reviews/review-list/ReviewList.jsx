@@ -59,7 +59,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  {index + 1 < counterShow && index !== latestList.length - 1 && <hr /> }
+                  <hr />
                 </>
               );
             }
@@ -73,7 +73,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  {index + 1 < counterShow && index !== relevantList.length - 1 && <hr /> }
+                  <hr />
                 </>
               );
             }
@@ -86,7 +86,7 @@ function ReviewList({ list }) {
               return (
                 <>
                   <Review review={review} />
-                  {index + 1 < counterShow && index !== helpfulList.length - 1 && <hr /> }
+                  <hr />
                 </>
               );
             }
