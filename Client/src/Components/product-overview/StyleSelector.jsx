@@ -98,7 +98,7 @@ function StyleSelector({ setStyleIndex }) {
                 <div className={css.thumbnail}>
                   {index === styleIndex
                 && (
-                  <i className="far fa-check-circle" />
+                  <i className={`${css.selectedstylethumb} far fa-check-circle`} />
                 )}
                   <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))} key={style}>
                     {" "}
