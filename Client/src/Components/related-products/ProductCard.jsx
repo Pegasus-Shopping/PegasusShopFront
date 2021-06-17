@@ -38,11 +38,11 @@ function ProductCard({
           .then((res) => {
             const list = res.data.results;
             const ratingList = [];
-            console.log("res.data.results", res.data.results);
+            // console.log("res.data.results", res.data.results);
             list.forEach((review) => {
               ratingList.push(review.rating);
             });
-            console.log("list", ratingList);
+            // console.log("list", ratingList);
             setRating(ratingList);
           }),
       ).then(
