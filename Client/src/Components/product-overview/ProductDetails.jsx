@@ -10,7 +10,7 @@ function ProductDetails() {
       <p className={css.productdescription}>{description}</p>
       <div className={css.productfeature}>
         {features.map((feature) => (
-          <span className="feature">
+          <span className="feature" key={feature.feature}>
             {feature.feature}
             :
             {" "}
