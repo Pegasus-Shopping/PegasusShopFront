@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import DataContext from "../context";
 import css from "./styles.css";
+import RecordClicks from "../RecordClicks";
 import { left, right } from "./helper-functions";
 
 function ImageViewer({ thumb, setThumb, toggleExpanded }) {
@@ -14,15 +15,21 @@ function ImageViewer({ thumb, setThumb, toggleExpanded }) {
       <button type="button" className={css.expander} onClick={() => toggleExpanded(true)}><i aria-label="expand image" className="fas fa-expand" /></button>
       <div className={css.thumbnailPanel}>
         <div className={css.thumbnailPanelGrid}>
-          {photos.map((photo, index) => (
-            <button className={css.thumb} type="button" onClick={() => setThumb(index)}>
-              <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
-            </button>
-          ))}
+          <RecordClicks widget="product overview" element="toggle thumb">
+            {photos.map((photo, index) => (
+              <button className={css.thumb} type="button" onClick={() => setThumb(index)} key={JSON.stringify(photo)}>
+                <img className={css.thumbimage} src={photo.thumbnail_url} alt={name} />
+              </button>
+            ))}
+          </RecordClicks>
         </div>
       </div>
-      <button type="button" className={css.chevronLeft} onClick={() => setThumb(left(thumb, data.styles.length - 1))}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
-      <button type="button" className={css.chevronRight} onClick={() => setThumb(right(thumb, data.styles.length - 1))}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
+      <RecordClicks widget="product overview" element="toggle left">
+        <button type="button" className={css.chevronLeft} onClick={() => setThumb(left(thumb, data.styles.length - 1))}><i aria-label="Toggle left" className="fas fa-chevron-left" /></button>
+      </RecordClicks>
+      <RecordClicks widget="product overview" element="toggle right">
+        <button type="button" className={css.chevronRight} onClick={() => setThumb(right(thumb, data.styles.length - 1))}><i aria-label="Toggle right" className="fas fa-chevron-right" /></button>
+      </RecordClicks>
     </div>
   );
 }
