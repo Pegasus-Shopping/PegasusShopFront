@@ -13,30 +13,22 @@ function App() {
   const [product, setProduct] = useState({ id: 20100 });
   const [id, setId] = useState(20100);
   const [outfitCount, setOutfitCount] = useState(0);
+  const [styleIndex, setStyleIndex] = useState(0);
 
   useEffect(() => {
-    // get styles
-    axios.get(`/products/${id}/styles`)
-      .then((res) => {
-        setStyles(res.data.results);
-      })
-      .then( // get ratings
-        () => axios.get("/reviews/meta/", { params: { product_id: id } })
-          .then((res) => {
-            setRating(res.data.ratings);
-          }),
-      ).then(
-        () => ( // get details
-          axios.get(`/products/${id}`)
-            .then((res) => {
-              // console.log(res);
-              setProduct(res.data);
-            })
-        ),
-      )
-      .then(() => {
-        setBusy(false);
-      });
+    axios.all([
+      axios.get(`/products/${id}/styles`),
+      axios.get("/reviews/meta/", { params: { product_id: id } }),
+      axios.get(`/products/${id}`),
+    ])
+      .then(
+        axios.spread((stylesReturn, ratingReturn, productReturn) => {
+          setStyles(stylesReturn.data.results);
+          setRating(ratingReturn.data.ratings);
+          setProduct(productReturn.data);
+          setBusy(false);
+        }),
+      );
   }, [id]);
   const updateCount = () => {
     setOutfitCount(outfitCount + 1);
@@ -48,14 +40,15 @@ function App() {
         !isBusy
         && (
         <>
-          <DataContext.Provider value={{
-            product, styles, styleIndex: 0, rating, updateCount,
-          }}
+          <DataContext.Provider
+            value={{
+              product, styles, styleIndex, rating, updateCount,
+            }}
           >
-            <ProductOverview />
+            <ProductOverview setStyleIndex={setStyleIndex} />
             <RelatedProductsComparison setId={setId} />
             <QuestionsAnswers />
-            <ProductReviews />
+            <ProductReviews id={id} />
           </DataContext.Provider>
         </>
         )
