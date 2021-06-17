@@ -39,8 +39,8 @@
   display:inline-block;
 }
 
-.checked {
-  color: black;
+.star-checked {
+  color: orange;
 }
 
 .image {
@@ -80,7 +80,7 @@
 
 .starsInner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color:black;
+  color:orange;
 }
 
 .barContainer {
@@ -190,4 +190,8 @@
   margin-top: 15px;
   margin-bottom: 28px;
   font-size: 21.5px
+}
+
+.orange-color {
+  color: orange;
 }
