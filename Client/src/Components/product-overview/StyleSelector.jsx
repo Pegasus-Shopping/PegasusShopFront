@@ -6,7 +6,7 @@ import helpers from "../related-products/helper-functions";
 import RecordClicks from "../RecordClicks";
 import css from "./styles.css";
 
-function StyleSelector({ setStyleIndex }) {
+function StyleSelector({ setStyleIndex, setThumb }) {
   const data = useContext(DataContext);
   const { styleIndex, styles, updateCount } = data;
   const { id } = data.product;
@@ -58,6 +58,7 @@ function StyleSelector({ setStyleIndex }) {
     // purpose: track which style is selected
     // side effects: updates styleIndex, sizes array
     setStyleIndex(index);
+    setThumb(0);
     getSizes();
   };
   const addToCart = (e) => {
@@ -98,7 +99,7 @@ function StyleSelector({ setStyleIndex }) {
                 <div className={css.thumbnail} key={JSON.stringify(style)}>
                   {index === styleIndex
                 && (
-                  <i className="far fa-check-circle" />
+                  <i className={`${css.selectedstylethumb} far fa-check-circle`} />
                 )}
                   <button type="button" className={css.stylebutton} onClick={() => (updateStyle(index))} key={style}>
                     {" "}
@@ -162,5 +163,6 @@ function StyleSelector({ setStyleIndex }) {
 }
 StyleSelector.propTypes = {
   setStyleIndex: PropTypes.func.isRequired,
+  setThumb: PropTypes.func.isRequired,
 };
 export default StyleSelector;
