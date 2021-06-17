@@ -174,13 +174,12 @@
 .outfitCard {
   /* padding: 1em; */
   background-color:  rgb(216, 216, 216);
-  justify-self: center;
-  align-self: center;
   display: grid;
+  /* font-size: 6em; */
+  justify-items: center;
+
 }
 .addThisProduct {
   position: relative;
   top: 3em;
-  justify-self: center;
-  /* transform: rotate(45deg); */
 }

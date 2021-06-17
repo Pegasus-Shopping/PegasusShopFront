@@ -24,7 +24,7 @@ function AddOutfitCard() {
         </div>
       </div>
     </RecordClicks>
+
   );
 }
-
 export default AddOutfitCard;

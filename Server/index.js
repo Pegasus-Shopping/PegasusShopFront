@@ -132,7 +132,9 @@ app.post("/cart", (req, res) => {
   for (let i = 0; i < count; i += 1) {
     axios(requestDetails)
       .then((response) => { res.send(response.data); })
-      .catch((error) => { res.send(error); });
+      .catch(() => {
+        res.sendStatus(500);
+      });
   }
 });
 
@@ -161,7 +163,9 @@ app.post("/reviews", (req, res) => {
     },
   })
     .then((resp) => res.send(resp.data))
-    .catch((resp) => res.send(resp.error));
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 // Header required: Authorization token
