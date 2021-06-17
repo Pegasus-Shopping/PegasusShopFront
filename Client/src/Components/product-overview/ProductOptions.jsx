@@ -7,7 +7,7 @@ import css from "./styles.css";
 
 const { useContext } = React;
 
-function ProductOptions({ setStyleIndex }) {
+function ProductOptions({ setStyleIndex, setThumb }) {
   const data = useContext(DataContext);
   const defaultPrice = data.product.default_price;
   const { styles, styleIndex, rating } = data;
@@ -40,12 +40,13 @@ function ProductOptions({ setStyleIndex }) {
       {(salePrice === "0" || salePrice === null) && originalPrice === "0"
       && <span className={css.price}>{`$${defaultPrice}`}</span>}
       <div className={css.styleselector}>
-        <StyleSelector setStyleIndex={setStyleIndex} />
+        <StyleSelector setStyleIndex={setStyleIndex} setThumb={setThumb} />
       </div>
     </div>
   );
 }
 ProductOptions.propTypes = {
   setStyleIndex: PropTypes.func.isRequired,
+  setThumb: PropTypes.func.isRequired,
 };
 export default ProductOptions;

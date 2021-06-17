@@ -6,6 +6,12 @@
   grid-template-rows: 90% 10%;
   height: 50em;
   width: 50em;
+  position: relative;
+  align-self: center;
+  font-family: Arial, sans-serif;
+  margin-left: 12em;
+  margin-right: 12em;
+  background: #F5F5DC;
 }
 
 .imageexpander {
@@ -30,6 +36,7 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  margin: .5em;
 }
 
 .productdetails {
@@ -165,7 +172,8 @@
   grid-row-end: 6;
   z-index: 1;
   height: 100%;
-  width: 100%
+  width: 100%;
+  border-radius: 1%;
 }
 
 .expander {
@@ -199,6 +207,7 @@
   grid-row-end: 5;
   z-index: 2;
   margin: .75em;
+  background: transparent;
 }
 
 .thumbnailPanelGrid {
@@ -207,6 +216,17 @@
   grid-template-rows: 20% 20% 20% 20% 20%;
   height: 100%;
   width: 100%;
+  background: transparent;
+}
+
+.thumbselected {
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  align-self: auto;
+  border: none;
+  background: #d1a44f;
+  border-radius: 10%;
 }
 
 .thumb {
@@ -215,12 +235,14 @@
   width: 100%;
   align-self: auto;
   border: none;
+  background: transparent;
 }
 
 .thumbimage {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 5%;
 }
 
 .chevronLeft {
@@ -364,7 +386,7 @@
 }
 
 .stylethumbsgrid {
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 50% 50%;
   height: 100%;
@@ -375,27 +397,36 @@
   padding: 0;
   margin: 2px;
   border-radius: 50%;
-  height: 50%;
-  width: 100%;
-  align-self: center;
-  object-fit: cover;
-  float: inline-start;
-}
-
-.stylethumb {
   height: 100%;
   width: 100%;
-  z-index: 4;
-  border-radius: 50%;
-  object-fit: cover;
+  display: inline;
 }
 
+.selectedstylethumb {
+  z-index: 5;
+  position: absolute;
+  margin-top: 4%;
+  margin-left: 1%;
+  color: #d1a44f;
+}
 .stylebutton {
   background-color: transparent;
   border-radius: 50%;
+  height: 100%;
+  width: 100%;
   z-index: 4;
   border-color: transparent;
   object-fit: cover;
+  justify-self: start;
+}
+
+.stylethumb {
+  height: 50%;
+  width: 100%;
+  z-index: 4;
+  border-radius: 50%;
+  object-fit: cover;
+  justify-self: start;
 }
 
 .form {
@@ -429,7 +460,7 @@
 	cursor:pointer;
 	color:#666666;
 	font-family:Arial;
-	font-size:15px;
+	font-size:12px;
 	font-weight:bold;
 	padding:16px 24px;
 	text-decoration:none;
@@ -449,7 +480,7 @@
 	cursor:pointer;
 	color:#666666;
 	font-family:Arial;
-	font-size:15px;
+	font-size:12px;
 	font-weight:bold;
 	padding:16px 24px;
 	text-decoration:none;
@@ -524,6 +555,9 @@
   grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
   width: 100%;
+  font-family:Arial;
+  font-weight: 100;
+  margin: 1em;
 }
 
 .productdescription {

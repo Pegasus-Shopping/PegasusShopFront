@@ -34,7 +34,10 @@ function NewReview() {
         helpfulness: 0,
         photos: photoArray,
       });
-      axios.post("/reviews", { params: newReview });
+      axios.post("/reviews", { params: newReview })
+        .then((resp) => { console.log(resp); })
+        .catch((err) => console.log(err));
+
       setReviewTracker(0);
     }
   }

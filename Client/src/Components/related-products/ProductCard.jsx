@@ -25,7 +25,7 @@ function ProductCard({
   }
   const [isBusy, setBusy] = useState(true);
   const [style, setStyle] = useState(null);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState([0, 0]);
   const [details, setDetails] = useState(null);
   useEffect(() => {
     // get styles
@@ -36,7 +36,14 @@ function ProductCard({
       .then( // get ratings
         () => axios.get("/reviews", { params: { product_id: id } })
           .then((res) => {
-            setRating(res.data.ratings);
+            const list = res.data.results;
+            const ratingList = [];
+            // console.log("res.data.results", res.data.results);
+            list.forEach((review) => {
+              ratingList.push(review.rating);
+            });
+            // console.log("list", ratingList);
+            setRating(ratingList);
           }),
       ).then(
         () => ( // get details
@@ -54,7 +61,8 @@ function ProductCard({
       )
       .then(() => {
         setBusy(false);
-      });
+      })
+      .catch((err) => console.log(err));
   }, [id]);
   const widget = "related products comparison";
   return (
@@ -81,10 +89,7 @@ function ProductCard({
             <h3 className={css.thinHeading1}>{details.category.toUpperCase()}</h3>
             <h3 className={css.thinHeading2}>{details.name}</h3>
             <h3 className={css.thinHeading1}>{`$${getTruePrice(details, style)}`}</h3>
-            {/* <h3 className={css.thinHeading1}>{rating["3"]}</h3> */}
-            <>
-              {rating && <StarList list={rating} />}
-            </>
+            <StarList list={rating} />
           </div>
         </div>
       )}
