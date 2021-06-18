@@ -6,6 +6,7 @@ import RecommendProduct from "./RecommendProduct";
 import StarRating from "./StarRating";
 import Body from "./Body";
 import Response from "./Response";
+import css from "../styles.css";
 
 // Review function creates each individual review. Review function will call other functions to
 // delegate individual features within a review.
@@ -22,7 +23,7 @@ function Review({ review }) {
   const realDate = new Date(date).toDateString().split(" ").slice(1)
     .join(" ");
   return (
-    <div id="review">
+    <div id="review" className={css.review}>
       <div id="rating">
         <StarRating rating={rating} />
       </div>

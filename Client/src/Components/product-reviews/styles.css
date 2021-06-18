@@ -31,17 +31,16 @@
 }
 
 .reviewList {
-  width: 45%;
-  height: 100%;
-  margin: 0; /* Space from this element (entire page) and others*/
-  padding: 0; /*space from content and border*/
-  border: solid black;
-  border-width: thin;
-  display:block;
+  width: 60%;
+  margin: 0px; /* Space from this element (entire page) and others*/
+  padding: 0px; /*space from content and border*/
+  /* border: solid black;
+  border-width: thin; */
+  display:inline-block;
 }
 
-.checked {
-  color: black;
+.star-checked {
+  color: orange;
 }
 
 .image {
@@ -81,7 +80,7 @@
 
 .starsInner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color:black;
+  color:orange;
 }
 
 .barContainer {
@@ -142,4 +141,57 @@
 .buttonAlign {
   display: inline-block;
   margin-right: 20px;
+}
+
+.reviewButton {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:3px 9px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.reviewButton:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.reviewButton:active {
+	position:relative;
+	top:1px;
+}
+
+.newReview {
+  width: 65%;
+  border: solid black;
+  border-width: thin;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.averageRating {
+  font-size: 4em;
+}
+
+.averageStarRatingAlignment {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+}
+
+.recommendProductPercentage {
+  margin-top: 15px;
+  margin-bottom: 28px;
+  font-size: 21.5px
+}
+
+.orange-color {
+  color: orange;
 }

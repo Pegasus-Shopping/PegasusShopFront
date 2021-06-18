@@ -18,11 +18,11 @@ function StarRatingBreakdown({ list }) {
   });
 
   return (
-    <>
+    <div>
       <StarList list={ratingList} showAverage />
       <RecommendProductPercentage list={recommendList} />
       <Breakdown list={ratingList} />
-    </>
+    </div>
   );
 }
 

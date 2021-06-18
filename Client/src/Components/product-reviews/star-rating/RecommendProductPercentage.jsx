@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import css from "../styles.css";
 
 // Takes in recommendList, a boolean array where true means the reviewer recommends the product
 // and false if the reviewer does not recommend the product. It returns the statement:
@@ -20,7 +21,7 @@ function RecommendProductPercentage({ list }) {
 
   return (
     <div>
-      <div>
+      <div className={css.recommendProductPercentage}>
         {`${recommendPercentage}% of reviews recommend this product`}
       </div>
     </div>
