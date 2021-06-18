@@ -10,6 +10,9 @@ function StarList({ list, showAverage }) {
   // Returns the average of input list.
   function averageRating() {
     let average = 0;
+    if (list.length === 0) {
+      return 0;
+    }
     list.forEach((rating) => {
       average += rating;
     });

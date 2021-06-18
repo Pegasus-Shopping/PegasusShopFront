@@ -15,6 +15,8 @@ function ProductReviews({ id }) {
       .catch((err) => console.log(err));
   }, [id]);
 
+  console.log(id);
+
   return (
     <div className={css.reviewListandStarBreakdown}>
       <StarRatingBreakdown list={reviewList} id={id} />

@@ -9,6 +9,9 @@ function RecommendProductPercentage({ list }) {
   // countPercentage calculates the percentage of trues in recommendList.
   function countPercentage() {
     let recommendCount = 0;
+    if (list.length === 0) {
+      return 0;
+    }
     list.forEach((recommend) => {
       if (recommend) {
         recommendCount += 1;

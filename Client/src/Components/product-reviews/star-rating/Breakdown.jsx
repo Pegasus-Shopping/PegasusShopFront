@@ -10,7 +10,7 @@ function Breakdown({ list }) {
   let counter3Rating = 0;
   let counter2Rating = 0;
   let counter1Rating = 0;
-
+  console.log("this is list in Breakdown: ", list);
   list.forEach((rating) => {
     if (rating === 5) {
       counter5Rating += 1;
@@ -27,6 +27,9 @@ function Breakdown({ list }) {
 
   // converts ratingCounter into % of total ratings.
   function getPercentage(rating) {
+    if (list.length === 0) {
+      return 0;
+    }
     return (rating / list.length) * 100;
   }
 
@@ -35,7 +38,7 @@ function Breakdown({ list }) {
   counter3Rating = getPercentage(counter3Rating);
   counter2Rating = getPercentage(counter2Rating);
   counter1Rating = getPercentage(counter1Rating);
-
+  console.log("this is counter5Rating: ", counter5Rating);
   useEffect(() => {
     document.getElementById("5 rating bar").style.width = `${counter5Rating}%`;
     document.getElementById("4 rating bar").style.width = `${counter4Rating}%`;
