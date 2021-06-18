@@ -47,6 +47,12 @@ function ReviewList({ list }) {
 
   return (
     <div id="full review section">
+      {latestList.length === 0 && (
+        <div>
+          There are no reviews at this time. Be the first to write a new Review!
+        </div>
+      )}
+      {latestList.length !== 0 && (
       <div className={css.reviewList}>
         <select id="select sort order" onChange={onChange}>
           <option value="Latest">Latest</option>
@@ -94,6 +100,7 @@ function ReviewList({ list }) {
           }))}
         </>
       </div>
+      ) }
       {counterShow < latestList.length && (
         <div id="see more reviews">
           <RecordClicks widget="product reviews" element="More Review Button">

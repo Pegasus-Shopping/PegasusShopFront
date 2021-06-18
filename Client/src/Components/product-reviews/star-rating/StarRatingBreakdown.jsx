@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import StarList from "./StarList";
 import RecommendProductPercentage from "./RecommendProductPercentage";
@@ -16,6 +16,9 @@ function StarRatingBreakdown({ list }) {
     ratingList.push(review.rating);
     recommendList.push(review.recommend);
   });
+
+  console.log("this is ratingList: ", ratingList);
+  console.log("this is recommendList: ", recommendList);
 
   return (
     <div>
