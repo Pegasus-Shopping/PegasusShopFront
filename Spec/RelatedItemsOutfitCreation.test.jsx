@@ -10,10 +10,10 @@ import {
 } from "@testing-library/react";
 
 // import "@testing-library/just-dom/extend-expect";
-// import App from "../Client/src/Components/App";
-function App() {
-  return <div>Hello World</div>;
-}
+import App from "../Client/src/Components/App";
+// function App() {
+//   return <div>Hello World</div>;
+// }
 
 const server = setupServer(
   // capture "GET /greeting" requests
