@@ -37,7 +37,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
   counter4Rating = getPercentage(counter4Rating);
   counter3Rating = getPercentage(counter3Rating);
   counter2Rating = getPercentage(counter2Rating);
-
+  counter1Rating = getPercentage(counter1Rating);
   function onClick(event) {
     setDisplayStarCounter(parseInt(event.target.id, 10));
   }
