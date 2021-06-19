@@ -17,9 +17,6 @@ function StarRatingBreakdown({ list, setDisplayStarCounter }) {
     recommendList.push(review.recommend);
   });
 
-  console.log("this is ratingList: ", ratingList);
-  console.log("this is recommendList: ", recommendList);
-
   return (
     <div>
       <StarList list={ratingList} showAverage />

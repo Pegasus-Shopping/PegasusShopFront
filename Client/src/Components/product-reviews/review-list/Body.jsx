@@ -11,7 +11,7 @@ function Body({ text, photos }) {
       </p>
       <div align="center">
         {photos.map((photo) => (
-          <img className={css.image} src={photo.url} alt="" width="250" height="300" />
+          <img className={css.image} src={photo.url} alt="" width="250" height="300" key="photo" />
         ))}
       </div>
     </div>

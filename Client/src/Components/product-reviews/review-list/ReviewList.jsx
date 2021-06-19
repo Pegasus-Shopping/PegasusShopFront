@@ -114,10 +114,10 @@ function ReviewList({ list, id, displayStarCounter }) {
           {listCounter === "Latest" && (latestList.map((review, index) => {
             if (index < counterShow) {
               return (
-                <>
+                <div key={review.review_id}>
                   <Review review={review} />
                   <br />
-                </>
+                </div>
               );
             }
             return null;
@@ -128,10 +128,10 @@ function ReviewList({ list, id, displayStarCounter }) {
           {listCounter === "Relevant" && (relevantList.map((review, index) => {
             if (index < counterShow) {
               return (
-                <>
+                <div key={review.review_id}>
                   <Review review={review} />
                   <br />
-                </>
+                </div>
               );
             }
             return null;
@@ -141,10 +141,10 @@ function ReviewList({ list, id, displayStarCounter }) {
           {listCounter === "Most Helpful" && (helpfulList.map((review, index) => {
             if (index < counterShow) {
               return (
-                <>
+                <div key={review.review_id}>
                   <Review review={review} />
                   <br />
-                </>
+                </div>
               );
             }
             return null;

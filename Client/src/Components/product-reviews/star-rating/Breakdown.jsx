@@ -10,7 +10,6 @@ function Breakdown({ list, setDisplayStarCounter }) {
   let counter3Rating = 0;
   let counter2Rating = 0;
   let counter1Rating = 0;
-  console.log("this is list in Breakdown: ", list);
   list.forEach((rating) => {
     if (rating === 5) {
       counter5Rating += 1;
