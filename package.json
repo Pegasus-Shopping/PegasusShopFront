@@ -8,7 +8,8 @@
     "dev:react": "webpack --config ./webpack.config.js --mode development -w",
     "db:setup": "node database-mongodb/seed.js",
     "test": "jest",
-    "dev:server": "npx nodemon ./Server/index.js"
+    "dev:server": "npx nodemon ./Server/index.js",
+    "start:server": "node Server/index.js"
   },
   "repository": {
     "type": "git",
