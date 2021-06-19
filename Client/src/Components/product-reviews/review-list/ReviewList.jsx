@@ -1,35 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import Review from "./review";
 import NewReview from "./NewReview";
 import css from "../styles.css";
 import RecordClicks from "../../RecordClicks";
-
+import config from "../../../../../config";
 // Creates a list of reviews. Maps in the list from ProductReviews to Review to create each review
-function ReviewList({ list }) {
+function ReviewList({ list, id, displayStarCounter }) {
   const [listCounter, setList] = useState("Latest");
   const [counterShow, setCounterShow] = useState(2);
+  const [relevantList, setRelevantList] = useState([]);
+  const [helpfulList, setHelpfulList] = useState([]);
+  const [latestList, setLatestList] = useState([]);
   const listNewDateFormat = [...list];
   list.forEach((review, index) => {
     listNewDateFormat[index].date = new Date(review.date);
   });
-  const helpfulList = [...listNewDateFormat].sort((a, b) => b.helpfulness - a.helpfulness);
-  const latestList = [...listNewDateFormat].sort((a, b) => b.date - a.date);
 
-  // Assigns variable relevantValue to each object in review list and then returns a list
-  // sorted by relevantValue. relevantValue = 2 * helpfulCount - (current date - review date).
-  // current date - review date is measured in days
-  function createRelevant() {
-    const tempList = [...listNewDateFormat];
-    const date = new Date();
-    const currentDateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    const currentDate = new Date(currentDateString);
-    const relevantList = tempList.map((review) => {
-      const relevantValue = 2 * review.helpfulness
-        - ((currentDate.getTime() - review.date.getTime()) / (1000 * 3600 * 24));
-      return { ...review, relevantValue };
-    });
-    return relevantList.sort((a, b) => b.relevantValue - a.relevantValue);
+  // Gets data by calling API and if displayStarCounter is not 0, it will only pull the rating with
+  // ratings equal to displayStarCounter.
+  function getData() {
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+      params: { product_id: id, sort: "relevant" },
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
+      .then((resp) => {
+        if (displayStarCounter === 0) {
+          setRelevantList(resp.data.results);
+        } else {
+          const relevantFilterList = [];
+          resp.data.results.forEach((review) => {
+            if (review.rating === displayStarCounter) {
+              relevantFilterList.push(review);
+            }
+          });
+          setRelevantList(relevantFilterList);
+        }
+      });
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+      params: { product_id: id, sort: "newest" },
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
+      .then((resp) => {
+        if (displayStarCounter === 0) {
+          setLatestList(resp.data.results);
+        } else {
+          const latestFilterList = [];
+          resp.data.results.forEach((review) => {
+            if (review.rating === displayStarCounter) {
+              latestFilterList.push(review);
+            }
+          });
+          setLatestList(latestFilterList);
+        }
+      });
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
+      params: { product_id: id, sort: "helpful" },
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
+      .then((resp) => {
+        if (displayStarCounter === 0) {
+          setHelpfulList(resp.data.results);
+        } else {
+          const helpfulFilterList = [];
+          resp.data.results.forEach((review) => {
+            if (review.rating === displayStarCounter) {
+              helpfulFilterList.push(review);
+            }
+          });
+          setHelpfulList(helpfulFilterList);
+        }
+      });
   }
 
   function onMoreReview() {
@@ -43,7 +91,10 @@ function ReviewList({ list }) {
     setList(event.target.value);
   }
 
-  const relevantList = createRelevant();
+  useEffect(() => {
+    setCounterShow(2);
+    getData();
+  }, [id, displayStarCounter]);
 
   return (
     <div id="full review section">
@@ -109,7 +160,7 @@ function ReviewList({ list }) {
         </div>
       )}
       <div id="new review">
-        <NewReview className={css.buttonAlign} />
+        <NewReview id={id} />
       </div>
     </div>
   );
@@ -130,6 +181,8 @@ ReviewList.propTypes = {
     })).isRequired,
     response: PropTypes.string,
   })).isRequired,
+  id: PropTypes.number.isRequired,
+  displayStarCounter: PropTypes.number.isRequired,
 };
 
 export default ReviewList;
