@@ -10,7 +10,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
   let counter3Rating = 0;
   let counter2Rating = 0;
   let counter1Rating = 0;
-
+  console.log("this is list in Breakdown: ", list);
   list.forEach((rating) => {
     if (rating === 5) {
       counter5Rating += 1;
@@ -38,6 +38,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
   counter3Rating = getPercentage(counter3Rating);
   counter2Rating = getPercentage(counter2Rating);
   counter1Rating = getPercentage(counter1Rating);
+
   function onClick(event) {
     setDisplayStarCounter(parseInt(event.target.id, 10));
   }
