@@ -139,32 +139,22 @@ app.post("/cart", (req, res) => {
 });
 
 app.post("/reviews", (req, res) => {
+  console.log(req.body);
   const {
     rating, summary,
-    recommend, body, date, helpfulness, photos,
-  } = req.query;
-  const { reviewerName } = req.query.reviewer_name;
-  const { ratingId } = req.query.rating_id;
+    recommend, body, photos, email, characteristics, name,
+  } = req.body.params.newReview;
+  const { productId } = req.body.params.newReview.product_id;
 
-  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", {
-    params: {
-      rating_id: ratingId,
-      rating,
-      summary,
-      recommend,
-      body,
-      date,
-      reviewer_name: reviewerName,
-      helpfulness,
-      photos,
-    },
-    headers: {
-      Authorization: `${config.TOKEN}`,
-    },
-  })
+  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", req.body.params.newReview,
+    {
+      headers: {
+        Authorization: `${config.TOKEN}`,
+      },
+    })
     .then((resp) => res.send(resp.data))
-    .catch(() => {
-      res.sendStatus(500);
+    .catch((error) => {
+      console.log(error);
     });
 });
 

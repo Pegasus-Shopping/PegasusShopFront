@@ -4,13 +4,13 @@ import css from "../styles.css";
 // Takes in ratingList, a numbers array of ratings from all reviewers, and produces
 // a rating breakdown on how the reviewers rate the product. Produces a sideways bar chart
 // that graphs how the reviewers rated the product.
-function Breakdown({ list }) {
+function Breakdown({ list, setDisplayStarCounter }) {
   let counter5Rating = 0;
   let counter4Rating = 0;
   let counter3Rating = 0;
   let counter2Rating = 0;
   let counter1Rating = 0;
-  console.log("this is list in Breakdown: ", list);
+
   list.forEach((rating) => {
     if (rating === 5) {
       counter5Rating += 1;
@@ -37,20 +37,30 @@ function Breakdown({ list }) {
   counter4Rating = getPercentage(counter4Rating);
   counter3Rating = getPercentage(counter3Rating);
   counter2Rating = getPercentage(counter2Rating);
-  counter1Rating = getPercentage(counter1Rating);
-  console.log("this is counter5Rating: ", counter5Rating);
+
+  function onClick(event) {
+    setDisplayStarCounter(parseInt(event.target.id, 10));
+  }
+
+  function onHandleKeyDown() {
+    onClick();
+  }
+
+  function resetReviews() {
+    setDisplayStarCounter(0);
+  }
   useEffect(() => {
     document.getElementById("5 rating bar").style.width = `${counter5Rating}%`;
     document.getElementById("4 rating bar").style.width = `${counter4Rating}%`;
     document.getElementById("3 rating bar").style.width = `${counter3Rating}%`;
     document.getElementById("2 rating bar").style.width = `${counter2Rating}%`;
     document.getElementById("1 rating bar").style.width = `${counter1Rating}%`;
-  });
+  }, [list]);
 
   return (
     <div id="ratingBreakdown">
       <div id="5 rating">
-        <u>
+        <u id="5" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           5 stars
         </u>
         {" "}
@@ -58,8 +68,8 @@ function Breakdown({ list }) {
           <div id="5 rating bar" className={css.bar5} />
         </div>
       </div>
-      <div id="4 rating">
-        <u>
+      <div id="4 rating" value={4}>
+        <u id="4" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           4 stars
         </u>
         {" "}
@@ -67,8 +77,8 @@ function Breakdown({ list }) {
           <div id="4 rating bar" className={css.bar4} />
         </div>
       </div>
-      <div id="3 rating">
-        <u>
+      <div id="3 rating" value={3}>
+        <u id="3" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           3 stars
         </u>
         {" "}
@@ -76,8 +86,8 @@ function Breakdown({ list }) {
           <div id="3 rating bar" className={css.bar3} />
         </div>
       </div>
-      <div id="2 rating">
-        <u>
+      <div id="2 rating" value={2}>
+        <u id="2" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           2 stars
         </u>
         {" "}
@@ -85,8 +95,8 @@ function Breakdown({ list }) {
           <div id="2 rating bar" className={css.bar2} />
         </div>
       </div>
-      <div id="1 rating">
-        <u>
+      <div id="1 rating" value={1}>
+        <u id="1" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           1 stars
         </u>
         {" "}
@@ -94,12 +104,14 @@ function Breakdown({ list }) {
           <div id="1 rating bar" className={css.bar1} />
         </div>
       </div>
+      <input type="button" value="Show All Reviews" className={css.showAllReviews} onClick={resetReviews} />
     </div>
   );
 }
 
 Breakdown.propTypes = {
   list: PropTypes.arrayOf(PropTypes.number).isRequired,
+  setDisplayStarCounter: PropTypes.func.isRequired,
 };
 
 export default Breakdown;

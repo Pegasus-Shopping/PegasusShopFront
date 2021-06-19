@@ -8,19 +8,21 @@ import css from "./styles.css";
 // ProductReviews pass in the list to ReviewList.
 function ProductReviews({ id }) {
   const [reviewList, setReviewList] = useState([]);
-
+  const [displayStarCounter, setDisplayStarCounter] = useState(0);
   useEffect(() => {
     axios.get("/reviews", { params: { product_id: id } })
       .then((resp) => setReviewList(resp.data.results))
       .catch((err) => console.log(err));
-  }, [id]);
-
-  console.log(id);
+  }, [id, displayStarCounter]);
 
   return (
     <div className={css.reviewListandStarBreakdown}>
-      <StarRatingBreakdown list={reviewList} id={id} />
-      <ReviewList list={reviewList} />
+      <StarRatingBreakdown
+        list={reviewList}
+        id={id}
+        setDisplayStarCounter={setDisplayStarCounter}
+      />
+      <ReviewList list={reviewList} id={id} displayStarCounter={displayStarCounter} />
     </div>
   );
 }
