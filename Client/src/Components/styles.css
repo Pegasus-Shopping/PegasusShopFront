@@ -1,0 +1,16 @@
+.app {
+  margin: auto;
+}
+
+.header {
+  font-style: italic;
+  font-size: 45px;
+  text-shadow: 1px 1px 10px grey;
+  margin: 0;
+  margin-bottom: 4rem;
+  padding:0;
+}
+
+.background {
+  background-color: #f5efdc;
+}

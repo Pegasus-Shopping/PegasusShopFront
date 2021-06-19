@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductOverview from "./product-overview/ProductOverview";
 import RelatedProductsComparison from "./related-products/RelatedProductsComparison";
-import QuestionsAnswers from "./questions-answers/QuestionsAnswers";
 import ProductReviews from "./product-reviews/ProductReviews";
 import DataContext from "./context";
+import css from "./styles.css";
 
 function App() {
   const [isBusy, setBusy] = useState(true);
@@ -83,12 +83,14 @@ function App() {
     setOutfitCount(outfitCount + 1);
   };
   return (
-    <div>
-      <h1>Shopping</h1>
+    <div className={css.background}>
+      <h1 className={css.header}>
+        Pegasus Shopping
+      </h1>
       {
         !isBusy
         && (
-        <>
+        <div className={css.app}>
           <DataContext.Provider
             value={{
               product,
@@ -104,10 +106,9 @@ function App() {
           >
             <ProductOverview setStyleIndex={setStyleIndex} id={id} />
             <RelatedProductsComparison setId={setId} />
-            <QuestionsAnswers />
             <ProductReviews id={id} />
           </DataContext.Provider>
-        </>
+        </div>
         )
       }
     </div>

@@ -1,7 +1,9 @@
 .reviewListandStarBreakdown {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-
+  grid-template-columns: 1fr 3fr;
+  margin-left: 12rem;
+  margin-right: 12rem;
+  /* background-color: rgb(214, 205, 194); */
 }
 
 .checkmark {
@@ -41,7 +43,7 @@
 }
 
 .star-checked {
-  color: orange;
+  color: yellow;
 }
 
 .image {
@@ -81,7 +83,7 @@
 
 .starsInner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color:orange;
+  color:rgba(255, 255, 0, 0.76);
 }
 
 .barContainer {
@@ -136,7 +138,8 @@
 }
 
 .formRadio {
-  display:none;
+  display: none;
+  cursor: pointer;
 }
 
 .buttonAlign {
@@ -200,4 +203,18 @@
 .showAllReviews {
   margin-top: 5px;
   margin-left: 45px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.recommend {
+  cursor: pointer;
+}
+
+.review {
+  background-color: rgb(255, 250, 245);
+  padding:1rem;
+  box-shadow: 10px 5px 8px rgba(0, 0, 255, .2);
 }
