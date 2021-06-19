@@ -114,12 +114,12 @@ function NewReview({ id }) {
             <br />
             Summary:
             <br />
-            <textarea rows="1" cols="100" onChange={onSummaryChange} />
+            <textarea rows="1" cols="50" onChange={onSummaryChange} />
             <br />
             <br />
             Review:
             <br />
-            <textarea rows="10" cols="100" onChange={onReviewChange} />
+            <textarea rows="10" cols="50" onChange={onReviewChange} />
             <br />
             <UploadPhotos setPhoto={setPhotoArray} />
             <br />
