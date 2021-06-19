@@ -190,7 +190,41 @@ app.post("/clicks", (req, res) => {
       res.sendStatus(500);
     });
 });
-
+// Header required: Authorization token
+// Param required: sku_id, (count)
+// GET Request.  equivlent to making requests to
+// /reviews/meta, /reviews, /products/styles, /products
+app.get("/all", (req, res) => {
+  const id = req.query.product_id;
+  const details = {
+    params: {
+      product_id: id,
+    },
+    headers: {
+      Authorization: `${config.TOKEN}`,
+    },
+  };
+  axios.all([
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}/styles`, details),
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews/meta", details),
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/reviews", details),
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/${id}`, details),
+  ])
+    .then(
+      axios.spread((stylesReturn, ratingReturn, reviewsReturn, productReturn) => {
+        res.send({
+          stylesReturn: stylesReturn.data,
+          ratingReturn: ratingReturn.data,
+          reviewsReturn: reviewsReturn.data,
+          productReturn: productReturn.data,
+        });
+      }),
+    )
+    .catch((err) => {
+      console.log("/formated", err);
+      res.sendStatus(500);
+    });
+});
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log("Connected to server at port", 3000);

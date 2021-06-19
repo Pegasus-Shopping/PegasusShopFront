@@ -15,12 +15,12 @@ import ProductCard from "./ProductCard";
 // appear as first item in carousel
 // side effects: none
 function CardCarousel({
-  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", ids, defaultCard,
+  title, buttonOnClickEvent, onClickEvent = () => true, buttonCharacter = "star", products, defaultCard,
 }) {
-  let cardArray = ids.map((id, index) => (
+  let cardArray = products.map((product, index) => (
     <ProductCard
       key={title + index.toString()}
-      id={id}
+      product={product}
       buttonCharacter={buttonCharacter}
       buttonOnClickEvent={buttonOnClickEvent}
       onClickEvent={onClickEvent}
@@ -65,7 +65,7 @@ function CardCarousel({
 }
 
 CardCarousel.propTypes = {
-  ids: PropTypes.arrayOf(PropTypes.number).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object.isRequired),
   title: PropTypes.string.isRequired,
   buttonOnClickEvent: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func,

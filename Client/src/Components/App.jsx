@@ -10,25 +10,74 @@ function App() {
   const [isBusy, setBusy] = useState(true);
   const [styles, setStyles] = useState(null);
   const [rating, setRating] = useState(0);
+  const [reviews, setReviews] = useState(null);
   const [product, setProduct] = useState({ id: 20100 });
   const [id, setId] = useState(20100);
   const [outfitCount, setOutfitCount] = useState(0);
   const [styleIndex, setStyleIndex] = useState(0);
+  const [productStorage, setProductStorage] = useState([]);
 
+  // input: number
+  // output: boolean
+  // side effects: none
+  // behavior: tests if product with input id is present in storage
+  const checkStorage = (idQuery) => {
+    let isPresent = false;
+    productStorage.forEach((productObj) => {
+      if (productObj.productReturn.id === idQuery) {
+        isPresent = true;
+      }
+    });
+    return isPresent;
+  };
+  // input: properties of product data object returned by GET /all
+  // output: none
+  // side effects: puts object representing product in storage
+  const addToStorage = (stylesReturn, ratingReturn, reviewsReturn, productReturn) => {
+    productStorage.push({
+      stylesReturn, ratingReturn, reviewsReturn, productReturn,
+    });
+    setProductStorage(productStorage);
+  };
+  // input: number
+  // output: object represention of product or null if object is not present
+  // side effects: none
+  const getFromStorage = (idQuery) => {
+    let productData = null;
+    productStorage.forEach((productObj) => {
+      if (productObj.productReturn.id === idQuery) {
+        productData = productObj;
+      }
+    });
+    return productData;
+  };
+  // input: properties of product data object returned by GET /all
+  // output: none
+  // side effects: updates hooks for current product
+  const setCurrent = (stylesReturn, ratingReturn, reviewsReturn, productReturn) => {
+    setStyles(stylesReturn.results);
+    setRating(ratingReturn.ratings);
+    setReviews(reviewsReturn);
+    setProduct(productReturn);
+    setBusy(false);
+  };
   useEffect(() => {
-    axios.all([
-      axios.get(`/products/${id}/styles`),
-      axios.get("/reviews/meta/", { params: { product_id: id } }),
-      axios.get(`/products/${id}`),
-    ])
-      .then(
-        axios.spread((stylesReturn, ratingReturn, productReturn) => {
-          setStyles(stylesReturn.data.results);
-          setRating(ratingReturn.data.ratings);
-          setProduct(productReturn.data);
-          setBusy(false);
-        }),
-      );
+    if (checkStorage(id)) {
+      const {
+        stylesReturn, ratingReturn, reviewsReturn, productReturn,
+      } = getFromStorage(id);
+      setCurrent(stylesReturn, ratingReturn, reviewsReturn, productReturn);
+    } else {
+      axios.get("/all/", { params: { product_id: id } })
+        .then((res) => {
+          const {
+            stylesReturn, ratingReturn, reviewsReturn, productReturn,
+          } = res.data;
+
+          addToStorage(stylesReturn, ratingReturn, reviewsReturn, productReturn);
+          setCurrent(stylesReturn, ratingReturn, reviewsReturn, productReturn);
+        });
+    }
   }, [id]);
   const updateCount = () => {
     setOutfitCount(outfitCount + 1);
@@ -42,7 +91,15 @@ function App() {
         <>
           <DataContext.Provider
             value={{
-              product, styles, styleIndex, rating, updateCount,
+              product,
+              styles,
+              styleIndex,
+              rating,
+              reviews,
+              updateCount,
+              getFromStorage,
+              checkStorage,
+              addToStorage,
             }}
           >
             <ProductOverview setStyleIndex={setStyleIndex} />

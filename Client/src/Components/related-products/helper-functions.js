@@ -83,4 +83,26 @@ export default {
     }
     return outfitArray;
   },
+  // input: object properties from a request to /all
+  // output: object with shape:
+  // {
+  //   name:,
+  //   id:,
+  //   category:,
+  //   truePrice:,
+  //   ratings,
+  //   imgUrl,
+  // }
+  // side effect: none
+  formatProduct: (stylesReturn, ratingReturn, productReturn) => {
+    const newProduct = { id: productReturn.id, ratings: [] };
+    newProduct.name = productReturn.name;
+    newProduct.category = productReturn.category;
+    ratingReturn.results.forEach((review) => {
+      newProduct.ratings.push(review.rating);
+    });
+    newProduct.imgUrl = stylesReturn.results[0].photos[0].thumbnail_url;
+    newProduct.truePrice = getTruePrice(productReturn, stylesReturn.results);
+    return newProduct;
+  },
 };
