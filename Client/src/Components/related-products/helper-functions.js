@@ -103,6 +103,7 @@ export default {
     });
     newProduct.imgUrl = stylesReturn.results[0].photos[0].thumbnail_url;
     newProduct.truePrice = getTruePrice(productReturn, stylesReturn.results);
+    newProduct.features = productReturn.features;
     return newProduct;
   },
 };

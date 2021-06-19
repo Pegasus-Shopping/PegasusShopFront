@@ -71,6 +71,7 @@ function RelatedProductsComparison({ setId }) {
   // output: none
   // side effects: updates compareFeatures, toggles comparison modal on
   const comparisonClick = (productCompare) => {
+    console.log(productCompare);
     setCompareFeatures(productCompare);
     setIsShowingModal(true);
   };
