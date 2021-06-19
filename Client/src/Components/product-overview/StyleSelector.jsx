@@ -121,7 +121,7 @@ function StyleSelector({ setStyleIndex, setThumb }) {
           <RecordClicks widget="product overview" element="size selector">
             <select className={css.sizeselector} onChange={updateSelect}>
               {sizes.map((size, index) => (
-                <option value={index} key={size.size}>
+                <option value={index} key={size.size + index.toString()}>
                   {size.size}
                 </option>
               ))}
