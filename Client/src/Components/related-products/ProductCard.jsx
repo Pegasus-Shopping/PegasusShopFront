@@ -46,7 +46,7 @@ function ProductCard({
           <h3 className={css.thinHeading1}>{category.toUpperCase()}</h3>
           <h3 className={css.thinHeading2}>{name}</h3>
           <h3 className={css.thinHeading1}>{`$${truePrice}`}</h3>
-          <StarList list={ratings} />
+          <StarList list={ratings} showAverage={false} />
         </div>
       </div>
     </div>

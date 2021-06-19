@@ -13,11 +13,11 @@ function StarRating({ rating }) {
   return (
     <div>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      {filledStars.map(() => (
-        <i className="fa fa-star orange-color" />
+      {filledStars.map((star, index) => (
+        <i className="fa fa-star orange-color" key={`star empty ${index}`} />
       ))}
-      {emptyStars.map(() => (
-        <span className="fa fa-star-o" />
+      {emptyStars.map((star, index) => (
+        <span className="fa fa-star-o" key={`star empty ${index}`} />
       ))}
     </div>
   );

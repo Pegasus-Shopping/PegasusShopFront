@@ -21,7 +21,11 @@ function Response({ response }) {
 }
 
 Response.propTypes = {
-  response: PropTypes.bool.isRequired,
+  response: PropTypes.bool,
+};
+
+Response.defaultProps = {
+  response: false,
 };
 
 export default Response;
