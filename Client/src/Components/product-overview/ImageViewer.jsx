@@ -22,7 +22,7 @@ function ImageViewer({ thumb, setThumb, toggleExpanded }) {
                   && index >= thumb - 4
                   && index <= thumb))
             && (
-              <RecordClicks widget="product overview" element="toggle thumb">
+              <RecordClicks widget="product overview" element="toggle thumb" key={JSON.stringify(photo)}>
                 <div>
                   {index === thumb
                     && (
