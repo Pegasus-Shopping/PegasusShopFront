@@ -167,18 +167,19 @@ app.post("/reviews", (req, res) => {
 // Post Request: add interactions data to Atelier API database
 app.post("/clicks", (req, res) => {
   // console.log(req.body);
-  axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions", req.body,
-    {
-      headers: {
-        Authorization: `${config.TOKEN}`,
-      },
-    })
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch(() => {
-      res.sendStatus(500);
-    });
+  // axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/interactions", req.body,
+  //   {
+  //     headers: {
+  //       Authorization: `${config.TOKEN}`,
+  //     },
+  //   })
+  //   .then(() => {
+  //     res.sendStatus(200);
+  //   })
+  //   .catch(() => {
+  //     res.sendStatus(500);
+  //   });
+  res.sendStatus(200);
 });
 // Header required: Authorization token
 // Param required: sku_id, (count)
