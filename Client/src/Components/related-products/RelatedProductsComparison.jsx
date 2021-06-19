@@ -9,7 +9,7 @@ import DataContext from "../context";
 import helpers from "./helper-functions";
 import RecordClicks from "../RecordClicks";
 
-const { getOutfit, removeFromOutfit } = helpers;
+const { getOutfit, removeFromOutfit, formatProduct } = helpers;
 
 // imputs: type: function content: setter for App's id hook
 // output: creates a card carousel for related products and a card carousel for products
@@ -18,14 +18,53 @@ const { getOutfit, removeFromOutfit } = helpers;
 // side effects: makes api requests
 function RelatedProductsComparison({ setId }) {
   const [isShowingModal, setIsShowingModal] = useState(false);
-  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const [isBusy, setIsBusy] = useState(true);
   const [compareFeatures, setCompareFeatures] = useState();
-  const { product, updateCount } = useContext(DataContext);
+  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const {
+    product, updateCount, getFromStorage, checkStorage, addToStorage,
+  } = useContext(DataContext);
+  // input: type: array of numbers
+  // output: array of product objects
+  // side effects: none
+  const getProducts = (ids) => {
+    const record = {};
+    const formattedProducts = [];
+    ids.forEach((id) => {
+      if (getFromStorage(id) && !record[id]) {
+        record[id] = id;
+        const { stylesReturn, reviewsReturn, productReturn } = getFromStorage(id);
+        formattedProducts.push(formatProduct(stylesReturn, reviewsReturn, productReturn));
+      }
+    });
+    return formattedProducts;
+  };
   useEffect(() => {
-    // get related product ids
     axios.get(`/products/${product.id}/related/`)
       .then((res) => {
-        setRelatedProductIds(res.data);
+        const ids = res.data;
+        setRelatedProductIds(ids);
+        const promises = [];
+        ids.forEach((id) => {
+          if (!checkStorage(id)) {
+            promises.push(
+              axios.get("/all/", { params: { product_id: id } }),
+            );
+          }
+        });
+        if (!promises.length) {
+          setIsBusy(false);
+        }
+        Promise.all(promises)
+          .then((results) => {
+            results.forEach((result) => {
+              const {
+                stylesReturn, ratingReturn, reviewsReturn, productReturn,
+              } = result.data;
+              addToStorage(stylesReturn, ratingReturn, reviewsReturn, productReturn);
+            });
+            setIsBusy(false);
+          });
       });
   }, [product]);
   // input: object representation of product
@@ -47,6 +86,9 @@ function RelatedProductsComparison({ setId }) {
     updateCount();
   };
   return (
+    <div>
+      {!isBusy
+    && (
     <RecordClicks widget="related products comparison" element="carousel container">
       <div role="button" className={css.panel} onClick={isShowingModal ? pageOnClickEvent : undefined} onKeyDown={isShowingModal ? pageOnClickEvent : undefined} tabIndex={0}>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -56,12 +98,16 @@ function RelatedProductsComparison({ setId }) {
           compareProduct={compareFeatures}
         />
         )}
-        <CardCarousel ids={relatedProductIds} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
-        <CardCarousel ids={getOutfit()} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
+        <CardCarousel products={getProducts(relatedProductIds)} title="RELATED PRODUCTS" buttonOnClickEvent={comparisonClick} onClickEvent={setId} buttonCharacter="star" />
+        <CardCarousel products={getProducts(getOutfit())} title="YOUR OUTFIT" buttonOnClickEvent={removeFromOutfitUpdateCount} buttonCharacter="circledX" defaultCard={<AddOutfitCard key="addThisToOutfit" />} />
       </div>
     </RecordClicks>
+    )}
+
+    </div>
   );
 }
+
 RelatedProductsComparison.propTypes = {
   setId: PropTypes.func.isRequired,
 };
