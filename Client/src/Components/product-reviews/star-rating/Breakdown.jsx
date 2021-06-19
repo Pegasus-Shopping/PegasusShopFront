@@ -60,7 +60,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
   return (
     <div id="ratingBreakdown">
       <div id="5 rating">
-        <u id="5" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
+        <u id="5" onClick={onClick} className={css.cursor} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           5 stars
         </u>
         {" "}
@@ -69,7 +69,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
         </div>
       </div>
       <div id="4 rating" value={4}>
-        <u id="4" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
+        <u id="4" onClick={onClick} className={css.cursor} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           4 stars
         </u>
         {" "}
@@ -78,7 +78,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
         </div>
       </div>
       <div id="3 rating" value={3}>
-        <u id="3" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
+        <u id="3" onClick={onClick} className={css.cursor} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           3 stars
         </u>
         {" "}
@@ -87,7 +87,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
         </div>
       </div>
       <div id="2 rating" value={2}>
-        <u id="2" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
+        <u id="2" onClick={onClick} className={css.cursor} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           2 stars
         </u>
         {" "}
@@ -96,7 +96,7 @@ function Breakdown({ list, setDisplayStarCounter }) {
         </div>
       </div>
       <div id="1 rating" value={1}>
-        <u id="1" onClick={onClick} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
+        <u id="1" onClick={onClick} className={css.cursor} onKeyDown={onHandleKeyDown} role="button" tabIndex={0}>
           1 stars
         </u>
         {" "}

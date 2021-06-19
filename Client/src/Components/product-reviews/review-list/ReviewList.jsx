@@ -116,7 +116,7 @@ function ReviewList({ list, id, displayStarCounter }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  <br />
                 </>
               );
             }
@@ -130,7 +130,7 @@ function ReviewList({ list, id, displayStarCounter }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  <br />
                 </>
               );
             }
@@ -143,7 +143,7 @@ function ReviewList({ list, id, displayStarCounter }) {
               return (
                 <>
                   <Review review={review} />
-                  <hr />
+                  <br />
                 </>
               );
             }

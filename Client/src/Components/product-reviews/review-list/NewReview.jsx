@@ -36,7 +36,7 @@ function NewReview({ id }) {
     } else {
       const newReview = {
         product_id: id,
-        rating: parseInt(reviewRating),
+        rating: parseInt(reviewRating, 10),
         summary: summaryText,
         recommend: reviewRecommend,
         body: reviewText,
@@ -100,13 +100,13 @@ function NewReview({ id }) {
               Do you Recommend the product?
               <label htmlFor="recommend-radio-yes">
                 <RecordClicks widget="product reviews" element="yes recommend">
-                  <input type="radio" name="recommend" value onClick={onRecommendClick} />
+                  <input type="radio" className={css.recommend} name="recommend" value onClick={onRecommendClick} />
                 </RecordClicks>
                 Yes
               </label>
               <label htmlFor="recommend-radio-no">
                 <RecordClicks widget="product reviews" element="no recommend">
-                  <input type="radio" name="recommend" value={false} onClick={onRecommendClick} />
+                  <input type="radio" className={css.recommend} name="recommend" value={false} onClick={onRecommendClick} />
                 </RecordClicks>
                 No
               </label>
